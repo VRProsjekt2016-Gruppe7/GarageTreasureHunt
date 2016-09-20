@@ -218,7 +218,7 @@
     <packageHasNamedElement>
       <class
         Id="ea16a8e0-afec-41c7-a4e7-09ed4b3cf911"
-        name="LeftController : IControllerHandler"
+        name="LeftController : HandController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -228,7 +228,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="c92920e1-713e-49e8-8ac1-93aa184d2ae9"
-              LastKnownName="HandController"
+              LastKnownName="HandController : MonoBehaviour, IControllerHandler"
               LastKnownLocation="VR_Gruppe7_Project.uml" />
           </generalization>
         </generalsInternal>
@@ -237,7 +237,7 @@
     <packageHasNamedElement>
       <class
         Id="b5c94636-d379-4251-94f1-225a5d2c803e"
-        name="RightController : IControllerHandler"
+        name="ViveHandController : HandController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
@@ -247,7 +247,7 @@
             isSubstitutable="false">
             <classMoniker
               Id="c92920e1-713e-49e8-8ac1-93aa184d2ae9"
-              LastKnownName="HandController"
+              LastKnownName="HandController : MonoBehaviour, IControllerHandler"
               LastKnownLocation="VR_Gruppe7_Project.uml" />
           </generalization>
         </generalsInternal>
@@ -449,7 +449,7 @@
     <packageHasNamedElement>
       <class
         Id="c92920e1-713e-49e8-8ac1-93aa184d2ae9"
-        name="HandController"
+        name="HandController : MonoBehaviour, IControllerHandler"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">

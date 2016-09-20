@@ -73,8 +73,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\IControllerHandler.cs" />
-    <Compile Include="Assets\Scripts\LeftController.cs" />
-    <Compile Include="Assets\Scripts\RightController.cs" />
+    <Compile Include="Assets\Scripts\ViveHandController.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_GazeTracker.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_LaserPointer.cs" />
     <Compile Include="Assets\SteamVR\Extras\SteamVR_Teleporter.cs" />
