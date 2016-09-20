@@ -86,22 +86,11 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="53f8b90b-b5ca-47a0-a58e-1585826c2c4c" name="LeftController : IControllerHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
-        <elementDefinition Id="ea16a8e0-afec-41c7-a4e7-09ed4b3cf911" />
-        <generalsInternal>
-          <generalization Id="3d07ea08-55ee-45c1-b242-964886ee13d0" isSubstitutable="false">
-            <classMoniker Id="535aaf8b-6576-4e0c-96b8-9dd0fdaadf0a" LastKnownName="HandController" />
-            <elementDefinition Id="27cbea39-347d-4523-90b4-51cdf2db605f" />
-          </generalization>
-        </generalsInternal>
-      </class>
-    </logicalClassDesignerModelHasTypes>
-    <logicalClassDesignerModelHasTypes>
-      <class Id="46f81fdd-5eef-40cd-bf24-86d331d08ae4" name="RightController : IControllerHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="46f81fdd-5eef-40cd-bf24-86d331d08ae4" name="ViveHandController : HandController" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="b5c94636-d379-4251-94f1-225a5d2c803e" />
         <generalsInternal>
           <generalization Id="b4fa539d-4799-47ff-8950-29fdcad61359" isSubstitutable="false">
-            <classMoniker Id="535aaf8b-6576-4e0c-96b8-9dd0fdaadf0a" LastKnownName="HandController" />
+            <classMoniker Id="535aaf8b-6576-4e0c-96b8-9dd0fdaadf0a" LastKnownName="HandController : MonoBehaviour, IControllerHandler" />
             <elementDefinition Id="69267d67-b85a-4f60-9cf4-f9608c76d45d" />
           </generalization>
         </generalsInternal>
@@ -233,7 +222,7 @@
       </class>
     </logicalClassDesignerModelHasTypes>
     <logicalClassDesignerModelHasTypes>
-      <class Id="535aaf8b-6576-4e0c-96b8-9dd0fdaadf0a" name="HandController" isAbstract="false" isLeaf="false" isActiveClass="false">
+      <class Id="535aaf8b-6576-4e0c-96b8-9dd0fdaadf0a" name="HandController : MonoBehaviour, IControllerHandler" isAbstract="false" isLeaf="false" isActiveClass="false">
         <elementDefinition Id="c92920e1-713e-49e8-8ac1-93aa184d2ae9" />
         <ownedAttributesInternal>
           <property Id="d756cd93-7c04-43f2-8903-3846c01dd5e1" name="CurrentHand" isLeaf="false" isStatic="false" isReadOnly="false" isUnique="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">

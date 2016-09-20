@@ -15,8 +15,6 @@ public class GameManager : MonoBehaviour
 
     private float _startTime;
     private CurrentState _currentState;
-    private LeftController _lController;
-    private RightController _rController;
 
     void Awake()
     {
