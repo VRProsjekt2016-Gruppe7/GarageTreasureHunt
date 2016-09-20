@@ -23,6 +23,7 @@ ExportedObj/
 *.app
 *.exe
 *.*_data
+*.CSharp
      
 Build/iOS
 Build/android
