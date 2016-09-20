@@ -8,8 +8,8 @@ public enum CurrentState
     Quit
 }
 
-public class GameManager : MonoBehaviour {
-
+public class GameManager : MonoBehaviour
+{
     public int CurrentScore;
     public float TimeLeft;
 
