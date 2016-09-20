@@ -1,8 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class ViveHandController : HandController {
+
+    public GameObject HandModel;
+
+    private bool _triggerPressed = false;
+    private bool _gripPressed = false;
 
     private Valve.VR.EVRButtonId _triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private Valve.VR.EVRButtonId _gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
@@ -13,7 +19,6 @@ public class ViveHandController : HandController {
     void Awake()
     {
         _trackedObj = GetComponent<SteamVR_TrackedObject>();
-
     }
 
     void Update()
@@ -24,20 +29,46 @@ public class ViveHandController : HandController {
             return;
         }
 
+        CheckButtons();
+    }
+
+    private void CheckButtons()
+    {
         if (_inputDevice.GetPressDown(_triggerButton))
         {
+            _triggerPressed = true;
             Debug.Log("Fire (Trigger-button pressed)");
+        }
+
+        if (_inputDevice.GetPressUp(_triggerButton))
+        {
+            _triggerPressed = false;
         }
 
         if (_inputDevice.GetPressDown(_gripButton))
         {
+            _gripPressed = true;
             Debug.Log("Gripping (Grip-button pressed)");
+        }
+
+        if (_inputDevice.GetPressUp(_gripButton))
+        {
+            _gripPressed = false;
+        }
+
+        if(!_triggerPressed && ConnectedObject != null)
+        {
+            ConnectedObject.transform.parent = null;
+            ConnectedObject = null;
         }
     }
 
-
-    void OnTriggerEnter(Collider col)
+    void OnTriggerStay(Collider col)
     {
-
+        if(_triggerPressed && col.transform.parent.tag == "Container" && ConnectedObject == null)
+        {
+            ConnectedObject = col.transform.parent.gameObject;
+            ConnectedObject.transform.parent = HandModel.transform;
+        }
     }
 }
