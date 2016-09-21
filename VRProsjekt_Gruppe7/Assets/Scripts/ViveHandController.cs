@@ -2,6 +2,13 @@
 using System.Collections;
 using System;
 
+
+public enum ButtonPressed
+{
+    Trigger,
+    Grip
+}
+
 [RequireComponent(typeof(SteamVR_TrackedObject))]
 public class ViveHandController : HandController {
 
@@ -16,7 +23,8 @@ public class ViveHandController : HandController {
     private SteamVR_Controller.Device _inputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
     private SteamVR_TrackedObject _trackedObj;
 
-    void Awake()
+//    void Awake()
+    void Start()
     {
         _trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
@@ -36,31 +44,50 @@ public class ViveHandController : HandController {
     {
         if (_inputDevice.GetPressDown(_triggerButton))
         {
-            _triggerPressed = true;
-            Debug.Log("Fire (Trigger-button pressed)");
+            ButtonAction(ButtonPressed.Trigger, true);
         }
 
         if (_inputDevice.GetPressUp(_triggerButton))
         {
-            _triggerPressed = false;
+            ButtonAction(ButtonPressed.Trigger, false);
         }
 
         if (_inputDevice.GetPressDown(_gripButton))
         {
-            _gripPressed = true;
-            Debug.Log("Gripping (Grip-button pressed)");
+            ButtonAction(ButtonPressed.Grip, true);
         }
 
         if (_inputDevice.GetPressUp(_gripButton))
         {
-            _gripPressed = false;
+            ButtonAction(ButtonPressed.Grip, false);
         }
 
-        if(!_triggerPressed && ConnectedObject != null)
+        if (!_triggerPressed && ConnectedObject != null)
         {
+            Debug.Log("Released trigger-button -> Releasing attached object (" + ConnectedObject.name + ")");
             ConnectedObject.transform.parent = null;
             ConnectedObject = null;
         }
+    }
+
+    private void ButtonAction(ButtonPressed btn, bool pressed)
+    {
+        string msg = "Button ";
+
+        if (btn == ButtonPressed.Grip)
+        {
+            _gripPressed = pressed;
+            msg += "Grip ";
+        }
+        else if (btn == ButtonPressed.Trigger)
+        {
+            _triggerPressed = pressed;
+            msg += "Trigger ";
+        }
+
+        msg += (pressed ? "pressed" : "released");
+
+        Debug.Log(msg + "!");
     }
 
     void OnTriggerStay(Collider col)
