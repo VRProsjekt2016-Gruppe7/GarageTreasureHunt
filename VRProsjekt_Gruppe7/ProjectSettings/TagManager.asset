@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Container
   - ShelfLeg
+  - TagGun
+  - GameManager
   layers:
   - Default
   - TransparentFX

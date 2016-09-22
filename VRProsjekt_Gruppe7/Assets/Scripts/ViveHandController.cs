@@ -68,6 +68,12 @@ public class ViveHandController : HandController {
             ConnectedObject.transform.parent = null;
             ConnectedObject = null;
         }
+		if(!_gripPressed && ConnectedObject != null)
+		{
+			ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+			ConnectedObject.transform.parent = null;
+			ConnectedObject = null;
+		}
     }
 
     private void ButtonAction(ButtonPressed btn, bool pressed)
@@ -97,5 +103,21 @@ public class ViveHandController : HandController {
             ConnectedObject = col.transform.parent.gameObject;
             ConnectedObject.transform.parent = HandModel.transform;
         }
+
+		if(_inputDevice.GetPressDown(_gripButton) && col.gameObject.tag == "TagGun" && ConnectedObject == null)
+		{
+			ConnectedObject = col.transform.gameObject;
+			ConnectedObject.transform.parent = HandModel.transform;
+			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
+		}
     }
+
+	void OnTriggerExit(Collider col)
+	{
+		if (col.tag == "TagGun")
+		{
+			GetComponentInChildren<SteamVR_RenderModel>().enabled = true;
+		}
+	}
 }
