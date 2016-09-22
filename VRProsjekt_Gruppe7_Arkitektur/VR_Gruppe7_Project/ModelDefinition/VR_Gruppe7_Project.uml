@@ -27,44 +27,6 @@
         isActiveClass="false">
         <ownedAttributesInternal>
           <property
-            Id="f355fede-d5b9-460c-bdba-b96f8cc078cb"
-            name="_leftController"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="69d2469a-f143-4782-bc3b-0eb341e56111"
-                LastKnownName="LeftController"
-                LastKnownLocation="VR_Gruppe7_Project.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="46da3d70-d8b9-441f-911d-8d881c1f6dd8"
-            name="_rightController"
-            visibility="Private"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="b49c4291-dd42-4fa1-89fc-a9bc6882b8b5"
-                LastKnownName="RightController"
-                LastKnownLocation="VR_Gruppe7_Project.uml" />
-            </type_NamedElement>
-          </property>
-          <property
             Id="4f712f49-629b-4e4a-8579-46259fa68df3"
             name="_currentState"
             visibility="Private"
@@ -135,6 +97,24 @@
               <undefinedTypeMoniker
                 Id="52f2de02-5121-49ae-888d-cc394e298592"
                 LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="dccf39d0-f5b6-48e2-89b3-5b1ad152c0e1"
+            name="PlayerCameraPrefab"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="95a59d69-440e-48ce-b1cf-f673c629254f"
+                LastKnownName="GameObject"
                 LastKnownLocation="VR_Gruppe7_Project.uml" />
             </type_NamedElement>
           </property>
@@ -212,6 +192,105 @@
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
+          <operation
+            Id="d9c880d6-f733-4341-9577-104a71b88e4c"
+            name="Init"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="416f18c4-091c-4057-8854-95ecbdcc37a5"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7037a134-44a3-4604-9d77-750b18c91f1e"
+            name="Countdown"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ee023f10-dfb7-4989-a524-3af4c5a72e7f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ca1edaa8-84c5-4a59-ae3f-23a4576e4465"
+            name="GameStop"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="59128833-b002-4282-b46b-615d185d0e0e"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ce3dfddd-38ba-4176-afc0-83951df04a3e"
+            name="StartGame"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1956ffe6-0450-4d29-8a08-25a11754b7de"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
         </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
@@ -251,10 +330,145 @@
               LastKnownLocation="VR_Gruppe7_Project.uml" />
           </generalization>
         </generalsInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="140e5160-7a53-4206-b919-d20a022fe0d5"
+            name="HandModel"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="95a59d69-440e-48ce-b1cf-f673c629254f"
+                LastKnownName="GameObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ecd9fac1-4d65-4f40-8b3c-e027fec099e9"
+            name="_triggerPressed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="98df5862-c0db-41a5-815b-6ca9978fd2db"
+                LastKnownName="bool"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="1e0c147e-c21f-470a-8c60-1d82dcb0955d"
+            name="_gripPressed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="98df5862-c0db-41a5-815b-6ca9978fd2db"
+                LastKnownName="bool"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f41761ee-34d1-41f0-a206-5773d0f5d89d"
+            name="_triggerButton"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="e90fd5ed-07c2-4c0a-bf73-5089a2c8811d"
+                LastKnownName="Valve.VR.EVRButtonId"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="84d9c0d1-3c5b-4030-9baf-2671983e159a"
+            name="_gripButton"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="e90fd5ed-07c2-4c0a-bf73-5089a2c8811d"
+                LastKnownName="Valve.VR.EVRButtonId"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="73191131-9c93-4d42-afb2-17c59784ba4c"
+            name="_inputDevice"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9f6dad4b-579e-4699-86e9-6b8ee94ce93f"
+                LastKnownName="SteamVR_Controller.Device"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="61df81e8-5cab-44b7-a4f5-4a8f2e3eebdd"
+            name="_trackedObject"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="1556ccf5-dd99-4b0d-bbd3-3e308302089b"
+                LastKnownName="SteamVR_TrackedObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
             Id="fe09ea7d-3036-45a3-a0b9-f5acfce05c9e"
-            name="void OnTriggerEnter"
+            name="OnTriggerStay"
+            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isAbstract="false"
@@ -263,10 +477,105 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="be1791e8-dfa9-4523-8cd4-f668ac8740e1"
-                  name="Collider col"
+                  Id="002d3978-ceb1-470f-b845-04c0e33c14f9"
+                  name="Collider"
                   direction="In"
                   isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bb680ce3-768d-47df-b8bf-b6344352ca61"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8b0ab5ae-bd4c-4105-a1ad-f65458c56f5c"
+            name="Start : void"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="26bebd8f-19fb-4dcd-80f1-ffa13f96a70c"
+            name="Update"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="264cfbe8-53b6-4ff1-9ad9-c9b4b7f43843"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a96cc26f-56ae-46dd-aa5f-85313a94d639"
+            name="CheckButtons : void"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="b2e9bdce-c577-43ae-aaa2-ea77fdc6d224"
+            name="ButtonAction"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ccd82b3a-50b8-40f5-a81a-82da4ee38960"
+                  name="ButtonPressed"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="394e2912-fd6d-49b7-b1f6-006b88627cb5"
+                  name="bool"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9b4e21b3-dadc-492b-9329-c1d085ac292f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -366,7 +675,7 @@
     <packageHasNamedElement>
       <enumeration
         Id="9614f0e5-7cc3-4290-9fe8-0c7dced9b0cc"
-        name="GameState"
+        name="State"
         isAbstract="false"
         isLeaf="false">
         <ownedLiterals>
@@ -416,14 +725,14 @@
     <packageHasNamedElement>
       <class
         Id="3d25b5b0-2c61-4b0d-a898-44047bad2fb5"
-        name="GUI_Controller"
+        name="GuiController"
         isAbstract="false"
         isLeaf="false"
         isActiveClass="false">
         <ownedAttributesInternal>
           <property
             Id="3e0d9156-e0e3-47fb-a793-f9af9d74e74b"
-            name="TextMesh _currentScore;"
+            name="CurrentScore"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -431,10 +740,17 @@
             isDerived="false"
             isDerivedUnion="false"
             aggregation="None"
-            isComposite="false" />
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="d34793aa-268a-47e2-8e28-fb88543280ba"
+                LastKnownName="Text"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
           <property
             Id="002a371a-d99b-4064-91dc-785b741180d4"
-            name="TextMesh _timeLeft"
+            name="TimeLeft"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -442,8 +758,165 @@
             isDerived="false"
             isDerivedUnion="false"
             aggregation="None"
-            isComposite="false" />
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="d34793aa-268a-47e2-8e28-fb88543280ba"
+                LastKnownName="Text"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="34dfc6c7-f8dd-4caf-bc0a-602f2e0bf3dc"
+            name="Start"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="15d3eac0-23db-4ba9-a69f-97f986b9d932"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="74f6186a-1b44-4df2-8a54-a7d164f94d78"
+            name="Init"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cf004f57-c50d-4c7d-afed-b98d07efe490"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="3f54b240-5e4e-436d-af45-9c0b1a6bb53d"
+            name="SetTextInfo"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4c2248ea-7bf0-4a64-8fe3-7825ae327b7c"
+                  name="string"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6c004735-6fc9-41c4-9c21-4d02e8abf3fb"
+                  name="string"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="437317de-424c-4e18-90de-920df98d667b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f0af4bd2-2d83-4076-8900-4b9e677cc9e6"
+            name="SetScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f001c088-9f36-430c-a3a0-e1bdcde431ad"
+                  name="string"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2411ee7d-f4f4-4693-a478-b2a57e0aeb1b"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="40b38a5e-4e5d-4737-b35f-c7dd4fd09044"
+            name="SetTimeLeft"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="e6b5dca4-3e7f-475d-9d28-3d137e010b1e"
+                  name="string"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="59810b8a-8a39-42a4-ad16-b53a191fc124"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
       </class>
     </packageHasNamedElement>
     <packageHasNamedElement>
@@ -628,6 +1101,47 @@
       <undefinedType
         Id="5dbb51db-3135-47be-8459-1865c7f8d879"
         name="void" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="d34793aa-268a-47e2-8e28-fb88543280ba"
+        name="Text" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="9c1afe51-0029-4dc9-8e41-df08ce2360ab"
+        name="ButtonPressed"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="8c14405a-cbff-4c8d-af24-b31ba0e288bc"
+            name="Trigger" />
+          <enumerationLiteral
+            Id="4b3ed071-d54d-415a-b6cd-7c5db47ba94b"
+            name="Grip" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="98df5862-c0db-41a5-815b-6ca9978fd2db"
+        name="bool" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="e90fd5ed-07c2-4c0a-bf73-5089a2c8811d"
+        name="Valve.VR.EVRButtonId" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9f6dad4b-579e-4699-86e9-6b8ee94ce93f"
+        name="SteamVR_Controller.Device" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="1556ccf5-dd99-4b0d-bbd3-3e308302089b"
+        name="SteamVR_TrackedObject" />
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
