@@ -5,8 +5,8 @@ using System;
 
 public enum ButtonPressed
 {
-    Trigger,
-    Grip
+    Grip,
+	Trigger
 }
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
@@ -23,13 +23,13 @@ public class ViveHandController : HandController {
     private SteamVR_Controller.Device _inputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
     private SteamVR_TrackedObject _trackedObj;
 
-//    void Awake()
-    void Start()
+//  void Awake()
+	private void Start()
     {
         _trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
-    void Update()
+	private void Update()
     {
         if (_inputDevice == null)
         {
