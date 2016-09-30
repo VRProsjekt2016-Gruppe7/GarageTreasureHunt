@@ -10,31 +10,42 @@ namespace Assets.Scripts
 		public Text CurrentScore;
 		public Text TimeLeft;
 
-		void Start()
+        private readonly string _chargesText = "Avaliable charges: ";
+        private readonly string _timeLeftText = "TIME LEFT: ";
+        private readonly string _curScoreText = "Current score: ";
+
+        void Start()
 		{
 			Init();
 		}
 
 		public void Init()
 		{
-			SetScore("0");
-			SetTimeLeft("0");
-		}
+            SetCharges(0);
+            SetTimeLeft(0);
+            SetScore(0);
+        }
 
-		public void SetTextInfo(string score, string timeLeft)
+        public void SetTextInfo(int charges, int timeLeft, int score)
 		{
-			SetScore(score);
-			SetTimeLeft(timeLeft);
-		}
+            SetCharges(charges);
+            SetTimeLeft(timeLeft);
+            SetScore(score);
+        }
 
-		private void SetScore(string score)
-		{
-			CurrentScore.text = score;
-		}
+        public void SetCharges(int charges)
+        {
+            TimeLeft.text = _chargesText + (charges >= 0 ? charges : 0);
+        }
 
-		private void SetTimeLeft(string timeLeft)
+        public void SetTimeLeft(float timeLeft)
+        {
+            TimeLeft.text = _timeLeftText + ((int)timeLeft >= 0 ? timeLeft : 0);
+        }
+
+        public void SetScore(int score)
 		{
-			TimeLeft.text = timeLeft;
+            CurrentScore.text = _curScoreText + (score >= 0 ? score : 0);
 		}
 	}
 }

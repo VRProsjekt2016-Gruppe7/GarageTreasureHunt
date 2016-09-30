@@ -62,62 +62,71 @@ public class ViveHandController : HandController {
             ButtonAction(ButtonPressed.Grip, false);
         }
 
-        if (!_triggerPressed && ConnectedObject != null)
+        if(ConnectedObject != null)
         {
-            Debug.Log("Released trigger-button -> Releasing attached object (" + ConnectedObject.name + ")");
-            ConnectedObject.transform.parent = null;
-            ConnectedObject = null;
+            if(ConnectedObject.transform.position.y < 0)
+            {
+                ConnectedObject.transform.position = new Vector3(ConnectedObject.transform.position.x, 0, ConnectedObject.transform.position.z);
+            }
+
+            if (!_triggerPressed && ConnectedObject.transform.tag == "Container")
+            {
+                //Debug.Log("Released trigger-button -> Releasing attached object (" + ConnectedObject.name + ")");
+                if (ConnectedObject.gameObject.GetComponent<Rigidbody>())
+                {
+                    ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                }
+                ConnectedObject.transform.parent = null;
+                ConnectedObject = null;
+            }
+            else if (!_gripPressed && ConnectedObject.transform.tag == "TagGun")
+            {
+                if (ConnectedObject.gameObject.GetComponent<Rigidbody>())
+                {
+                    ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+                }
+                ConnectedObject.transform.parent = null;
+                ConnectedObject = null;
+            }
         }
-		if(!_gripPressed && ConnectedObject != null)
-		{
-			ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
-			ConnectedObject.transform.parent = null;
-			ConnectedObject = null;
-		}
     }
 
     private void ButtonAction(ButtonPressed btn, bool pressed)
     {
-        string msg = "Button ";
+        //string msg = "Button ";
 
         if (btn == ButtonPressed.Grip)
         {
             _gripPressed = pressed;
-            msg += "Grip ";
+            //msg += "Grip ";
         }
         else if (btn == ButtonPressed.Trigger)
         {
             _triggerPressed = pressed;
-            msg += "Trigger ";
+            //msg += "Trigger ";
         }
 
-        msg += (pressed ? "pressed" : "released");
+        //msg += (pressed ? "pressed" : "released");
 
-        Debug.Log(msg + "!");
+        //Debug.Log(msg + "!");
     }
 
     void OnTriggerStay(Collider col)
     {
-        if(_triggerPressed && col.transform.parent.tag == "Container" && ConnectedObject == null)
+
+        if(_triggerPressed && col.transform.tag == "Container" && ConnectedObject == null)
         {
-            ConnectedObject = col.transform.parent.gameObject;
+            ConnectedObject = col.transform.gameObject;
             ConnectedObject.transform.parent = HandModel.transform;
+            col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
         }
 
-		if(_inputDevice.GetPressDown(_gripButton) && col.gameObject.tag == "TagGun" && ConnectedObject == null)
+        if (_gripPressed && col.gameObject.tag == "TagGun" && ConnectedObject == null)
 		{
 			ConnectedObject = col.transform.gameObject;
 			ConnectedObject.transform.parent = HandModel.transform;
 			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
+//			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
 		}
     }
-
-	void OnTriggerExit(Collider col)
-	{
-		if (col.tag == "TagGun")
-		{
-			GetComponentInChildren<SteamVR_RenderModel>().enabled = true;
-		}
-	}
 }

@@ -12,18 +12,19 @@ public enum State
 
 public class GameManager : MonoBehaviour
 {
-    public int CurrentScore;
-    public float TimeLeft;
-
     public GameObject PlayerCameraPrefab;
 
-    private float _startTime = 60f;
+    private readonly float _defaultStartTime = 60f;
+    private readonly int _defaultCharges = 12;
+    private float _timeLeft;
+    private int _currentScore;
+    private int _chargesLeft;
     private State _currentState;
-
-	public GuiController GuiController;
+    private GuiController _guiController;
 
     void Awake()
     {
+        _guiController = GetComponent<GuiController>();
         Init();
     }
 
@@ -31,8 +32,7 @@ public class GameManager : MonoBehaviour
     {
         // (Show intro?)
 	    // Show main menu
-	    var gO = GameObject.FindGameObjectWithTag("GameManager");
-	    GuiController = gO.GetComponent<GuiController>();
+        
     }
 	
 	void Update ()
@@ -40,36 +40,42 @@ public class GameManager : MonoBehaviour
         if(_currentState == State.Running)
         {
             Countdown();
-	        GuiController.SetTextInfo("Score: "+CurrentScore, "Time: "+(int)TimeLeft);
         }	
 	}
 
+    private void UpdateTimeLeft()
+    {
+        _guiController.SetTimeLeft(_timeLeft);
+    }
+
     private void Countdown()
     {
-        if(TimeLeft>0)
-            TimeLeft -= 1f * Time.deltaTime;
+        if(_timeLeft>0)
+            _timeLeft -= 1f * Time.deltaTime;
 
-        if (TimeLeft <= 0 && _currentState == State.Running)
+        if (_timeLeft <= 0 && _currentState == State.Running)
             GameStop();
     }
 
-    private void GameStop()
-    {
-        _currentState = State.Paused;
-        TimeLeft = 0;
-    }
 
     private void Init()
     {
-        CurrentScore = 0;
+        _chargesLeft = 0;
+        _timeLeft = 0;
+        _currentScore = 0;
         GameStop();
     }
 
     public void StartGame()
     {
         _currentState = State.Running;
-        TimeLeft = _startTime;
-		Debug.Log("The Game Begins");
+        _timeLeft = _defaultStartTime;
+        _chargesLeft = _defaultCharges;
+        Debug.Log("The Game Begins");
     }
 
+    private void GameStop()
+    {
+        _currentState = State.Paused;
+    }
 }

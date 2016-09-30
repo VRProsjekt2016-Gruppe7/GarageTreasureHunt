@@ -1,35 +1,36 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
-using System;
 
 public class BoxesManager : MonoBehaviour {
 
-    public GameObject boxPrefab;
-    List<GameObject> AllBoxes;
+    public GameObject BoxPrefab;
 
+    private List<GameObject> _allBoxes;
     private readonly float _boxWidth = 0.3f;
     private readonly float _boxHeight = 0.3f;
     private readonly float _boxDepth = 0.3f;
     private readonly float _offSetWidthPrBox = 0.08f;
     private readonly float _shelfSideOffset = 0.22f;
-    private float reqSpacePrBox;
+    private float _reqSpacePrBox;
+    private Vector3 _boxDimensions;
 
     void Awake()
     {
-        AllBoxes = new List<GameObject>();
-        reqSpacePrBox = _boxWidth + _offSetWidthPrBox;
+        _allBoxes = new List<GameObject>();
+        _reqSpacePrBox = _boxWidth + _offSetWidthPrBox;
+        _boxDimensions = new Vector3(_boxWidth, _boxHeight, _boxDepth);
     }
 
-    public void GenerateBoxes(GameObject[] shelves)
+    public List<GameObject> GenerateBoxes(GameObject[] shelves)
     {
         if (shelves.Length == 0)
         {
             Debug.Log("Aborting: No shelves to place boxes on!");
-            return;
+            return null;
         }
 
         PlaceBoxesOnShelves(shelves);
+        return _allBoxes;
     }
 
     private void PlaceBoxesOnShelves(GameObject[] shelves)
@@ -39,6 +40,7 @@ public class BoxesManager : MonoBehaviour {
             if (shelves[i] == null)
                 continue;
 
+//            Debug.Log("Placing boxes on shelf nr: " + i);
             PlaceBoxesOnShelf(shelves[i]);
         }
     }
@@ -51,19 +53,17 @@ public class BoxesManager : MonoBehaviour {
         float spaceBetweenShelfFloors = shelf.GetComponent<ShelfManager>().GetSpaceBetweenShelfFloors();
         float shelfWidth = shelf.transform.localScale.x - (_shelfSideOffset * 2);
 
-        int boxesPrFloor = (shelfWidth > reqSpacePrBox) ? AmountOfBoxesEachFloor(shelfWidth) : 0 ;
+        int boxesPrFloor = (shelfWidth > _reqSpacePrBox) ? AmountOfBoxesEachFloor(shelfWidth) : 0 ;
 
         for (int floor = 0; floor < shelfFloors; floor++)
         {
-            for (int boxNr = 0; boxNr < boxesPrFloor; boxNr++)
-            {
-                float curPosY =  startPosY + (floor * spaceBetweenShelfFloors);
-                PlaceBoxOnShelf(shelf, curPosY, boxesPrFloor, shelfWidth);
-            }
+            //Debug.Log("Placing boxes on floor: " + floor);
+            float curPosY =  startPosY + (floor * spaceBetweenShelfFloors);
+            PlaceBoxOnShelfFloor(shelf, curPosY, boxesPrFloor, shelfWidth);
         }
     }
 
-    private void PlaceBoxOnShelf(GameObject shelf, float curPosY, int boxesPrFloor, float shelfWidth)
+    private void PlaceBoxOnShelfFloor(GameObject shelf, float curPosY, int boxesPrFloor, float shelfWidth)
     {
         float shelfRotY = shelf.transform.localRotation.y;
 
@@ -71,11 +71,10 @@ public class BoxesManager : MonoBehaviour {
         {
             Vector3 pos = GetBoxPos(shelf, curPosY, boxesPrFloor, shelfWidth, i);//new Vector3(x, curPosY, 0);
 
-            GameObject newBox = (GameObject)Instantiate(boxPrefab, pos, transform.rotation);
-
+            GameObject newBox = (GameObject)Instantiate(BoxPrefab, pos, transform.rotation);
             newBox.transform.Rotate(0,shelfRotY,0);
 
-            AllBoxes.Add(newBox);
+            _allBoxes.Add(newBox);
         }
     }
 
@@ -104,12 +103,17 @@ public class BoxesManager : MonoBehaviour {
         float spaceLeft = shelfWidth;
         int count = 0;
 
-        while(spaceLeft > reqSpacePrBox)
+        while(spaceLeft > _reqSpacePrBox)
         {
             count++;
-            spaceLeft -= reqSpacePrBox;
+            spaceLeft -= _reqSpacePrBox;
         }
 
         return count;
+    }
+
+    public Vector3 GetBoxDimesions()
+    {
+        return _boxDimensions;
     }
 }

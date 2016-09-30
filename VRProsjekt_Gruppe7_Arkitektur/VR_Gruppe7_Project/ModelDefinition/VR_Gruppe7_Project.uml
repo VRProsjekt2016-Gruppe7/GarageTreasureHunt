@@ -39,15 +39,16 @@
             aggregation="None"
             isComposite="false">
             <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="1f048717-ea04-4427-9575-1a74d82e2eb3"
-                LastKnownName="enum"
+              <enumerationMoniker
+                Id="9614f0e5-7cc3-4290-9fe8-0c7dced9b0cc"
+                LastKnownName="State"
                 LastKnownLocation="VR_Gruppe7_Project.uml" />
             </type_NamedElement>
           </property>
           <property
             Id="292f17c7-c23b-4f44-8bb8-a5fec1cf7af8"
-            name="CurrentScore"
+            name="_currentScore"
+            visibility="Private"
             isLeaf="false"
             isStatic="false"
             isReadOnly="false"
@@ -65,25 +66,7 @@
           </property>
           <property
             Id="60352dbb-03e1-460c-82ba-3a639a5328ba"
-            name="TimeLeft"
-            isLeaf="false"
-            isStatic="false"
-            isReadOnly="false"
-            isUnique="false"
-            isDerived="false"
-            isDerivedUnion="false"
-            aggregation="None"
-            isComposite="false">
-            <type_NamedElement>
-              <undefinedTypeMoniker
-                Id="52f2de02-5121-49ae-888d-cc394e298592"
-                LastKnownName="float"
-                LastKnownLocation="VR_Gruppe7_Project.uml" />
-            </type_NamedElement>
-          </property>
-          <property
-            Id="41622f00-de00-4d9e-8685-4406211ac063"
-            name="_startTime"
+            name="_timeLeft"
             visibility="Private"
             isLeaf="false"
             isStatic="false"
@@ -115,6 +98,82 @@
               <undefinedTypeMoniker
                 Id="95a59d69-440e-48ce-b1cf-f673c629254f"
                 LastKnownName="GameObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b230cb3c-baab-4871-ad2b-839c34c2a0f7"
+            name="_defaultStartTime"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6de87f62-1d7c-46c9-9720-d4c80fae4b30"
+            name="_defaultCharges"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                LastKnownName="int"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="44c20a81-9fdf-4050-ae3a-e497bf4163d8"
+            name="_chargesLeft"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                LastKnownName="int"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="e84f4df8-4e93-4427-8a03-ac2d7ec778fc"
+            name="_guiController"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <classMoniker
+                Id="3d25b5b0-2c61-4b0d-a898-44047bad2fb5"
+                LastKnownName="GuiController"
                 LastKnownLocation="VR_Gruppe7_Project.uml" />
             </type_NamedElement>
           </property>
@@ -279,6 +338,31 @@
               <operationHasOwnedParameters>
                 <parameter
                   Id="1956ffe6-0450-4d29-8a08-25a11754b7de"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0964aa6d-4b38-41f6-9e6e-749b4bd3e2b9"
+            name="UpdateTimeLeft"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="64510833-4e28-4895-9625-c862014615e5"
                   direction="Return"
                   isUnique="false">
                   <type_NamedElement>
@@ -766,6 +850,63 @@
                 LastKnownLocation="VR_Gruppe7_Project.uml" />
             </type_NamedElement>
           </property>
+          <property
+            Id="fc35bed2-c8df-4057-9561-94a023c25b1b"
+            name="_chargesText"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9391639e-b556-4005-a203-2e5c5495fa34"
+                LastKnownName="string"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6cec1293-1d89-4d6f-8c59-87bf7fc6c505"
+            name="_timeLeftText"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9391639e-b556-4005-a203-2e5c5495fa34"
+                LastKnownName="string"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ed4bda06-3a11-41fc-b5fa-638818ff9a4a"
+            name="_curScoreText"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9391639e-b556-4005-a203-2e5c5495fa34"
+                LastKnownName="string"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
         </ownedAttributesInternal>
         <ownedOperationsInternal>
           <operation
@@ -827,20 +968,6 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="4c2248ea-7bf0-4a64-8fe3-7825ae327b7c"
-                  name="string"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
-                  Id="6c004735-6fc9-41c4-9c21-4d02e8abf3fb"
-                  name="string"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
                   Id="437317de-424c-4e18-90de-920df98d667b"
                   direction="Return"
                   isUnique="false">
@@ -851,6 +978,27 @@
                       LastKnownLocation="VR_Gruppe7_Project.uml" />
                   </type_NamedElement>
                 </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="db7ff758-0515-48b1-873b-fcfba6a8a316"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8bf3ea8c-82ff-4435-ae15-0ac304fe8541"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="25be47c9-91df-42a3-8cd9-0212b8fc3a81"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -865,13 +1013,6 @@
             <ownedParameters>
               <operationHasOwnedParameters>
                 <parameter
-                  Id="f001c088-9f36-430c-a3a0-e1bdcde431ad"
-                  name="string"
-                  direction="In"
-                  isUnique="false" />
-              </operationHasOwnedParameters>
-              <operationHasOwnedParameters>
-                <parameter
                   Id="2411ee7d-f4f4-4693-a478-b2a57e0aeb1b"
                   direction="Return"
                   isUnique="false">
@@ -882,6 +1023,13 @@
                       LastKnownLocation="VR_Gruppe7_Project.uml" />
                   </type_NamedElement>
                 </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5af926e7-dac7-4bfe-aae3-4363bfe2ea94"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -913,6 +1061,68 @@
                       LastKnownLocation="VR_Gruppe7_Project.uml" />
                   </type_NamedElement>
                 </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f0722070-687b-4b3c-a64f-a37b70ce4a85"
+            name="SetCharges"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fc3b49f0-4826-4820-a981-d7e2d1aff2a4"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fa795c31-6889-43ad-b9ec-00272ff9b155"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="717d037e-abe6-4c45-a8a0-ef4f8a74f5e8"
+            name="SetTimeLeft"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="542fb289-a754-41a3-883b-2e35873465f3"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d8225d8c-75dd-4337-b01e-345458842df1"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
               </operationHasOwnedParameters>
             </ownedParameters>
           </operation>
@@ -1142,6 +1352,1275 @@
       <undefinedType
         Id="1556ccf5-dd99-4b0d-bbd3-3e308302089b"
         name="SteamVR_TrackedObject" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="f763875f-99a2-4752-824f-1f6f6e43b483"
+        name="BoxContentsManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="9cd20c81-0c3f-47fd-8413-52194effcb7f"
+            name="Contents"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="4b089ed1-2037-41b6-8c1d-967d24cafd85"
+                LastKnownName="GameObject[]"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="6cca4d29-1231-4ff7-96c9-ad695d22a1d1"
+            name="_spawnOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9bec24a1-eb55-4e9e-bfde-300f91889b8e"
+                LastKnownName="Vector3"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="003ffeb7-e7ce-404c-bcb7-845be2490cb8"
+            name="Max"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                LastKnownName="int"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="9acf1907-ea11-4766-8a33-a39c3fe6882a"
+            name="Awake"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="020ead89-30fa-4094-a9c7-ab4205e96ff9"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="4c41fd31-8dd7-4e88-926a-795b91589d93"
+            name="FillBoxes"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6b9704cb-09f4-4279-b8da-bd29e5dcb2cb"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eb5b2475-71b4-4507-b113-a63ec0f21dd6"
+                  name="List&lt;GameObject&gt;"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="6e101355-1c8b-4964-a2d6-05680fb17e47"
+                  name="Vector3"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="fb3b64c4-5faa-468d-9424-0a0bd8a1dc40"
+            name="FillBox"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7b24b40f-243e-4b5b-8c98-0d12424f56a5"
+                  name="GameObject"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="43b17f59-b24c-4daa-9708-7680b477ef1a"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9a977b06-fb60-4c20-9178-9335cc094b4f"
+        name="GameObject]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="4b089ed1-2037-41b6-8c1d-967d24cafd85"
+        name="GameObject[]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9bec24a1-eb55-4e9e-bfde-300f91889b8e"
+        name="Vector3" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="88ae8d28-312d-4300-9928-feebb63ce789"
+        name="BoxesManager"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="7d80dfe1-0acb-43fa-9bc8-2ddc4c84cb5b"
+            name="BoxPrefab"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="95a59d69-440e-48ce-b1cf-f673c629254f"
+                LastKnownName="GameObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="4f139e6b-252e-496d-99ac-38656cb57357"
+            name="_reqSpacePrBox"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="83789b52-e76b-4eb7-86bb-10a356742ec7"
+            name="_boxDepth"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="3f44e162-91e9-4fbc-bfad-91fa0361f1da"
+            name="_allBoxes"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="905eff4a-fb3a-471d-a4d2-91cb1e1539b9"
+                LastKnownName="List&lt;GameObject&gt;"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="28374cf2-3ffd-46e6-9af6-253732eb364f"
+            name="_shelfSideOffset"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f00631ce-93b4-48dc-b71a-8a5bcc228173"
+            name="_boxHeight"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="50d05cc9-9a72-4904-8c91-c4828cc41206"
+            name="_boxDimensions"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="9bec24a1-eb55-4e9e-bfde-300f91889b8e"
+                LastKnownName="Vector3"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a0f17111-afc9-4470-9028-3aaec6cd3077"
+            name="_offSetWidthPrBox"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="fc66f8ec-97c8-4100-a463-1cd17cd79418"
+            name="_boxWidth"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="d80ef8c5-9090-40ad-888c-f7a440f1ca8a"
+            name="Awake : void"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false" />
+          <operation
+            Id="b21d97ef-3233-4af0-a406-5cd4d3e10b1f"
+            name="GenerateBoxes"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c69f25da-3318-4681-bef8-a8f204372f90"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="905eff4a-fb3a-471d-a4d2-91cb1e1539b9"
+                      LastKnownName="List&lt;GameObject&gt;"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="648e8926-5bc9-4ac0-bcb2-60cd33980cdc"
+                  name="GameObject[]"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="06b4aac3-a9a9-4960-8571-39f37e7f9a1b"
+            name="PlaceBoxesOnShelves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bac00ede-25e3-4671-a275-8daae241f4a3"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5dd785b6-cb18-4a2b-91fd-a2e1e2a2d738"
+                  name="GameObject[]"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="7af1ce67-0ff9-46c7-8261-c0bd395030b2"
+            name="PlaceBoxOnShelf"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cb0de956-a40e-4f21-a17a-225ac64d962d"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="547e3687-8935-464d-97e0-179815a5cd3d"
+                  name="GameObject"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="10fd626d-d659-46a6-b4d6-e37548edd30c"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dec9bc94-eeb2-4661-8ed4-ba926f493574"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eff4a542-e69e-4a2c-9423-88acd6aa00e0"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="829b8518-f67a-447d-8fa8-1380fab3aaeb"
+            name="GetBoxPos"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a5020747-d53e-466d-89de-8d4a02b39b33"
+                  name="GameObject"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b6710c85-c533-474b-aa64-21aa1ff6ee6f"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f4060dc7-a666-4e53-b51c-e864ce68064b"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="f3b0d4ff-e2de-4705-9fe3-62c1dbc079f5"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="745b428f-7e16-47bd-86cb-5e6b4285cde0"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c47ded5d-acb6-4e3d-9550-51fcca2a5777"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9bec24a1-eb55-4e9e-bfde-300f91889b8e"
+                      LastKnownName="Vector3"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="43ee73bd-f129-40a5-8e96-3c0bcf21e915"
+            name="AmountOfBoxesEachFloor"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="08bbaf4a-003f-4be0-9f8c-693e7fd0d56c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                      LastKnownName="int"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="46ff60f2-da21-4c6b-8954-e38b1398f423"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="71148ed2-dfb2-46c9-ad94-439c37ed8959"
+            name="GetBoxDimensions"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="deb5e954-f731-4bd8-b909-c9af60f16d7c"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="9bec24a1-eb55-4e9e-bfde-300f91889b8e"
+                      LastKnownName="Vector3"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="905eff4a-fb3a-471d-a4d2-91cb1e1539b9"
+        name="List&lt;GameObject&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="caedc971-c2f1-4037-966a-74d742cca406"
+        name="List&lt;GameOBject&gt;" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="884a83ef-a62b-43b5-a06d-cbda5bc95ecb"
+        name="RoomGenerator : MonoBehaviour"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="e6f0f5cc-dcb3-4554-a466-79e7dadd8dae"
+            name="_shelvesPositions"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="007ed32e-6751-4ce6-aa14-cacc70e7a3cb"
+                LastKnownName="Vector3[]"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="ea5125f1-6772-4c1e-b659-74fcd6051a8d"
+            name="_shelves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="95a59d69-440e-48ce-b1cf-f673c629254f"
+                LastKnownName="GameObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="edb59f5b-2a51-41f4-95b0-cbd908a4490d"
+            name="ShelfPrefab"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="95a59d69-440e-48ce-b1cf-f673c629254f"
+                LastKnownName="GameObject"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="6708c235-272e-47ca-b1fc-770e8243230c"
+            name="Awake"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1ea60884-314e-403a-8b0d-860487090dd6"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ce66776e-be42-4e71-a686-14dde83017a2"
+            name="Start"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="8eee904c-5a0c-4218-851a-b9658437bab2"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="c3c9f2c5-961b-4265-8be3-bf026e048c3a"
+            name="GenerateRoom"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="0e5c2a19-9407-4f76-90af-b9c34f7232f8"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="1a10f408-68f6-4d17-b2fa-6ab666376aa9"
+            name="SpawnShelves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3119f809-10cd-4a03-ab54-556bd6898b68"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="57a963be-7d5f-4989-8ce8-67a50faf892a"
+            name="GetRoomSide"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3805184f-13df-495f-95db-2fb419965806"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="b53bad04-9651-4b57-8995-d8a08e10cda3"
+                      LastKnownName="RoomSide"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="fab0a3d4-37a4-4e65-8901-a58e77b0ca8a"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="007ed32e-6751-4ce6-aa14-cacc70e7a3cb"
+        name="Vector3[]" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="7a77dd7f-dda1-4e5f-891e-4fb12babdb19"
+        name="GameOBject" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="b53bad04-9651-4b57-8995-d8a08e10cda3"
+        name="RoomSide" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <undefinedType
+        Id="9391639e-b556-4005-a203-2e5c5495fa34"
+        name="string" />
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="20bf44b2-8aa5-49e7-bb71-b1110fbbce8d"
+        name="ItemInfo : MonoBehaviour"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="694826c4-f3b7-402b-8c85-4cd1684c4e20"
+            name="_value"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                LastKnownName="int"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="7244f97c-38e6-4e17-88f7-5af23804e014"
+            name="GetValue"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ddea6060-7330-4071-8033-5d3009f52809"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                      LastKnownName="int"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="ef1e6f19-cfbc-45d4-b26f-2a0e9d106379"
+            name="SetValue"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="28b6c151-8a74-4f65-ab2f-0501d65c4b7d"
+                  name="int"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5eb268d6-4374-49d0-b7d9-2f8f713d1c0a"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <enumeration
+        Id="0f062bac-aa4c-46e0-bfdc-142d1022f8ed"
+        name="RoomSide"
+        isAbstract="false"
+        isLeaf="false">
+        <ownedLiterals>
+          <enumerationLiteral
+            Id="85ced640-f325-4b55-8b39-a6b833bce526"
+            name="Left" />
+          <enumerationLiteral
+            Id="9f67e374-c684-4439-bff7-7fbba6d05bcf"
+            name="Front" />
+          <enumerationLiteral
+            Id="3c8faa3f-88ae-44eb-906a-79edbd0f3b37"
+            name="Right" />
+        </ownedLiterals>
+      </enumeration>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="0fd59380-fac0-4ee6-a426-b774afb1cf1c"
+        name="ShelfManager : MonoBehaviour"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <ownedAttributesInternal>
+          <property
+            Id="dd3d213a-1c64-4a3d-877f-9fa1e35c8212"
+            name="Legs"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="4b089ed1-2037-41b6-8c1d-967d24cafd85"
+                LastKnownName="GameObject[]"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="8c4db456-9d6f-451c-bb82-15e00032fcc3"
+            name="_nrOfShelfFloors"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                LastKnownName="int"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="9d0dcfcf-2422-4eae-b59f-0127221eceb2"
+            name="_spaceBetweenShelves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="272704b5-8f93-4a53-bfb0-bf8d2dc9d4d5"
+            name="_lowestFloorPosY"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="a55ab984-47d8-4d98-b245-045f14cbb463"
+            name="_legsOffsetY"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="32d7e8e4-e015-4bbe-aac2-34199b527f9b"
+            name="_legsOffsetZ"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="5a3354b1-91e1-4d40-8d74-94c10dc99b52"
+            name="_legsOffsetX"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="f2d7c429-f9ca-46e8-8026-84c793b5ccf2"
+            name="_legsHeight"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+          <property
+            Id="b89ea0d6-7b3b-462d-a9e7-b5bda219d10b"
+            name="_legsDiameter"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isUnique="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <type_NamedElement>
+              <undefinedTypeMoniker
+                Id="52f2de02-5121-49ae-888d-cc394e298592"
+                LastKnownName="float"
+                LastKnownLocation="VR_Gruppe7_Project.uml" />
+            </type_NamedElement>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="e61e32da-8f77-46be-b57c-83a138348cc4"
+            name="PlaceObject"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eb8073c2-9e22-4e58-8df0-18234fcc0384"
+                  name="Vector3"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ecef4e9e-ea7e-4f26-a4e0-b6d4c8280dfe"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="aecc00ef-f1fa-4c33-a6e0-08c7cb1ba391"
+                  name="RoomSide"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d8ca6369-aa3c-42a7-b700-917a9eafe16e"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="feecda01-fec4-41de-9539-ba9bac787105"
+            name="AdjustSizes"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cb74277e-fa72-4042-985f-056e2c431454"
+                  name="float"
+                  direction="In"
+                  isUnique="false" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3e6a76e3-f6a1-4513-b46c-ccb39b4b840f"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="5dbb51db-3135-47be-8459-1865c7f8d879"
+                      LastKnownName="void"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="d5d7b461-4dcf-4f6f-8c3a-45515e72ccb6"
+            name="GetNrOfShelfFloors"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="efacee09-333b-4990-a9ab-c5a430fc14c3"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="bb738821-1d92-4c6d-bf76-1beb7d4e3ac2"
+                      LastKnownName="int"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0730153e-1fd4-4319-b539-969d95244e77"
+            name="GetSpaceBetweenShelfFloors"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2451b517-7a66-4b15-88da-94b991fda501"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="52f2de02-5121-49ae-888d-cc394e298592"
+                      LastKnownName="float"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="5cc50c34-b14f-4470-8963-2b99f073e752"
+            name="GetLowestShelfFloorY"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="3c3e6698-cd85-4d20-b8d9-ba7d34b911dc"
+                  direction="Return"
+                  isUnique="false">
+                  <type_NamedElement>
+                    <undefinedTypeMoniker
+                      Id="52f2de02-5121-49ae-888d-cc394e298592"
+                      LastKnownName="float"
+                      LastKnownLocation="VR_Gruppe7_Project.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
     </packageHasNamedElement>
   </packagedElements>
   <primitiveType
