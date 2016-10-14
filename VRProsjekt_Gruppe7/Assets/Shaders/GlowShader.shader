@@ -4,8 +4,8 @@
 	{
 		_ColorTint("Color Tint", Color) = (1, 1, 1, 1)
 		_MainTex("Base (RGB)", 2D) = "white" {}
-	_BumpMap("Normal Map", 2D) = "bump" {}
-	_RimColor("Rim Color", Color) = (1, 1, 1, 1)
+		_BumpMap("Normal Map", 2D) = "bump" {}
+		_RimColor("Rim Color", Color) = (1, 1, 1, 1)
 		_RimPower("Rim Power", Range(1.0, 6.0)) = 3.0
 
 	}
