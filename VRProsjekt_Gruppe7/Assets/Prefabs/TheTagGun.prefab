@@ -23,6 +23,7 @@ GameObject:
   - 65: {fileID: 65000010015794318}
   - 23: {fileID: 23000014137590304}
   - 54: {fileID: 54000011976802258}
+  - 114: {fileID: 114000013530249310}
   m_Layer: 0
   m_Name: TheTagGun
   m_TagString: Untagged
@@ -36,8 +37,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000013461162198}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0.16206615, y: 0.25537455, z: -0.45424917, w: 0.8379595}
+  m_LocalPosition: {x: -0.08, y: 0.76, z: -0.28861913}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
@@ -56,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 68ed274b1bf13444780c76aa1bff1c4e, type: 2}
+  - {fileID: 2100000, guid: c49fb8c1b45f78f4ab20f346002b4e7e, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_ProbeAnchor: {fileID: 0}
@@ -106,3 +107,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000013530249310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013461162198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfbc0c1dadca5c149a203f2f2201d540, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NumStickers: 7

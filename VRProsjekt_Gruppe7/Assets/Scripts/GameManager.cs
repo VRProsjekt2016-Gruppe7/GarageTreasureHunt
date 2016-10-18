@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
     private int _currentScore;
     private int _chargesLeft;
     private State _currentState;
-    private GuiController _guiController;
+    private GUIController _guiController;
 
     void Awake()
     {
-        _guiController = GetComponent<GuiController>();
+        _guiController = GetComponent<GUIController>();
         Init();
     }
 

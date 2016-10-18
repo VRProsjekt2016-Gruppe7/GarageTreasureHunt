@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
-	public class GuiController : MonoBehaviour {
+	public class GUIController : MonoBehaviour {
 
 		//private TextMesh _currentScore;
 		//private TextMesh _timeLeft;

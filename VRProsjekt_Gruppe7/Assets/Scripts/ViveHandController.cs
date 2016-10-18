@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
+using Assets.Scripts;
 
 
 public enum ButtonPressed
@@ -23,6 +24,8 @@ public class ViveHandController : HandController {
     private SteamVR_Controller.Device _inputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
     private SteamVR_TrackedObject _trackedObj;
 
+	private TagGunBehaviour _tagGun;
+	
 //  void Awake()
 	private void Start()
     {
@@ -76,8 +79,7 @@ public class ViveHandController : HandController {
                 {
                     ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
-                ConnectedObject.transform.parent = null;
-                ConnectedObject = null;
+				TossObject();
             }
             else if (!_gripPressed && ConnectedObject.transform.tag == "TagGun")
             {
@@ -85,13 +87,27 @@ public class ViveHandController : HandController {
                 {
                     ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
-                ConnectedObject.transform.parent = null;
-                ConnectedObject = null;
+				TossObject();
+	            _tagGun.IsTagGunEquipped = false;
             }
         }
+
+	    if (_tagGun.IsTagGunEquipped && _triggerPressed)
+	    {
+		    Debug.Log("Priming the tag gun");
+			_tagGun.PrimeTagGun();
+	    }
     }
 
-    private void ButtonAction(ButtonPressed btn, bool pressed)
+	private void TossObject()
+	{
+		ConnectedObject.GetComponent<Rigidbody>().velocity = _inputDevice.velocity;
+		ConnectedObject.GetComponent<Rigidbody>().angularVelocity = _inputDevice.angularVelocity;
+		ConnectedObject.transform.parent = null;
+		ConnectedObject = null;
+	}
+
+	private void ButtonAction(ButtonPressed btn, bool pressed)
     {
         //string msg = "Button ";
 
@@ -126,7 +142,9 @@ public class ViveHandController : HandController {
 			ConnectedObject = col.transform.gameObject;
 			ConnectedObject.transform.parent = HandModel.transform;
 			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-//			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
+			Debug.Log("Tag Gun Equipped");
+			_tagGun.IsTagGunEquipped = true;
+			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
 		}
     }
 }
