@@ -21,20 +21,21 @@ public class ViveHandController : HandController {
     private Valve.VR.EVRButtonId _triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private Valve.VR.EVRButtonId _gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
 
-    private SteamVR_Controller.Device _inputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
+    private SteamVR_Controller.Device InputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
     private SteamVR_TrackedObject _trackedObj;
 
 	private TagGunBehaviour _tagGun;
 	
 //  void Awake()
 	private void Start()
-    {
+	{
+		_tagGun = GameObject.FindGameObjectWithTag("TagGun").GetComponent<TagGunBehaviour>();
         _trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
 	private void Update()
     {
-        if (_inputDevice == null)
+        if (InputDevice == null)
         {
             Debug.Log("Controller not initialized");
             return;
@@ -45,22 +46,22 @@ public class ViveHandController : HandController {
 
     private void CheckButtons()
     {
-        if (_inputDevice.GetPressDown(_triggerButton))
+        if (InputDevice.GetPressDown(_triggerButton))
         {
             ButtonAction(ButtonPressed.Trigger, true);
         }
 
-        if (_inputDevice.GetPressUp(_triggerButton))
+        if (InputDevice.GetPressUp(_triggerButton))
         {
             ButtonAction(ButtonPressed.Trigger, false);
         }
 
-        if (_inputDevice.GetPressDown(_gripButton))
+        if (InputDevice.GetPressDown(_gripButton))
         {
             ButtonAction(ButtonPressed.Grip, true);
         }
 
-        if (_inputDevice.GetPressUp(_gripButton))
+        if (InputDevice.GetPressUp(_gripButton))
         {
             ButtonAction(ButtonPressed.Grip, false);
         }
@@ -101,33 +102,25 @@ public class ViveHandController : HandController {
 
 	private void TossObject()
 	{
-		ConnectedObject.GetComponent<Rigidbody>().velocity = _inputDevice.velocity;
-		ConnectedObject.GetComponent<Rigidbody>().angularVelocity = _inputDevice.angularVelocity;
+		ConnectedObject.GetComponent<Rigidbody>().velocity = InputDevice.velocity;
+		ConnectedObject.GetComponent<Rigidbody>().angularVelocity = InputDevice.angularVelocity;
 		ConnectedObject.transform.parent = null;
 		ConnectedObject = null;
 	}
 
 	private void ButtonAction(ButtonPressed btn, bool pressed)
     {
-        //string msg = "Button ";
-
         if (btn == ButtonPressed.Grip)
         {
             _gripPressed = pressed;
-            //msg += "Grip ";
         }
         else if (btn == ButtonPressed.Trigger)
         {
             _triggerPressed = pressed;
-            //msg += "Trigger ";
         }
-
-        //msg += (pressed ? "pressed" : "released");
-
-        //Debug.Log(msg + "!");
     }
 
-    void OnTriggerStay(Collider col)
+	public void OnTriggerStay(Collider col)
     {
 
         if(_triggerPressed && col.transform.tag == "Container" && ConnectedObject == null)

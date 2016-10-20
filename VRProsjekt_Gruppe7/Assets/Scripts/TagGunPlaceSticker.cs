@@ -7,8 +7,10 @@ public class TagGunPlaceSticker : MonoBehaviour {
 
     private bool StickerAssigned;
 
+	public AudioClip StickSound;
+
 	// Use this for initialization
-	void Start () {
+	public void Start () {
 	    if(Sticker == null)
         {
             StickerAssigned = false;
@@ -16,14 +18,20 @@ public class TagGunPlaceSticker : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	public void Update () {
         if (!StickerAssigned) return;
 
 	}
 
-    public void StickToObject(Collider target)
+    public void StickToObject(Collision target)
     {
-        Instantiate(Sticker, target.transform);
+		// Attach sticker
+        var newSticker = (GameObject)Instantiate(Sticker, target.transform);
+	    newSticker.transform.position = target.contacts[0].point;
+
+		// Play audioclip
+	    var audioSouce = GetComponent<AudioSource>();
+		audioSouce.PlayOneShot(StickSound);
     }
     
 }

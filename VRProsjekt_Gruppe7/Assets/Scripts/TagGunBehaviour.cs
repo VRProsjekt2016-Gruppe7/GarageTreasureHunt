@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngineInternal;
 
 namespace Assets.Scripts
@@ -11,10 +12,13 @@ namespace Assets.Scripts
 		public bool IsPrimed;
 		public bool HasStickers = true;
 
+		private TagGunPlaceSticker _placeSticker;
+
 		public void Start ()
 		{
+			_placeSticker = GetComponent<TagGunPlaceSticker>();
 			Debug.Log("The Tag Gun Initialized");
-
+			HasStickers = true;
 		}
 
 		public void Update ()
@@ -28,21 +32,44 @@ namespace Assets.Scripts
 
 		public void PrimeTagGun()
 		{
+			if (!HasStickers) return;
 			IsPrimed = true;
+			var audioSource = GetComponent<AudioSource>();
+			audioSource.Play();
 		}
 
+
+		// Unsure if OnTriggerEnter or OnCollisionEnter is best.
+		/*
 		public void OnTriggerEnter(Collider col)
 		{
 			if (IsPrimed && col.tag == "Container")
 			{
 				NumStickers--;
 				IsPrimed = false;
+				//_placeSticker.StickToObject( collision );
 			}
-			if (NumStickers >= 0)
+			if (NumStickers <= 0)
 			{
 				HasStickers = false;
 			}
-			// TODO place sticker on container
+			Debug.Log( "On Trigger Enter happend" );
+		}
+		*/
+
+		public void OnCollisionEnter( Collision collision)
+		{
+			if (IsPrimed && collision.gameObject.tag == "Container")
+			{
+				NumStickers--;
+				IsPrimed = false;
+				_placeSticker.StickToObject( collision );
+			}
+			if (NumStickers <= 0)
+			{
+				HasStickers = false;
+			}
+			Debug.Log("Collision happend");
 		}
 	}
 }
