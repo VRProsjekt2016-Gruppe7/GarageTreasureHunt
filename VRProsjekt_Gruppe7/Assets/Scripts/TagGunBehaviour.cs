@@ -6,13 +6,16 @@ namespace Assets.Scripts
 	{
 		public int NumStickers = 7;
 
-		public bool IsTagGunEquipped;
+        public bool TagGunPickedUpFirstTime = false;
+        public bool IsTagGunEquipped;
 		public bool IsPrimed;
 		public bool HasStickers = true;
 
 		private TagGunPlaceSticker _placeSticker;
 	    private SoundController _sC;
 
+        public TextMesh GripToStartText;
+        private Transform _cameraTransform;
 	    void Start()
 	    {
 	        _sC = FindObjectOfType<SoundController>();
@@ -32,6 +35,10 @@ namespace Assets.Scripts
 				transform.position = new Vector3(transform.position.x, transform.localScale.y/2f, transform.position.z);
 			}
 
+            // Update rotation of the text mesh
+            _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+
+            GripToStartText.transform.rotation = _cameraTransform.rotation; 
 		}
 
 		public void PrimeTagGun()

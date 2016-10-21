@@ -141,6 +141,11 @@ public class ViveHandController : HandController {
 			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
             Debug.Log("Tag Gun Equipped");
+            if (!_tagGun.TagGunPickedUpFirstTime)
+            {
+                _tagGun.TagGunPickedUpFirstTime = true;
+                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().StartGame();
+            }
 
             _tagGun.IsTagGunEquipped = true;
 			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;

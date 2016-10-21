@@ -5,7 +5,6 @@ namespace Assets.Scripts
 	public class TagGunPlaceSticker : MonoBehaviour
 	{
 		public GameObject Sticker;
-        public bool TagGunPickedUpFirstTime = false;
 
         private GameManager _gM;
         private SoundController _sC;
