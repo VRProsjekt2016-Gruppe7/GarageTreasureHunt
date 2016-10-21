@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngineInternal;
+﻿using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -12,12 +10,12 @@ namespace Assets.Scripts
 		public bool IsPrimed;
 		public bool HasStickers = true;
 
+
 		private TagGunPlaceSticker _placeSticker;
 
 		public void Start ()
 		{
 			_placeSticker = GetComponent<TagGunPlaceSticker>();
-			Debug.Log("The Tag Gun Initialized");
 			HasStickers = true;
 		}
 
@@ -28,6 +26,7 @@ namespace Assets.Scripts
 			{
 				transform.position = new Vector3(transform.position.x, transform.localScale.y/2f, transform.position.z);
 			}
+
 		}
 
 		public void PrimeTagGun()
