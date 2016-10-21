@@ -73,7 +73,6 @@ public class ViveHandController : HandController {
 
             if (!_triggerPressed && ConnectedObject.transform.tag == "Container")
             {
-                //Debug.Log("Released trigger-button -> Releasing attached object (" + ConnectedObject.name + ")");
                 if (ConnectedObject.gameObject.GetComponent<Rigidbody>())
                 {
                     ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
@@ -91,7 +90,7 @@ public class ViveHandController : HandController {
             }
         }
 
-	    if (_tagGun.IsTagGunEquipped && _triggerPressed)
+	    if (_tagGun.IsTagGunEquipped && _triggerPressed && !_tagGun.IsPrimed)
 	    {
 		    Debug.Log("Priming the tag gun");
 			_tagGun.PrimeTagGun();
@@ -120,12 +119,19 @@ public class ViveHandController : HandController {
 
 	public void OnTriggerStay(Collider col)
     {
-
-        if(_triggerPressed && col.transform.tag == "Container" && ConnectedObject == null)
+        if (_triggerPressed)
         {
-            ConnectedObject = col.transform.gameObject;
-            ConnectedObject.transform.parent = HandModel.transform;
-            col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            if (col.transform.tag == "BoxLid" && ConnectedObject == null)
+            {
+                float distY = Vector3.Distance(transform.position, col.transform.position);
+                col.transform.localRotation = new Quaternion(0,-distY,0,1);
+            }
+            else if (col.transform.tag == "Container" && ConnectedObject == null)
+            {
+                ConnectedObject = col.transform.gameObject;
+                ConnectedObject.transform.parent = HandModel.transform;
+                col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            }
         }
 
         if (_gripPressed && col.gameObject.tag == "TagGun" && ConnectedObject == null)
@@ -138,7 +144,6 @@ public class ViveHandController : HandController {
 
             _tagGun.IsTagGunEquipped = true;
 			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
-
         }
     }
 }
