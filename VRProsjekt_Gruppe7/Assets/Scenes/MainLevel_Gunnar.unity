@@ -1025,7 +1025,7 @@ MonoBehaviour:
   - {fileID: 1000010305056054, guid: c7cd2ce2b1148ec48b6972926e8e3d11, type: 2}
   - {fileID: 1000011500261004, guid: 8b690163a3451a84288caef4c9f18877, type: 2}
   - {fileID: 1000010363340632, guid: 89c1aa4c13aecf44489eb1332261e1a7, type: 2}
-  MaxItemsInBox: 2
+  MaxItemsInBox: 3
 --- !u!114 &1368140678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1041,7 +1041,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7cf9c9dd749af1d49994c28bf7f3922d, type: 3}
   - {fileID: 8300000, guid: e395c94a1d8201d4eaca05b89bb09226, type: 3}
   - {fileID: 8300000, guid: a12c76e06ac700646af2ac4204c950de, type: 3}
-  PlayerAudioSource: {fileID: 0}
+  PlayerAudioSource: {fileID: 1608777975}
   TagGunAudioSource: {fileID: 1295068367}
   GuiAudioSource: {fileID: 1894138437}
 --- !u!1 &1465617001
