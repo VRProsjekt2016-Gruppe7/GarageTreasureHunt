@@ -3,8 +3,8 @@ using System.Collections;
 
 public enum Sounds
 {
+    PrimeGun,
     PlaceSticker,
-    AddScoreSound,
     CountDownBeep
 }
 

@@ -133,9 +133,12 @@ public class ViveHandController : HandController {
 			ConnectedObject = col.transform.gameObject;
 			ConnectedObject.transform.parent = HandModel.transform;
 			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
-			Debug.Log("Tag Gun Equipped");
-			_tagGun.IsTagGunEquipped = true;
+
+            Debug.Log("Tag Gun Equipped");
+
+            _tagGun.IsTagGunEquipped = true;
 			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
-		}
+
+        }
     }
 }

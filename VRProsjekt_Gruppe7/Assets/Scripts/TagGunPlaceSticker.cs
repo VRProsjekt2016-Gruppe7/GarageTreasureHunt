@@ -4,47 +4,30 @@ namespace Assets.Scripts
 {
 	public class TagGunPlaceSticker : MonoBehaviour
 	{
-
 		public GameObject Sticker;
-		public AudioClip StickSound;
+        public bool TagGunPickedUpFirstTime = false;
 
-		private bool _stickerAssigned;
-		private GameManager _gM;
-		public bool TagGunPickedUpFirstTime = false;
+        private GameManager _gM;
+        private SoundController _sC;
 
 
-		public void Awake( )
-		{
-			_gM = FindObjectOfType<GameManager>();
-		}
-
-		// Use this for initialization
 		public void Start( )
 		{
-			if (Sticker == null)
-			{
-				_stickerAssigned = false;
-			}
-			if (TagGunPickedUpFirstTime)
-				_gM.StartGame();
-		}
-
-		// Update is called once per frame
-		public void Update( )
-		{
+		    _sC = FindObjectOfType<SoundController>();
+			_gM = FindObjectOfType<GameManager>();
 		}
 
 		public void StickToObject( Collision target )
 		{
 			// Attach sticker
-			var newSticker = (GameObject)Instantiate( Sticker, target.transform );
+			var newSticker = (GameObject)Instantiate( Sticker, target.transform.position, new Quaternion(0,target.transform.rotation.y,0,1));
 			newSticker.transform.position = target.contacts[0].point;
+		    newSticker.transform.parent = target.transform;
+			
+            // Play audioclip
+            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
 
-			// Play audioclip
-			var audioSouce = GetComponent<AudioSource>();
-			audioSouce.PlayOneShot( StickSound );
-
-			//_gM.AddScore( target.transform.parent.GetComponent<BoxInfo>().TotalBoxValue );
+			_gM.AddScore( target.transform.GetComponent<BoxInfo>().TotalBoxValue );
 		}
 
 	}

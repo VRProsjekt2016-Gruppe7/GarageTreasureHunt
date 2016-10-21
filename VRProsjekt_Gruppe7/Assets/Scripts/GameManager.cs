@@ -11,6 +11,7 @@ public enum State
 public class GameManager : MonoBehaviour
 {
     public GameObject PlayerCameraPrefab;
+    public GameObject TagGun;
 
     private readonly float _defaultStartTime = 60f;
     private readonly int _defaultCharges = 12;
@@ -27,13 +28,7 @@ public class GameManager : MonoBehaviour
     {
         _guiController = GetComponent<GUIController>();
         Init();
-    }
-
-    void Start ()
-    {
-        // (Show intro?)
-	    // Show main menu
-        
+        TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
     }
 	
 	void Update ()

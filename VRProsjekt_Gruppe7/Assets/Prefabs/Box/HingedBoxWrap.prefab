@@ -20,9 +20,14 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012845776840}
   - 114: {fileID: 114000010114687702}
+  - 65: {fileID: 65000010172946536}
+  - 65: {fileID: 65000012221232526}
+  - 65: {fileID: 65000011938534338}
+  - 65: {fileID: 65000014127471316}
+  - 54: {fileID: 54000012683946486}
   m_Layer: 0
   m_Name: HingedBoxWrap
-  m_TagString: Untagged
+  m_TagString: Container
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +42,6 @@ GameObject:
   - 4: {fileID: 4000011302631670}
   - 33: {fileID: 33000011147124074}
   - 23: {fileID: 23000013972754028}
-  - 64: {fileID: 64000014052219770}
   m_Layer: 0
   m_Name: Hinged_CarboardBox
   m_TagString: Untagged
@@ -55,7 +59,7 @@ GameObject:
   - 4: {fileID: 4000013599924022}
   - 33: {fileID: 33000012478442082}
   - 23: {fileID: 23000011742026456}
-  - 64: {fileID: 64000013491428522}
+  - 65: {fileID: 65000012669137664}
   m_Layer: 0
   m_Name: BoxLid_001
   m_TagString: Untagged
@@ -83,7 +87,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011701336696}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.072153986, y: 0.00000011920929, z: 0.011460781}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -176,8 +180,59 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012596551252}
   m_Mesh: {fileID: 4300002, guid: 25e2a1d0f12ad8c429dd5c127dd1de96, type: 3}
---- !u!64 &64000013491428522
-MeshCollider:
+--- !u!54 &54000012683946486
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011701336696}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &65000010172946536
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011701336696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.009275287, y: 0.18631044, z: 0.30699807}
+  m_Center: {x: -0.14732994, y: 0.09403513, z: 0.00041547418}
+--- !u!65 &65000011938534338
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011701336696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.30280814, y: 0.18631044, z: 0.008683264}
+  m_Center: {x: -0.0005635172, y: 0.09403513, z: 0.14957288}
+--- !u!65 &65000012221232526
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011701336696}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.006630987, y: 0.18631044, z: 0.30699807}
+  m_Center: {x: 0.14993666, y: 0.09403513, z: 0.00041547418}
+--- !u!65 &65000012669137664
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -186,20 +241,20 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300002, guid: 25e2a1d0f12ad8c429dd5c127dd1de96, type: 3}
---- !u!64 &64000014052219770
-MeshCollider:
+  m_Size: {x: 0.60999995, y: 0.51, z: 0.005979472}
+  m_Center: {x: 0.30000228, y: -0.25000006, z: 0.002011697}
+--- !u!65 &65000014127471316
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012388548888}
+  m_GameObject: {fileID: 1000011701336696}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300000, guid: 25e2a1d0f12ad8c429dd5c127dd1de96, type: 3}
+  m_Size: {x: 0.30280814, y: 0.18631044, z: 0.0077175796}
+  m_Center: {x: -0.0005635172, y: 0.09403513, z: -0.1496649}
 --- !u!114 &114000010114687702
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -211,6 +266,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63d4da0f3398a8643a3f9303dff48c89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _boxContents: []
+  BoxContents: []
   TotalBoxValue: 0
   HasSticker: 0

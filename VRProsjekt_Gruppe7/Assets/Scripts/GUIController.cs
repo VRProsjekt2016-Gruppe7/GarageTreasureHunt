@@ -11,8 +11,8 @@ namespace Assets.Scripts
 		public Text TimeLeft;
 
         private readonly string _chargesText = "Avaliable charges: ";
-        private readonly string _timeLeftText = "TIME LEFT: ";
-        private readonly string _curScoreText = "Current score: ";
+        //private readonly string _timeLeftText = "TIME LEFT: ";
+        //private readonly string _curScoreText = "Current score: ";
 	    private int _lastTime = 0;
 
 
@@ -58,7 +58,7 @@ namespace Assets.Scripts
 
         public void SetScore(int score)
 		{
-            CurrentScore.text = _curScoreText  + (score >= 0 ? score : 0);
+            CurrentScore.text = "" + (score >= 0 ? score : 0);
 		}
 	}
 }

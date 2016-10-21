@@ -10,10 +10,15 @@ namespace Assets.Scripts
 		public bool IsPrimed;
 		public bool HasStickers = true;
 
-
 		private TagGunPlaceSticker _placeSticker;
+	    private SoundController _sC;
 
-		public void Start ()
+	    void Start()
+	    {
+	        _sC = FindObjectOfType<SoundController>();
+	    }
+
+		public void Init(int nrOfSticker)
 		{
 			_placeSticker = GetComponent<TagGunPlaceSticker>();
 			HasStickers = true;
@@ -31,44 +36,34 @@ namespace Assets.Scripts
 
 		public void PrimeTagGun()
 		{
-			if (!HasStickers) return;
-			IsPrimed = true;
-			var audioSource = GetComponent<AudioSource>();
-			audioSource.Play();
+			if (!HasStickers)
+                return;
+
+            IsPrimed = true;
+            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PrimeGun);
 		}
 
-
-		// Unsure if OnTriggerEnter or OnCollisionEnter is best.
-		/*
-		public void OnTriggerEnter(Collider col)
+        public void OnCollisionEnter( Collision col)
 		{
-			if (IsPrimed && col.tag == "Container")
+		    if (col.transform.tag != "Container" || !HasStickers)
+		        return;
+
+            if(col.transform.GetComponent<BoxInfo>().HasSticker)
+                return;
+
+			if (IsPrimed)
 			{
-				NumStickers--;
+			    col.transform.GetComponent<BoxInfo>().HasSticker = true;
+                NumStickers--;
 				IsPrimed = false;
-				//_placeSticker.StickToObject( collision );
+				_placeSticker.StickToObject( col );
 			}
+
 			if (NumStickers <= 0)
 			{
 				HasStickers = false;
 			}
-			Debug.Log( "On Trigger Enter happend" );
-		}
-		*/
-
-		public void OnCollisionEnter( Collision collision)
-		{
-			if (IsPrimed && collision.gameObject.tag == "Container")
-			{
-				NumStickers--;
-				IsPrimed = false;
-				_placeSticker.StickToObject( collision );
-			}
-			if (NumStickers <= 0)
-			{
-				HasStickers = false;
-			}
-			Debug.Log("Collision happend");
+			Debug.Log("Collision happend with " + col.transform.tag);
 		}
 	}
 }
