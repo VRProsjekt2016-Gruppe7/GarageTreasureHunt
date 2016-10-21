@@ -13,6 +13,8 @@ namespace Assets.Scripts
         private readonly string _chargesText = "Avaliable charges: ";
         private readonly string _timeLeftText = "TIME LEFT: ";
         private readonly string _curScoreText = "Current score: ";
+	    private int _lastTime = 0;
+
 
         void Start()
 		{
@@ -35,20 +37,28 @@ namespace Assets.Scripts
 
         public void SetCharges(int charges)
         {
-            //TimeLeft.text = _chargesText + (charges >= 0 ? charges : 0);
+            
         }
 
         public void SetTimeLeft(float timeLeft)
         {
-            TimeLeft.text = ""//_timeLeftText 
-                + 
-                ((int)timeLeft >= 0 ? (int)timeLeft : 0);
+            float t = timeLeft / 60;
+
+            Color colorLerped = Color.Lerp(Color.red, Color.green, t);
+            TimeLeft.color = colorLerped;
+
+            TimeLeft.text = "" + ((int)timeLeft >= 0 ? (int)timeLeft : 0);
+
+            if ((int) timeLeft <= 10 && _lastTime != (int)timeLeft)
+            {
+                _lastTime = (int) timeLeft;
+                GetComponent<SoundController>().PlaySoundAtSourceOnce(SoundSource.GuiSource, Sounds.CountDownBeep);
+            }
         }
 
         public void SetScore(int score)
 		{
-            CurrentScore.text = "" //_curScoreText 
-                + (score >= 0 ? score : 0);
+            CurrentScore.text = _curScoreText  + (score >= 0 ? score : 0);
 		}
 	}
 }
