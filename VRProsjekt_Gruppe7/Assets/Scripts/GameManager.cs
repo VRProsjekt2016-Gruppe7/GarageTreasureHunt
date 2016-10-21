@@ -22,6 +22,9 @@ public class GameManager : MonoBehaviour
     private State _currentState;
     private GUIController _guiController;
 
+
+    public bool MaualStart = false;
+
     void Awake()
     {
         _guiController = GetComponent<GUIController>();
@@ -37,6 +40,15 @@ public class GameManager : MonoBehaviour
 	
 	void Update ()
     {
+        // Debug
+        if (_currentState == State.Paused && MaualStart)
+        {
+            MaualStart = false;
+            StartGame();
+            
+        }
+        //Debug end
+
         if(_currentState == State.Running)
         {
             Countdown();
@@ -48,15 +60,34 @@ public class GameManager : MonoBehaviour
         _guiController.SetTimeLeft(_timeLeft);
     }
 
-    private void Countdown()
+    private void UpdateScore()
     {
-        if(_timeLeft>0)
-            _timeLeft -= 1f * Time.deltaTime;
-
-        if (_timeLeft <= 0 && _currentState == State.Running)
-            GameStop();
+        _guiController.SetScore(_currentScore);
     }
 
+    public void AddScore(int points)
+    {
+        if (points < 0)
+            return;
+
+        _currentScore += points;
+
+        UpdateScore();
+    }
+
+    private void Countdown()
+    {
+        if (_timeLeft > 0)
+        {
+            _timeLeft -= 1f * Time.deltaTime;
+            UpdateTimeLeft();
+        }
+
+        if (_timeLeft <= 0 && _currentState == State.Running)
+        {
+            GameStop();
+        }
+    }
 
     private void Init()
     {

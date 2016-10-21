@@ -11,12 +11,11 @@ public enum RoomSide
 
 public class ShelfManager : MonoBehaviour {
 
-    //public GameObject ShelvesWrap;
     public GameObject[] Legs;
 
-    private readonly int _nrOfShelfFloors = 4;
+    private readonly int _nrOfShelfFloors = 3;
     private readonly float _spaceBetweenShelves = 0.5f;
-    private readonly float _lowestFloorPosY = 0.1f;
+    private readonly float _lowestFloorPosY = 0.11f;
 
     private readonly float _legsDiameter = 0.03f;
     private readonly float _legsHeight = 0.85f;
@@ -63,6 +62,7 @@ public class ShelfManager : MonoBehaviour {
     {
         return _spaceBetweenShelves;
     }
+
     public float GetLowestShelfFloorY()
     {
         return _lowestFloorPosY;

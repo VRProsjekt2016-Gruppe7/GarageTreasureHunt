@@ -14,7 +14,7 @@ public class BoxesManager : MonoBehaviour {
     private float _reqSpacePrBox;
     private Vector3 _boxDimensions;
 
-    void Awake()
+    public void Init()
     {
         _allBoxes = new List<GameObject>();
         _reqSpacePrBox = _boxWidth + _offSetWidthPrBox;
@@ -40,7 +40,6 @@ public class BoxesManager : MonoBehaviour {
             if (shelves[i] == null)
                 continue;
 
-//            Debug.Log("Placing boxes on shelf nr: " + i);
             PlaceBoxesOnShelf(shelves[i]);
         }
     }
@@ -57,7 +56,6 @@ public class BoxesManager : MonoBehaviour {
 
         for (int floor = 0; floor < shelfFloors; floor++)
         {
-            //Debug.Log("Placing boxes on floor: " + floor);
             float curPosY =  startPosY + (floor * spaceBetweenShelfFloors);
             PlaceBoxOnShelfFloor(shelf, curPosY, boxesPrFloor, shelfWidth);
         }
@@ -65,14 +63,15 @@ public class BoxesManager : MonoBehaviour {
 
     private void PlaceBoxOnShelfFloor(GameObject shelf, float curPosY, int boxesPrFloor, float shelfWidth)
     {
-        float shelfRotY = shelf.transform.localRotation.y;
+        Quaternion shelfRot = shelf.transform.rotation;
 
         for (int i = 1; i <= boxesPrFloor; i++)
         {
             Vector3 pos = GetBoxPos(shelf, curPosY, boxesPrFloor, shelfWidth, i);//new Vector3(x, curPosY, 0);
 
             GameObject newBox = (GameObject)Instantiate(BoxPrefab, pos, transform.rotation);
-            newBox.transform.Rotate(0,shelfRotY,0);
+
+            newBox.transform.localRotation = shelfRot;
 
             _allBoxes.Add(newBox);
         }

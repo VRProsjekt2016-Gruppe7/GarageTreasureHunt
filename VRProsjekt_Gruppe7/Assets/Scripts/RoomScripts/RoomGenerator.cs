@@ -22,6 +22,9 @@ public class RoomGenerator : MonoBehaviour {
 
     public void GenerateRoom()
     {
+        GetComponent<BoxesManager>().Init();
+        GetComponent<BoxContentsManager>().Init();
+
         SpawnShelves();
         GetComponent<BoxContentsManager>().FillBoxes(
             GetComponent<BoxesManager>().GenerateBoxes(_shelves),

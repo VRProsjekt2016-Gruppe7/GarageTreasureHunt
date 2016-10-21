@@ -28,24 +28,27 @@ namespace Assets.Scripts
 
         public void SetTextInfo(int charges, int timeLeft, int score)
 		{
-            SetCharges(charges);
+            //SetCharges(charges);
             SetTimeLeft(timeLeft);
             SetScore(score);
         }
 
         public void SetCharges(int charges)
         {
-            TimeLeft.text = _chargesText + (charges >= 0 ? charges : 0);
+            //TimeLeft.text = _chargesText + (charges >= 0 ? charges : 0);
         }
 
         public void SetTimeLeft(float timeLeft)
         {
-            TimeLeft.text = _timeLeftText + ((int)timeLeft >= 0 ? timeLeft : 0);
+            TimeLeft.text = ""//_timeLeftText 
+                + 
+                ((int)timeLeft >= 0 ? (int)timeLeft : 0);
         }
 
         public void SetScore(int score)
 		{
-            CurrentScore.text = _curScoreText + (score >= 0 ? score : 0);
+            CurrentScore.text = "" //_curScoreText 
+                + (score >= 0 ? score : 0);
 		}
 	}
 }
