@@ -148,7 +148,6 @@ public class ViveHandController : HandController {
             }
 
             _tagGun.IsTagGunEquipped = true;
-			GetComponentInChildren<SteamVR_RenderModel>().enabled = false;
         }
     }
 }
