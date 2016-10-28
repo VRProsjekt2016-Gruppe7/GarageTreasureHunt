@@ -2,19 +2,20 @@
 
 namespace Assets.Scripts
 {
-	public class TagGunPlaceSticker : MonoBehaviour
-	{
-		public GameObject Sticker;
+    public class TagGunPlaceSticker : MonoBehaviour
+    {
+        public GameObject Sticker;
+        public bool TagGunPickedUpFirstTime = false;
 
         private GameManager _gM;
         private SoundController _sC;
 
 
-		public void Start( )
-		{
-		    _sC = FindObjectOfType<SoundController>();
-			_gM = FindObjectOfType<GameManager>();
-		}
+        public void Start()
+        {
+            _sC = FindObjectOfType<SoundController>();
+            _gM = FindObjectOfType<GameManager>();
+        }
 
 		public void StickToObject( Collision target )
 		{
@@ -23,12 +24,13 @@ namespace Assets.Scripts
 			newSticker.transform.position = target.contacts[0].point;
 		    newSticker.transform.parent = target.transform;
 			
-            // Play audioclip
-            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
 
             // Add score
 			_gM.AddScore( target.transform.GetComponent<BoxInfo>().TotalBoxValue );
-		}
+            // Play audioclip
+            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
 
-	}
+            _gM.AddScore(target.transform.GetComponent<BoxInfo>().TotalBoxValue);
+        }
+    }
 }

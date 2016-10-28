@@ -118,7 +118,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7cf9c9dd749af1d49994c28bf7f3922d, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -171,7 +171,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -194,8 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f56fcb55a7b6204fa78ed3e2825c1de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Sticker: {fileID: 1000013275635354, guid: 864b8684c102099408bcbc82dce2f35b, type: 2}
-  StickSound: {fileID: 0}
+  Sticker: {fileID: 1000013103382046, guid: b84379d3805e0ba419b686c9baabb599, type: 2}
+  TagGunPickedUpFirstTime: 0
 --- !u!114 &114000013530249310
 MonoBehaviour:
   m_ObjectHideFlags: 1

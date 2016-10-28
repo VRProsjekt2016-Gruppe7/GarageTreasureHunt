@@ -5,13 +5,16 @@ using Assets.Scripts;
 public enum ButtonPressed
 {
     Grip,
-	Trigger
+    Trigger
 }
 
 [RequireComponent(typeof(SteamVR_TrackedObject))]
-public class ViveHandController : HandController {
+public class ViveHandController : HandController
+{
 
     public GameObject HandModel;
+
+    public bool testOpenLid = false;
 
     private bool _triggerPressed = false;
     private bool _gripPressed = false;
@@ -22,16 +25,18 @@ public class ViveHandController : HandController {
     private SteamVR_Controller.Device InputDevice { get { return SteamVR_Controller.Input((int)_trackedObj.index); } }
     private SteamVR_TrackedObject _trackedObj;
 
-	private TagGunBehaviour _tagGun;
-	
-//  void Awake()
-	private void Start()
-	{
-		_tagGun = GameObject.FindGameObjectWithTag("TagGun").GetComponent<TagGunBehaviour>();
+    private TagGunBehaviour _tagGunBehaviour;
+    private TagGunPlaceSticker _tagGunPlaceSticker;
+
+    //  void Awake()
+    private void Start()
+    {
+        _tagGunPlaceSticker = GameObject.FindGameObjectWithTag("TagGun").GetComponent<TagGunPlaceSticker>();
+        _tagGunBehaviour = GameObject.FindGameObjectWithTag("TagGun").GetComponent<TagGunBehaviour>();
         _trackedObj = GetComponent<SteamVR_TrackedObject>();
     }
 
-	private void Update()
+    private void Update()
     {
         if (InputDevice == null)
         {
@@ -64,9 +69,9 @@ public class ViveHandController : HandController {
             ButtonAction(ButtonPressed.Grip, false);
         }
 
-        if(ConnectedObject != null)
+        if (ConnectedObject != null)
         {
-            if(ConnectedObject.transform.position.y < 0)
+            if (ConnectedObject.transform.position.y < 0)
             {
                 ConnectedObject.transform.position = new Vector3(ConnectedObject.transform.position.x, 0, ConnectedObject.transform.position.z);
             }
@@ -77,7 +82,7 @@ public class ViveHandController : HandController {
                 {
                     ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
-				TossObject();
+                TossObject();
             }
             else if (!_gripPressed && ConnectedObject.transform.tag == "TagGun")
             {
@@ -85,27 +90,27 @@ public class ViveHandController : HandController {
                 {
                     ConnectedObject.gameObject.GetComponent<Rigidbody>().isKinematic = false;
                 }
-				TossObject();
-	            _tagGun.IsTagGunEquipped = false;
+                TossObject();
+                _tagGunBehaviour.IsTagGunEquipped = false;
             }
         }
 
-	    if (_tagGun.IsTagGunEquipped && _triggerPressed && !_tagGun.IsPrimed)
-	    {
-		    Debug.Log("Priming the tag gun");
-			_tagGun.PrimeTagGun();
-	    }
+        if (_tagGunBehaviour.IsTagGunEquipped && _triggerPressed && !_tagGunBehaviour.IsPrimed)
+        {
+            Debug.Log("Priming the tag gun");
+            _tagGunBehaviour.PrimeTagGun();
+        }
     }
 
-	private void TossObject()
-	{
-		ConnectedObject.GetComponent<Rigidbody>().velocity = InputDevice.velocity;
-		ConnectedObject.GetComponent<Rigidbody>().angularVelocity = InputDevice.angularVelocity;
-		ConnectedObject.transform.parent = null;
-		ConnectedObject = null;
-	}
+    private void TossObject()
+    {
+        ConnectedObject.GetComponent<Rigidbody>().velocity = InputDevice.velocity;
+        ConnectedObject.GetComponent<Rigidbody>().angularVelocity = InputDevice.angularVelocity;
+        ConnectedObject.transform.parent = null;
+        ConnectedObject = null;
+    }
 
-	private void ButtonAction(ButtonPressed btn, bool pressed)
+    private void ButtonAction(ButtonPressed btn, bool pressed)
     {
         if (btn == ButtonPressed.Grip)
         {
@@ -117,16 +122,24 @@ public class ViveHandController : HandController {
         }
     }
 
-	public void OnTriggerStay(Collider col)
+    public void OnTriggerExit(Collider col)
     {
-        if (_triggerPressed)
+        print(col.name + ", " + col.tag);
+        if (col.transform.tag == "BoxLid" && ConnectedObject == null)
+        {
+            col.GetComponent<LidScript>().CloseLid();
+        }
+    }
+
+    public void OnTriggerStay(Collider col)
+    {
+        if (_triggerPressed)// || testOpenLid))
         {
             if (col.transform.tag == "BoxLid" && ConnectedObject == null)
             {
-                float distY = Vector3.Distance(transform.position, col.transform.position);
-                col.transform.localRotation = new Quaternion(0,-distY,0,1);
+                col.GetComponent<LidScript>().OpenLid();
             }
-            else if (col.transform.tag == "Container" && ConnectedObject == null)
+            else if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
             {
                 ConnectedObject = col.transform.gameObject;
                 ConnectedObject.transform.parent = HandModel.transform;
@@ -135,20 +148,27 @@ public class ViveHandController : HandController {
         }
 
         if (_gripPressed && col.gameObject.tag == "TagGun" && ConnectedObject == null)
-		{
-			ConnectedObject = col.transform.gameObject;
-			ConnectedObject.transform.parent = HandModel.transform;
-			col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        {
+            ConnectedObject = col.transform.gameObject;
+            ConnectedObject.transform.parent = HandModel.transform;
+            col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
+            if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
+            {
+                _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
+                FindObjectOfType<GameManager>().MaualStart = true;
+            }
 
             Debug.Log("Tag Gun Equipped");
-            if (!_tagGun.TagGunPickedUpFirstTime)
+
+            if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
             {
-                _tagGun.TagGunPickedUpFirstTime = true;
+                _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
             }
             col.GetComponent<MeshRenderer>().enabled = false;
-            
-            _tagGun.IsTagGunEquipped = true;
+
+            _tagGunBehaviour.IsTagGunEquipped = true;
         }
     }
 }
