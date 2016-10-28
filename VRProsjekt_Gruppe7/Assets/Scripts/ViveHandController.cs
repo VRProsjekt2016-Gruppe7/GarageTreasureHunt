@@ -13,6 +13,8 @@ public class ViveHandController : HandController {
 
     public GameObject HandModel;
 
+    public bool testOpenLid = false;
+
     private bool _triggerPressed = false;
     private bool _gripPressed = false;
 
@@ -23,7 +25,7 @@ public class ViveHandController : HandController {
     private SteamVR_TrackedObject _trackedObj;
 
 	private TagGunBehaviour _tagGun;
-	
+
 //  void Awake()
 	private void Start()
 	{
@@ -117,16 +119,24 @@ public class ViveHandController : HandController {
         }
     }
 
-	public void OnTriggerStay(Collider col)
+    public void OnTriggerExit(Collider col)
     {
-        if (_triggerPressed)
+        print(col.name + ", " + col.tag);
+        if (col.transform.tag == "BoxLid" && ConnectedObject == null)
+        {
+            col.GetComponent<LidScript>().CloseLid();
+        }
+    }
+
+    public void OnTriggerStay(Collider col)
+    {
+        if (_triggerPressed)// || testOpenLid))
         {
             if (col.transform.tag == "BoxLid" && ConnectedObject == null)
             {
-                float distY = Vector3.Distance(transform.position, col.transform.position);
-                col.transform.localRotation = new Quaternion(0,-distY,0,1);
+                col.GetComponent<LidScript>().OpenLid();
             }
-            else if (col.transform.tag == "Container" && ConnectedObject == null)
+            else if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
             {
                 ConnectedObject = col.transform.gameObject;
                 ConnectedObject.transform.parent = HandModel.transform;
