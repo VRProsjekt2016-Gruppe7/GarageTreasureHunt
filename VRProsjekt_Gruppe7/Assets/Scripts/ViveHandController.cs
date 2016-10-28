@@ -144,7 +144,7 @@ public class ViveHandController : HandController {
             if (!_tagGun.TagGunPickedUpFirstTime)
             {
                 _tagGun.TagGunPickedUpFirstTime = true;
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().StartGame();
+                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
             }
 
             _tagGun.IsTagGunEquipped = true;
