@@ -16,9 +16,11 @@ namespace Assets.Scripts
 
         public TextMesh GripToStartText;
         private Transform _cameraTransform;
+
 	    void Start()
 	    {
 	        _sC = FindObjectOfType<SoundController>();
+
 	    }
 
 		public void Init(int nrOfSticker)
