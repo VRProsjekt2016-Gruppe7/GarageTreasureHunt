@@ -16,8 +16,9 @@ public class ViveHandController : HandController
 
     public bool testOpenLid = false;
 
-    private bool _triggerPressed = false;
-    private bool _gripPressed = false;
+	// Public for test purposes
+    public bool _triggerPressed = false;
+    public bool _gripPressed = false;
 
     private Valve.VR.EVRButtonId _triggerButton = Valve.VR.EVRButtonId.k_EButton_SteamVR_Trigger;
     private Valve.VR.EVRButtonId _gripButton = Valve.VR.EVRButtonId.k_EButton_Grip;
@@ -157,6 +158,7 @@ public class ViveHandController : HandController
             {
                 _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
                 FindObjectOfType<GameManager>().MaualStart = true;
+				_tagGunBehaviour.GetComponent<MeshRenderer>().enabled = false;
             }
 
             Debug.Log("Tag Gun Equipped");

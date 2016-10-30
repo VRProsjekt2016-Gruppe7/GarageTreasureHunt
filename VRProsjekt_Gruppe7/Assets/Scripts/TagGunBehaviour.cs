@@ -13,7 +13,7 @@ namespace Assets.Scripts
         private SoundController _sC;
 
         public TextMesh GripToStartText;
-        private Transform _cameraTransform = null;
+        public Transform _cameraTransform = null;
 
 	    void Start()
 	    {
@@ -35,12 +35,7 @@ namespace Assets.Scripts
                 transform.position = new Vector3(transform.position.x, transform.localScale.y / 2f, transform.position.z);
             }
 
-            if(_cameraTransform == null)
-                _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-
-
             // Update rotation of the text mesh
-
             GripToStartText.transform.rotation = _cameraTransform.rotation; 
 		}
 
