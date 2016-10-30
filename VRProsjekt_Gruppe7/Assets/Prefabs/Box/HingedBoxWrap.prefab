@@ -39,6 +39,7 @@ GameObject:
   - 33: {fileID: 33000010506667578}
   - 23: {fileID: 23000011316072394}
   - 65: {fileID: 65000011649314514}
+  - 114: {fileID: 114000012895867054}
   m_Layer: 0
   m_Name: BoxLid_001
   m_TagString: BoxLid
@@ -60,6 +61,7 @@ GameObject:
   - 65: {fileID: 65000014047980946}
   - 65: {fileID: 65000013109477798}
   - 54: {fileID: 54000013910234814}
+  - 65: {fileID: 65000013701560972}
   m_Layer: 0
   m_Name: HingedBoxWrap
   m_TagString: Container
@@ -74,7 +76,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011765149878}
   m_LocalRotation: {x: -0.00000019861236, y: -0.7071068, z: -0.7071068, w: 0.00000019861236}
-  m_LocalPosition: {x: 0.15000004, y: 0.185, z: 0.14999998}
+  m_LocalPosition: {x: 0.15000004, y: 0.23, z: 0.14999998}
   m_LocalScale: {x: 0.5, y: 0.6, z: 0.37}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: -179.99998}
   m_Children: []
@@ -88,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 1000010891662530}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0.7071068, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.6, z: 0.37}
+  m_LocalScale: {x: 0.5, y: 0.6, z: 0.45}
   m_LocalEulerAnglesHint: {x: -90, y: 180, z: 0}
   m_Children: []
   m_Father: {fileID: 4000013331806862}
@@ -100,7 +102,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012053254298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.11677086, y: 0.00000011920929, z: -0.06390464}
+  m_LocalPosition: {x: -0.033333614, y: 0.00000011920929, z: 0.40723705}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -205,8 +207,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.009275287, y: 0.18631044, z: 0.30699807}
-  m_Center: {x: -0.14732994, y: 0.09403513, z: 0.00041547418}
+  m_Size: {x: 0.009275287, y: 0.22589985, z: 0.30699807}
+  m_Center: {x: -0.14732994, y: 0.113829836, z: 0.00041547418}
 --- !u!65 &65000011649314514
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -229,8 +231,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.006630987, y: 0.18631044, z: 0.30699807}
-  m_Center: {x: 0.14993666, y: 0.09403513, z: 0.00041547418}
+  m_Size: {x: 0.006630987, y: 0.2258998, z: 0.30699807}
+  m_Center: {x: 0.14993666, y: 0.1138298, z: 0.00041547418}
 --- !u!65 &65000013109477798
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -241,8 +243,20 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30280814, y: 0.18631044, z: 0.0077175796}
-  m_Center: {x: -0.0005635172, y: 0.09403513, z: -0.1496649}
+  m_Size: {x: 0.30280814, y: 0.2258998, z: 0.0077175796}
+  m_Center: {x: -0.0005635172, y: 0.1138298, z: -0.1496649}
+--- !u!65 &65000013701560972
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012053254298}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.3034895, y: 0.01724568, z: 0.30699807}
+  m_Center: {x: -0.00022283196, y: 0.0029759258, z: 0.00041547418}
 --- !u!65 &65000014047980946
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -253,8 +267,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.30280814, y: 0.18631044, z: 0.008683264}
-  m_Center: {x: -0.0005635172, y: 0.09403513, z: 0.14957288}
+  m_Size: {x: 0.30280814, y: 0.2258998, z: 0.008683264}
+  m_Center: {x: -0.0005635172, y: 0.1138298, z: 0.14957288}
 --- !u!114 &114000010911736558
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -269,3 +283,14 @@ MonoBehaviour:
   BoxContents: []
   TotalBoxValue: 0
   HasSticker: 0
+--- !u!114 &114000012895867054
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000011765149878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604cfc30fab7afa479ce9d5b256f8c17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
