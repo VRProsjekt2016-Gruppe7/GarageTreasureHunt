@@ -66,7 +66,8 @@ namespace Assets.Scripts
                 col.transform.GetComponent<BoxInfo>().HasSticker = true;
                 NumStickers--;
                 IsPrimed = false;
-                _placeSticker.StickToObject(col);
+                _placeSticker.StickToObject(col.gameObject);
+//                _placeSticker.StickToObject(col);
             }
 
             if (NumStickers <= 0)
