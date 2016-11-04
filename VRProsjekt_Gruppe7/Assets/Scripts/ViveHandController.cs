@@ -173,6 +173,8 @@ public class ViveHandController : HandController
             {
                 _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
+                Destroy(GameObject.FindGameObjectWithTag("Spawn Pillar")); //Destroys the object with the two boxes that are present before the game starts.
+
             }
             col.GetComponent<MeshRenderer>().enabled = false;
 
