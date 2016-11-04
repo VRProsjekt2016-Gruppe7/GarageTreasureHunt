@@ -56,7 +56,7 @@ GameObject:
   - 33: {fileID: 33000010506667578}
   - 23: {fileID: 23000011316072394}
   - 65: {fileID: 65000011649314514}
-  - 114: {fileID: 114000012895867054}
+  - 114: {fileID: 114000013245387720}
   m_Layer: 0
   m_Name: BoxLid_001
   m_TagString: BoxLid
@@ -92,10 +92,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011765149878}
-  m_LocalRotation: {x: -0.00000019861236, y: -0.7071068, z: -0.7071068, w: 0.00000019861236}
-  m_LocalPosition: {x: 0.15000004, y: 0.23, z: 0.14999998}
-  m_LocalScale: {x: 0.5, y: 0.6, z: 0.37}
-  m_LocalEulerAnglesHint: {x: -90, y: 0, z: -179.99998}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0.7071068, w: 0}
+  m_LocalPosition: {x: 0.15, y: 0.23, z: 0.14999998}
+  m_LocalScale: {x: 0.5000024, y: 0.6000012, z: 0.45000118}
+  m_LocalEulerAnglesHint: {x: 270, y: 0, z: 180}
   m_Children: []
   m_Father: {fileID: 4000013331806862}
   m_RootOrder: 1
@@ -132,7 +132,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012053254298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.039888494, y: 0.00000011920929, z: -0.21519095}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -351,7 +351,7 @@ MonoBehaviour:
   TotalBoxValue: 0
   HasSticker: 0
   StickerPoint: {fileID: 1000010441639068}
---- !u!114 &114000012895867054
+--- !u!114 &114000013245387720
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -359,6 +359,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 1000011765149878}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 604cfc30fab7afa479ce9d5b256f8c17, type: 3}
+  m_Script: {fileID: 11500000, guid: 58f52d2191fb8f64d99dc38de511532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hand: {fileID: 0}
+  _targetAngle: 0
