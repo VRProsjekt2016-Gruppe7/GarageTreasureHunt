@@ -6,12 +6,11 @@ public class RoomGenerator : MonoBehaviour
     // Left -> Front -> Right
     public GameObject ShelfPrefab;
 
-    private Vector3[] _shelvesPositions = { new Vector3(-0.9f, 0, 0), new Vector3(0, 0, 0.9f), new Vector3(0.9f, 0, 0) };
     private GameObject[] _shelves;
 
     void Awake()
     {
-        _shelves = new GameObject[_shelvesPositions.Length];
+        _shelves = new GameObject[RoomValues.ShelvesPositions.Length];
     }
     /*
     void Start()
@@ -25,30 +24,25 @@ public class RoomGenerator : MonoBehaviour
         GetComponent<BoxContentsManager>().Init();
 
         SpawnShelves();
+        GetComponent<BoxesManager>().GenerateBoxes(_shelves);
+        /*
         GetComponent<BoxContentsManager>().FillBoxes(
             GetComponent<BoxesManager>().GenerateBoxes(_shelves),
             GetComponent<BoxesManager>().GetBoxDimesions());
+            */
     }
 
     private void SpawnShelves()
     {
-        for (int i = 0; i < _shelvesPositions.Length; i++)
+        for (int i = 0; i < RoomValues.ShelvesPositions.Length; i++)
         {
-            //Debug.Log("Spawning shelf nr: " + i);
-            RoomSide side = GetRoomSide(i);
-
             _shelves[i] = (GameObject)Instantiate(ShelfPrefab, transform.position, transform.rotation);
-            _shelves[i].GetComponent<ShelfManager>().PlaceObject(_shelvesPositions[i], 2f, side);
+            _shelves[i].GetComponent<ShelfManager>().PlaceShelf(RoomValues.ShelvesPositions[i], GetRoomSide(i));
         }
     }
 
     private RoomSide GetRoomSide(int i)
     {
-        if (i == 0)
-            return RoomSide.Left;
-        else if (i == 2)
-            return RoomSide.Right;
-        else
-            return RoomSide.Front;
+        return (i == 0) ? RoomSide.Left : RoomSide.Right;
     }
 }
