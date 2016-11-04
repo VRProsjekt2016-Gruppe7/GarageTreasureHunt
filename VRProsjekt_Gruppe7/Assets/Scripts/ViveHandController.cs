@@ -134,20 +134,22 @@ public class ViveHandController : HandController
 
     public void OnTriggerStay(Collider col)
     {
-        if (col.transform.tag == "BoxLid")// && testOpenLid)
+        if (col.transform.tag == "BoxLid" && ConnectedObject == null)
         {
-            //testOpenLid = false;
             col.GetComponent<OpenBox>().Open(transform);
+            return;
         }
-        return;
 
-        if (_triggerPressed)// || testOpenLid))
+        if (_triggerPressed)
         {
+            /*
             if (col.transform.tag == "BoxLid" && ConnectedObject == null)
             {
                 col.GetComponent<LidScript>().OpenLid();
             }
-            else if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
+            else
+            */ 
+            if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
             {
                 ConnectedObject = col.transform.gameObject;
                 ConnectedObject.transform.parent = HandModel.transform;
