@@ -138,7 +138,7 @@ public class ViveHandController : HandController
         {
             if (col.transform.tag == "BoxLid" && ConnectedObject == null)
             {
-                col.GetComponent<LidScript>().OpenLid();
+				// TODO fix lookat for opening lid
             }
             else if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
             {
@@ -154,20 +154,12 @@ public class ViveHandController : HandController
             ConnectedObject.transform.parent = HandModel.transform;
             col.gameObject.GetComponent<Rigidbody>().isKinematic = true;
 
-            if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
-            {
-                _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-                FindObjectOfType<GameManager>().MaualStart = true;
-				_tagGunBehaviour.GetComponent<MeshRenderer>().enabled = false;
-            }
-
-            Debug.Log("Tag Gun Equipped");
-
-            if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
-            {
-                _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
-            }
+			if (!_tagGunBehaviour.TagGunPickedUpFirstTime)
+			{
+				_tagGunBehaviour.TagGunPickedUpFirstTime = true;
+				FindObjectOfType<GameManager>().MaualStart = true;
+				_tagGunBehaviour.GripToStartText.GetComponent<MeshRenderer>().enabled = false;
+			}
             col.GetComponent<MeshRenderer>().enabled = false;
 
             _tagGunBehaviour.IsTagGunEquipped = true;

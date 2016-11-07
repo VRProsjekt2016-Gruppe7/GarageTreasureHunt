@@ -9,7 +9,9 @@ namespace Assets.Scripts
         public bool IsTagGunEquipped;
         public bool IsPrimed;
         public bool HasStickers = true;
-        private TagGunPlaceSticker _placeSticker;
+		public bool TagGunPickedUpFirstTime = false;
+
+		private TagGunPlaceSticker _placeSticker;
         private SoundController _sC;
 
         public TextMesh GripToStartText;
