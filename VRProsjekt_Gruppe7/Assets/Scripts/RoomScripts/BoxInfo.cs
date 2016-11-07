@@ -6,6 +6,7 @@ public class BoxInfo : MonoBehaviour {
     public List<GameObject> BoxContents;
     public int TotalBoxValue = 0;
     public bool HasSticker = false;
+    public GameObject StickerPoint;
 
     public void AddBoxContents(GameObject[] contents)
     {
@@ -23,6 +24,11 @@ public class BoxInfo : MonoBehaviour {
     {
         foreach (var content in BoxContents)
         {
+            if (!content)
+            {
+                print("Empty");
+                continue;
+            }
             TotalBoxValue += content.GetComponent<ItemInfo>().GetValue();
         }
     }

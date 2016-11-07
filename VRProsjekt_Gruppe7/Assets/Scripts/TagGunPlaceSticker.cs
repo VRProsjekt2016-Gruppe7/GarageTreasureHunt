@@ -17,20 +17,21 @@ namespace Assets.Scripts
             _gM = FindObjectOfType<GameManager>();
         }
 
-		public void StickToObject( Collision target )
-		{
-			// Attach sticker
-			var newSticker = (GameObject)Instantiate( Sticker, target.transform.position, new Quaternion(0, target.transform.rotation.y,0,1));
-			newSticker.transform.position = target.contacts[0].point;
-		    newSticker.transform.parent = target.transform;
+//		public void StickToObject( Collision target )
+        public void StickToObject(GameObject box)
+        {
+            BoxInfo boxInfo = box.GetComponent<BoxInfo>();
+            Vector3 stickerPos = boxInfo.StickerPoint.transform.position;
+            // Attach sticker
+            var newSticker = (GameObject)Instantiate( Sticker, stickerPos, new Quaternion(0, box.transform.rotation.y,0,1));
+			//newSticker.transform.position = target.contacts[0].point;
+		    newSticker.transform.parent = box.transform;
 			
 
             // Add score
-			_gM.AddScore( target.transform.GetComponent<BoxInfo>().TotalBoxValue );
+			_gM.AddScore(boxInfo.TotalBoxValue );
             // Play audioclip
             _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
-
-            _gM.AddScore(target.transform.GetComponent<BoxInfo>().TotalBoxValue);
         }
     }
 }

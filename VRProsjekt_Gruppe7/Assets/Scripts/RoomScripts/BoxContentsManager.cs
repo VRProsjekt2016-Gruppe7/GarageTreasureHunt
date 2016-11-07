@@ -9,7 +9,7 @@ using System.Text;
 public class BoxContentsManager : MonoBehaviour {
 
     public GameObject[] Contents;
-    public int MaxItemsInBox = 1;
+    private int MaxItemsInBox = 1;
 
     private Dictionary<string, int> _itemValues = new Dictionary<string, int>();
     private Dictionary<string, int> _validItemsLeft = new Dictionary<string, int>();
@@ -17,10 +17,11 @@ public class BoxContentsManager : MonoBehaviour {
     private readonly string _itemsSettingsPath = "Assets/Config/ItemsDB.vri";
     private readonly Vector3[] _spawnOffset =
     {
-        new Vector3(-0.05f, 0.11f, 0.05f),
-        new Vector3(0.05f, 0.11f, 0.05f),
-        new Vector3(-0.05f, 0.11f, -0.05f),
-        new Vector3(0.05f, 0.11f, -0.05f)
+        new Vector3(-0.05f, 0.13f, 0.05f),
+        new Vector3(0.05f, 0.13f, 0.05f),
+        Vector3.zero,
+        new Vector3(-0.05f, 0.13f, -0.05f),
+        new Vector3(0.05f, 0.13f, -0.05f)
     };
 
     public void Init()
@@ -29,7 +30,7 @@ public class BoxContentsManager : MonoBehaviour {
         SetCorretItemValues();
     }
 
-    public void FillBoxes(List<GameObject> allBoxes, Vector3 boxDimensions)
+    public void FillBoxes(List<GameObject> allBoxes)
     {
         for(int i = 0; i < allBoxes.Count; i++)
         {
@@ -50,7 +51,7 @@ public class BoxContentsManager : MonoBehaviour {
 
             if (objIndex == -1)
             {
-                Debug.LogError("No more items! Get more prefabs!!!");
+                print("No more items! Get more prefabs!!!");
                 break;
             }
 

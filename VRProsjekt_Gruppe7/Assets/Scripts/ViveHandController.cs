@@ -125,22 +125,32 @@ public class ViveHandController : HandController
 
     public void OnTriggerExit(Collider col)
     {
+
         print(col.name + ", " + col.tag);
         if (col.transform.tag == "BoxLid" && ConnectedObject == null)
         {
-            col.GetComponent<LidScript>().CloseLid();
+            col.GetComponent<OpenBox>().Close();
         }
     }
 
     public void OnTriggerStay(Collider col)
     {
-        if (_triggerPressed)// || testOpenLid))
+        if (col.transform.tag == "BoxLid" && ConnectedObject == null)
         {
+            col.GetComponent<OpenBox>().Open(transform);
+            return;
+        }
+
+        if (_triggerPressed)
+        {
+            /*
             if (col.transform.tag == "BoxLid" && ConnectedObject == null)
             {
                 col.GetComponent<LidScript>().OpenLid();
             }
-            else if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
+            else
+            */ 
+            if (col.transform.tag == "Container" && ConnectedObject == null && !testOpenLid)
             {
                 ConnectedObject = col.transform.gameObject;
                 ConnectedObject.transform.parent = HandModel.transform;
@@ -167,6 +177,8 @@ public class ViveHandController : HandController
             {
                 _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
                 GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
+                Destroy(GameObject.FindGameObjectWithTag("Spawn Pillar")); //Destroys the object with the two boxes that are present before the game starts.
+
             }
             col.GetComponent<MeshRenderer>().enabled = false;
 
