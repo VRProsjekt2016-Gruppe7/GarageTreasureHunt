@@ -5,20 +5,7 @@ public class OpenBox : MonoBehaviour
     [SerializeField]
     Transform _hand;
 
-    Vector3 _startAngles;
-
-    [SerializeField]
-    float _targetAngle = 0f;
-
-    private float _closeLidSpeed = 30f;
-    private float _closingSmoothing = 7.5f;
-    Vector3 _lidClosedDirection;
-
-    void Start()
-    {
-        this._startAngles = this.transform.localEulerAngles;
-        _lidClosedDirection = -this.transform.up;
-    }
+    private float _closeLidSpeed = 5f;
 
     public void Open(Transform hand)
     {
@@ -40,58 +27,30 @@ public class OpenBox : MonoBehaviour
         {
             HandleOpenLid();
         }
-        
     }
 
     private void HandleClosingLid()
     {
-        float diff = transform.localEulerAngles.x - this._startAngles.x;
-
-        if (transform.localEulerAngles.x > this._startAngles.x)
+        if (transform.localEulerAngles.x >= 270 && transform.localEulerAngles.x < 360)
         {
-            transform.localEulerAngles -= new Vector3(_closeLidSpeed * (diff / _closingSmoothing), 0, 0) * Time.deltaTime;
+            transform.localEulerAngles += new Vector3(_closeLidSpeed * (10), 0, 0) * Time.deltaTime;
+        } 
+        else if (transform.localEulerAngles.x > 0 && transform.localEulerAngles.x < 270)
+        {
+            transform.localEulerAngles = Vector3.zero;
         }
     }
 
     private void HandleOpenLid()
     {
-        Vector3 diff = _hand.position - this.transform.position;
+        if (_hand.position.y - 0.05f < transform.position.y)
+            return;
 
-        diff = this.transform.parent.worldToLocalMatrix * diff;
+        if ((transform.localEulerAngles.x > 270 && transform.localEulerAngles.x < 360) || transform.localEulerAngles.x == 0)
 
-        diff.x = 0f;
-        float angle = -Vector3.Angle(this.transform.parent.worldToLocalMatrix * _lidClosedDirection, diff.normalized);
-
-        //        Debug.Log(diff);
-
-        if (diff.y < 0f)
         {
-            if (diff.z <= 0f)
-            {
-                angle = 0f;
-            }
-            else
-            {
-                angle *= -1f;
-                angle = Mathf.Max(90f, angle);
-            }
+            transform.LookAt(_hand.position - new Vector3(0, 0.05f, 0));
+            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, 0);
         }
-
-        //        Debug.LogFormat("Angle: {0}", angle);
-        angle = SmoothLid(angle);
-
-        this.transform.localEulerAngles = this._startAngles + new Vector3(angle, 0f, 0f);
-    }
-
-    private float SmoothLid(float angle)
-    {
-        float tempAngle = angle;
-
-        if (tempAngle < -8f)
-            tempAngle += 8f;
-        else if (tempAngle >= -8)
-            tempAngle = 0f;
-        return tempAngle;
-
     }
 }

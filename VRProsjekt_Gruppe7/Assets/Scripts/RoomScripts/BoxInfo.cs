@@ -24,6 +24,11 @@ public class BoxInfo : MonoBehaviour {
     {
         foreach (var content in BoxContents)
         {
+            if (!content)
+            {
+                print("Empty");
+                continue;
+            }
             TotalBoxValue += content.GetComponent<ItemInfo>().GetValue();
         }
     }
