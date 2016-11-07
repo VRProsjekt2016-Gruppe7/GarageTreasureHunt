@@ -79,6 +79,7 @@ GameObject:
   - 65: {fileID: 65000013109477798}
   - 54: {fileID: 54000013910234814}
   - 65: {fileID: 65000013701560972}
+  - 114: {fileID: 114000011953758618}
   m_Layer: 0
   m_Name: HingedBoxWrap
   m_TagString: Container
@@ -351,6 +352,25 @@ MonoBehaviour:
   TotalBoxValue: 0
   HasSticker: 0
   StickerPoint: {fileID: 1000010441639068}
+--- !u!114 &114000011953758618
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012053254298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}
 --- !u!114 &114000013245387720
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -363,4 +383,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _hand: {fileID: 0}
-  _targetAngle: 0

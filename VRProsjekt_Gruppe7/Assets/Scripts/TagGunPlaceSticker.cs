@@ -22,14 +22,14 @@ namespace Assets.Scripts
         {
             BoxInfo boxInfo = box.GetComponent<BoxInfo>();
             Vector3 stickerPos = boxInfo.StickerPoint.transform.position;
-            // Attach sticker
+
+			// Attach sticker
             var newSticker = (GameObject)Instantiate( Sticker, stickerPos, new Quaternion(0, box.transform.rotation.y,0,1));
-			//newSticker.transform.position = target.contacts[0].point;
 		    newSticker.transform.parent = box.transform;
-			
 
             // Add score
 			_gM.AddScore(boxInfo.TotalBoxValue );
+
             // Play audioclip
             _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
         }
