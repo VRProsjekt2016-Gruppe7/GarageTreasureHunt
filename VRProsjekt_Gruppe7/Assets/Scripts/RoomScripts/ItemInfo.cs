@@ -15,6 +15,9 @@ public class ItemInfo : MonoBehaviour
 
     void Update()
     {
+        if (Owner == null)
+            return;
+
         float dist = Vector3.Distance(transform.position, Owner.transform.position);
 
         if (dist > 0.4f && _inBox)
