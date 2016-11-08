@@ -6,6 +6,7 @@ public class BoxInfo : MonoBehaviour {
     public List<GameObject> BoxContents;
     public int TotalBoxValue = 0;
     public bool HasSticker = false;
+    public GameObject StickerPoint;
 
     public void AddBoxContents(GameObject[] contents)
     {

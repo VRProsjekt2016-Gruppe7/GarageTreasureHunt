@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private float _timeLeft;
     private int _currentScore;
     private int _chargesLeft;
-    private State _currentState;
+	public State _currentState;
     private GUIController _guiController;
 
 

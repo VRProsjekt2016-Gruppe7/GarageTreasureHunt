@@ -31,7 +31,6 @@ public class ShelfManager : MonoBehaviour {
 
         AdjustSizes(width);
         RotateShelf(side);
-
     }
 
     private void RotateShelf(RoomSide side)

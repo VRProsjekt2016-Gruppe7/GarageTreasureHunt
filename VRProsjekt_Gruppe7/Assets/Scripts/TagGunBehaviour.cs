@@ -1,26 +1,27 @@
 ﻿using UnityEngine;
+using NewtonVR;
 
 namespace Assets.Scripts
 {
     public class TagGunBehaviour : MonoBehaviour
     {
         public int NumStickers = 7;
-
-        public bool IsTagGunEquipped;
+	
         public bool IsPrimed;
         public bool HasStickers = true;
-		public bool TagGunPickedUpFirstTime = false;
-
-		private TagGunPlaceSticker _placeSticker;
+        public bool IsPickedUpFirstTime = false;
+        private TagGunPlaceSticker _placeSticker;
         private SoundController _sC;
 
-        public TextMesh GripToStartText;
-        public Transform _cameraTransform = null;
+		public GameObject GripToStartText;
+		public Transform CameraTransform;
+
+		private NVRInteractableItem nvrInteractable;
 
 	    void Start()
 	    {
 	        _sC = FindObjectOfType<SoundController>();
-
+			nvrInteractable = GetComponent<NVRInteractableItem> ();
         }
 
         public void Init(int nrOfSticker)
@@ -31,20 +32,31 @@ namespace Assets.Scripts
 
         public void Update()
         {
-            // Constraint, don't let the player drop the tag gun through the floor.
-            if (transform.position.y < transform.localScale.y / 2.0f && GetComponent<Rigidbody>().isKinematic)
+			if (FindObjectOfType<GameManager> ()._currentState == State.Running)
+				GripToStartText.GetComponent<MeshRenderer> ().enabled = false;
+
+    
+            // Update rotation of the text mesh
+			GripToStartText.transform.rotation = CameraTransform.rotation;
+		
+			// TODO start game DONE, check if works WORKS
+            if(nvrInteractable.AttachedHand != null && !IsPickedUpFirstTime)
             {
-                transform.position = new Vector3(transform.position.x, transform.localScale.y / 2f, transform.position.z);
+                IsPickedUpFirstTime = true;
+                FindObjectOfType<GameManager>().MaualStart = true;
             }
 
-            // Update rotation of the text mesh
-            GripToStartText.transform.rotation = _cameraTransform.rotation; 
+            // TODO prime tag gun when triggeris pressed DONE check if works WORKS
+            if (nvrInteractable.AttachedHand != null && nvrInteractable.AttachedHand.HoldButtonPressed == true && nvrInteractable.AttachedHand.UseButtonDown) {
+				PrimeTagGun ();
+			}
+
 		}
 
-        public void PrimeTagGun()
+		public void PrimeTagGun()
         {
-            if (!HasStickers)
-                return;
+			if (!HasStickers)
+				return;	
 
             IsPrimed = true;
             _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PrimeGun);
@@ -63,7 +75,7 @@ namespace Assets.Scripts
                 col.transform.GetComponent<BoxInfo>().HasSticker = true;
                 NumStickers--;
                 IsPrimed = false;
-                _placeSticker.StickToObject(col);
+                _placeSticker.StickToObject(col.gameObject);
             }
 
             if (NumStickers <= 0)
@@ -72,5 +84,28 @@ namespace Assets.Scripts
             }
             Debug.Log("Collision happend with " + col.transform.tag);
         }
+
+		public void OnTriggerEnter(Collider col)
+		{
+			if (col.transform.tag != "Container" || !HasStickers)
+				return;
+
+			if (col.transform.GetComponent<BoxInfo>().HasSticker)
+				return;
+
+			if (IsPrimed)
+			{
+				col.transform.GetComponent<BoxInfo>().HasSticker = true;
+				NumStickers--;
+				IsPrimed = false;
+				_placeSticker.StickToObject(col.gameObject);
+			}
+			if (NumStickers <= 0)
+			{
+				HasStickers = false;
+			}
+			Debug.Log("Trigger Happend " + col.transform.tag);
+		}
+
     }
 }

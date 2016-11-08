@@ -26,8 +26,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 458974}
   - 114: {fileID: 11411726}
-  - 135: {fileID: 135000013260231888}
-  - 114: {fileID: 114000012097057080}
+  - 135: {fileID: 135000010435922916}
+  - 114: {fileID: 114000010202424502}
+  - 23: {fileID: 23000013231895208}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: Untagged
@@ -82,8 +83,9 @@ GameObject:
   - 114: {fileID: 11420968}
   - 114: {fileID: 11470538}
   - 92: {fileID: 9213436}
-  - 82: {fileID: 82000010222383614}
-  - 114: {fileID: 114000012946354656}
+  - 82: {fileID: 82000013391406190}
+  - 114: {fileID: 114000011141549844}
+  - 135: {fileID: 135000010176432920}
   m_Layer: 0
   m_Name: Camera (head)
   m_TagString: MainCamera
@@ -100,8 +102,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 402434}
   - 114: {fileID: 11463128}
-  - 135: {fileID: 135000010502028700}
-  - 114: {fileID: 114000012523415256}
+  - 135: {fileID: 135000012279077480}
+  - 114: {fileID: 114000011146422226}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: Untagged
@@ -192,7 +194,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146900}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.00014208714, y: -0.0000010989606, z: 0.00026027852}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
@@ -283,7 +285,7 @@ Camera:
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
   m_TargetEye: 3
-  m_HDR: 1
+  m_HDR: 0
   m_OcclusionCulling: 0
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
@@ -297,7 +299,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0.019607844}
+  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0.019607844}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -544,7 +546,36 @@ Prefab:
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 146900}
   m_IsPrefabParent: 1
---- !u!82 &82000010222383614
+--- !u!23 &23000013231895208
+MeshRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 124034}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 0}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_SelectedWireframeHidden: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!82 &82000013391406190
 AudioSource:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -554,7 +585,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -618,7 +649,7 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
---- !u!114 &114000012097057080
+--- !u!114 &114000010202424502
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -633,26 +664,7 @@ MonoBehaviour:
   ConnectedObject: {fileID: 0}
   HandModel: {fileID: 147176}
   testOpenLid: 0
-  _triggerPressed: 0
-  _gripPressed: 0
---- !u!114 &114000012523415256
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 159396}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41d0cb14905bb8746bbae9ba12762d03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CurrentHand: 1
-  ConnectedObject: {fileID: 0}
-  HandModel: {fileID: 192944}
-  testOpenLid: 0
-  _triggerPressed: 0
-  _gripPressed: 0
---- !u!114 &114000012946354656
+--- !u!114 &114000011141549844
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -666,9 +678,9 @@ MonoBehaviour:
   tweakMode: 0
   screenBlendMode: 1
   hdr: 0
-  sepBlurSpread: 0.45
+  sepBlurSpread: 2.5
   quality: 1
-  bloomIntensity: 1.4
+  bloomIntensity: 0.5
   bloomThreshold: 0.5
   bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
   bloomBlurIterations: 2
@@ -690,19 +702,34 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!135 &135000010502028700
-SphereCollider:
+--- !u!114 &114000011146422226
+MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159396}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
   m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41d0cb14905bb8746bbae9ba12762d03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHand: 1
+  ConnectedObject: {fileID: 0}
+  HandModel: {fileID: 192944}
+  testOpenLid: 0
+--- !u!135 &135000010176432920
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 155680}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
   serializedVersion: 2
-  m_Radius: 0.04
-  m_Center: {x: 0, y: -0.05, z: 0.02}
---- !u!135 &135000013260231888
+  m_Radius: 0.1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000010435922916
 SphereCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -712,5 +739,17 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
+  m_Radius: 0.05
+  m_Center: {x: 0, y: -0.05, z: 0.02}
+--- !u!135 &135000012279077480
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159396}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.05
   m_Center: {x: 0, y: -0.05, z: 0.02}
