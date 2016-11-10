@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         GetComponent<RoomGenerator>().GenerateRoom();
+        _guiController.StartGame();
         _currentState = State.Running;
         _timeLeft = _defaultStartTime;
         _chargesLeft = _defaultCharges;

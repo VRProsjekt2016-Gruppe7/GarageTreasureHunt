@@ -24,6 +24,7 @@ GameObject:
   - 65: {fileID: 65000012010108528}
   - 54: {fileID: 54000012918182530}
   - 114: {fileID: 114000013022083298}
+  - 114: {fileID: 114000011005585350}
   m_Layer: 0
   m_Name: Human_Skull
   m_TagString: Untagged
@@ -107,6 +108,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.25093043, y: 0.19655824, z: 0.17895705}
   m_Center: {x: 0.006983958, y: 0.024081368, z: 0.00000008940697}
+--- !u!114 &114000011005585350
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013769576504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}
 --- !u!114 &114000013022083298
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,5 +139,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Human Skull
-  Value: 0
+  Value: 90
   Owner: {fileID: 0}

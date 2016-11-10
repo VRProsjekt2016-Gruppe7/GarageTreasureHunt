@@ -21,9 +21,10 @@ GameObject:
   - 4: {fileID: 4000010961289016}
   - 33: {fileID: 33000013101388440}
   - 23: {fileID: 23000012283739784}
-  - 64: {fileID: 64000013287001484}
   - 54: {fileID: 54000013413210348}
   - 114: {fileID: 114000012617702028}
+  - 114: {fileID: 114000010060210884}
+  - 65: {fileID: 65000013499664636}
   m_Layer: 0
   m_Name: Dagger
   m_TagString: Untagged
@@ -38,8 +39,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010022242240}
   m_LocalRotation: {x: 0.000000021855694, y: 0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19860616, y: 0.006980476, z: -0.8619078}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.4668644, y: 0.00015485287, z: 0.54441303}
+  m_LocalScale: {x: 1.3, y: 1.3, z: 1.3}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -96,8 +97,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!64 &64000013287001484
-MeshCollider:
+--- !u!65 &65000013499664636
+BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -106,8 +107,27 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 1
-  m_Mesh: {fileID: 4300000, guid: e2812baa9faf54946a7fc13d2475d04f, type: 3}
+  m_Size: {x: 0.19999999, y: 0.013827797, z: 0.05082467}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &114000010060210884
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010022242240}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}
 --- !u!114 &114000012617702028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,5 +140,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Dagger
-  Value: 0
+  Value: 50
   Owner: {fileID: 0}

@@ -19,6 +19,9 @@ public class OpenBox : MonoBehaviour
 
     void Update()
     {
+		//print (transform.parent.localEulerAngles.z);
+
+
         if (_hand == null)
         {
             HandleClosingLid();
@@ -43,14 +46,39 @@ public class OpenBox : MonoBehaviour
 
     private void HandleOpenLid()
     {
-        if (_hand.position.y - 0.05f < transform.position.y)
-            return;
+		float boxRot = transform.parent.localEulerAngles.z;
+		float offset = 0.06f;
+		Vector3 offsetPos = new Vector3 (0, 0, 0);
 
-        if ((transform.localEulerAngles.x > 270 && transform.localEulerAngles.x < 360) || transform.localEulerAngles.x == 0)
+		if ((boxRot >= 315 && boxRot <= 360) || (boxRot >= 0 && boxRot < 45)) {
+			// Box facing up
+			offsetPos.y += offset;
+		}
+		else if (boxRot >= 45 && boxRot < 135) 
+		{
+			// Box rotated right
+			offsetPos.x += offset;
+		}
+		else if (boxRot >= 135 && boxRot < 225) 
+		{
+			// Box rotated up-side-down
+			offsetPos.y -= offset;
+		}
+		else if (boxRot >= 225 && boxRot < 315) 
+		{
+			// Box rotated left
+			offsetPos.x -= offset;
+		}
 
+		transform.LookAt (_hand.position + offsetPos);
+		transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, 0);
+
+
+		/*
+		if ((transform.localEulerAngles.z > 270 && transform.localEulerAngles.x <= 360) || transform.localEulerAngles.x == 0)
         {
-            transform.LookAt(_hand.position - new Vector3(0, 0.05f, 0));
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, 0, 0);
+
         }
+		*/
     }
 }

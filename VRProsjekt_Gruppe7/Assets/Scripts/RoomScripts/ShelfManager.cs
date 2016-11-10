@@ -27,7 +27,7 @@ public class ShelfManager : MonoBehaviour
         if (side == RoomSide.Front)
             return;
 
-        float rotY = (side == RoomSide.Left) ? -90f : 90f;
+        float rotY = (side == RoomSide.Left) ? 90f : -90f;
         transform.Rotate(270f, rotY + 180f, 0f);
     }
 
