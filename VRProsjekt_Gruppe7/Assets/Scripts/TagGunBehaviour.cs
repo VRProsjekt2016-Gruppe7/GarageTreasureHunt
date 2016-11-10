@@ -32,13 +32,14 @@ namespace Assets.Scripts
 
         public void Update()
         {
+            /*
 			if (FindObjectOfType<GameManager> ()._currentState == State.Running)
 				GripToStartText.GetComponent<MeshRenderer> ().enabled = false;
 
     
             // Update rotation of the text mesh
 			GripToStartText.transform.rotation = CameraTransform.rotation;
-		
+		    */
 			// TODO start game DONE, check if works WORKS
             if(nvrInteractable.AttachedHand != null && !IsPickedUpFirstTime)
             {
@@ -75,7 +76,7 @@ namespace Assets.Scripts
                 col.transform.GetComponent<BoxInfo>().HasSticker = true;
                 NumStickers--;
                 IsPrimed = false;
-                _placeSticker.StickToObject(col.gameObject);
+				_placeSticker.StickToObject(col.gameObject);
             }
 
             if (NumStickers <= 0)

@@ -24,6 +24,8 @@ GameObject:
   - 64: {fileID: 64000012716358526}
   - 54: {fileID: 54000011722544070}
   - 114: {fileID: 114000011336448060}
+  - 114: {fileID: 114000012408478292}
+  - 65: {fileID: 65000010204346224}
   m_Layer: 0
   m_Name: Gold_Coin
   m_TagString: Untagged
@@ -39,8 +41,8 @@ Transform:
   m_GameObject: {fileID: 1000010995669436}
   m_LocalRotation: {x: -0.00000003774895, y: -0.00000005385697, z: -2.033044e-15,
     w: 1}
-  m_LocalPosition: {x: -0.009027002, y: 0.000007954835, z: -0.75236297}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.07521567, y: 0.7727324, z: 0.8479799}
+  m_LocalScale: {x: 1.8, y: 1.8, z: 1.8}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
@@ -104,10 +106,22 @@ MeshCollider:
   m_GameObject: {fileID: 1000010995669436}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 3637e58722f0d4745a4bff66ad11f3a1, type: 3}
+--- !u!65 &65000010204346224
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010995669436}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.03, y: 0.005, z: 0.03}
+  m_Center: {x: -2.1175823e-24, y: 0.0025, z: 0}
 --- !u!114 &114000011336448060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -122,3 +136,22 @@ MonoBehaviour:
   ItemName: Gold Coin
   Value: 100
   Owner: {fileID: 0}
+--- !u!114 &114000012408478292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010995669436}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}

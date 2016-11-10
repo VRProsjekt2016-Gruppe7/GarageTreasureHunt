@@ -45,5 +45,6 @@ public class BoxInfo : MonoBehaviour {
         }
 
         BoxContents.Remove(gO);
+		gO.transform.parent = null;
     }
 }

@@ -24,8 +24,9 @@ namespace Assets.Scripts
             Vector3 stickerPos = boxInfo.StickerPoint.transform.position;
 
 			// Attach sticker
-            var newSticker = (GameObject)Instantiate( Sticker, stickerPos, new Quaternion(0, box.transform.rotation.y,0,1));
-		    newSticker.transform.parent = box.transform;
+			var newSticker = (GameObject)Instantiate( Sticker, stickerPos, Quaternion.identity);
+			newSticker.transform.Rotate (box.transform.localEulerAngles);
+			newSticker.transform.parent = box.transform;
 
             // Add score
 			_gM.AddScore(boxInfo.TotalBoxValue );

@@ -24,6 +24,7 @@ GameObject:
   - 64: {fileID: 64000010586600432}
   - 54: {fileID: 54000014206587186}
   - 114: {fileID: 114000013616123514}
+  - 114: {fileID: 114000012760399786}
   m_Layer: 0
   m_Name: Normal_Goblet
   m_TagString: Untagged
@@ -107,6 +108,25 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 185d4e7602068aa42accde58f6287b6a, type: 3}
+--- !u!114 &114000012760399786
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010507630674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}
 --- !u!114 &114000013616123514
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -119,5 +139,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Silver Goblet
-  Value: 0
+  Value: 60
   Owner: {fileID: 0}
