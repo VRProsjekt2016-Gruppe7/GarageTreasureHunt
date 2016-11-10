@@ -498,9 +498,9 @@ namespace NewtonVR
             // Outline
             if (closest != null)
             {
-                var color = GetComponent<Renderer>().material.color;
-                color = new Color(0, 255, 255, 255); // Hack set color to yellow
-                closest.GetComponent<Renderer>().material.color = color;
+                var color = col.GetComponent<Renderer>().material.color;
+                color = new Color(0, 255, 255, 255);
+                col.GetComponent<Renderer>().material.color = color;
             }
             //Dont outline
 
