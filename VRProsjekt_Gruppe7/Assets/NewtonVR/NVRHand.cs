@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +20,8 @@ namespace NewtonVR
         public bool UseButtonUp = false;
         public bool UseButtonPressed = false;
         public float UseButtonAxis = 0f;
+
+        public Material material;
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
@@ -476,6 +477,33 @@ namespace NewtonVR
 
             if (CurrentlyHoveringOver[interactable].ContainsKey(collider) == false)
                 CurrentlyHoveringOver[interactable][collider] = Time.time;
+
+            // TODO add outlinging
+            NVRInteractable closest = null;
+            float closestDistance = float.MaxValue;
+
+            foreach (var hovering in CurrentlyHoveringOver)
+            {
+                if (hovering.Key == null)
+                    continue;
+
+                float distance = Vector3.Distance(this.transform.position, hovering.Key.transform.position);
+                if (distance < closestDistance)
+                {
+                    closestDistance = distance;
+                    closest = hovering.Key;
+                }
+            }
+
+            // Outline
+            if (closest != null)
+            {
+                var color = GetComponent<Renderer>().material.color;
+                color = new Color(0, 255, 255, 255); // Hack set color to yellow
+                closest.GetComponent<Renderer>().material.color = color;
+            }
+            //Dont outline
+
         }
 
         protected virtual void OnTriggerExit(Collider collider)

@@ -1,50 +1,67 @@
-﻿Shader "Custom/GlowShader"
-{
-	Properties
-	{
-		_ColorTint("Color Tint", Color) = (1, 1, 1, 1)
-		_MainTex("Base (RGB)", 2D) = "white" {}
-		_BumpMap("Normal Map", 2D) = "bump" {}
-		_RimColor("Rim Color", Color) = (1, 1, 1, 1)
-		_RimPower("Rim Power", Range(1.0, 6.0)) = 3.0
-
+﻿Shader "Outlined/Silhouette Only" {
+	Properties{
+		_OutlineColor("Outline Color", Color) = (0,0,0,1)
+		_Outline("Outline width", Range(0.0, 0.03)) = .005
+		_Tint("Color", Color) = (1,1,1,1)
 	}
-		SubShader{
 
-		Tags{ "RenderType" = "Opaque" }
+		CGINCLUDE
+#include "UnityCG.cginc"
 
-		CGPROGRAM
-#pragma surface surf Lambert
-
-		struct Input {
-
-		float4 color : Color;
-		float2 uv_MainTex;
-		float2 uv_BumpMap;
-		float3 viewDir;
-
+		struct appdata {
+		float4 vertex : POSITION;
+		float3 normal : NORMAL;
 	};
 
-	float4 _ColorTint;
-	sampler2D _MainTex;
-	sampler2D _BumpMap;
-	float4 _RimColor;
-	float _RimPower;
+	struct v2f {
+		float4 pos : POSITION;
+		float4 color : COLOR0;
+		float4 mainColor : COLOR1;
+	};
 
-	void surf(Input IN, inout SurfaceOutput o)
-	{
+	uniform float _Outline;
+	uniform float4 _OutlineColor;
+	uniform float4 _Tint;
 
+	v2f vert(appdata v) {
+		// just make a copy of incoming vertex data but scaled according to normal direction
+		v2f o;
+		o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
 
-		IN.color = _ColorTint;
-		o.Albedo = tex2D(_MainTex, IN.uv_MainTex).rgb * IN.color;
-		o.Normal = UnpackNormal(tex2D(_BumpMap,IN.uv_BumpMap));
+		float3 norm = mul((float3x3)UNITY_MATRIX_IT_MV, v.normal);
+		float2 offset = TransformViewToProjection(norm.xy);
 
-		half rim = 1.0 - saturate(dot(normalize(IN.viewDir), o.Normal));
-		o.Emission = _RimColor.rgb * pow(rim, _RimPower);
-
-
+		o.color = _OutlineColor;
+		o.mainColor = _Tint;
+		return o;
 	}
 	ENDCG
+
+		SubShader{
+		//Tags{ "Queue" = "Transparent" }
+
+		// note that a vertex shader is specified here but its using the one above
+		Pass{
+		Name "OUTLINE"
+		Tags{ "LightMode" = "Always" }
+		Cull Front
+
+		// you can choose what kind of blending mode you want for the outline
+		//Blend SrcAlpha OneMinusSrcAlpha // Normal
+		//Blend One One // Additive
+		Blend One OneMinusDstColor // Soft Additive
+								   //Blend DstColor Zero // Multiplicative
+								   //Blend DstColor SrcColor // 2x Multiplicative
+
+		CGPROGRAM
+#pragma vertex vert
+#pragma fragment frag
+
+		half4 frag(v2f i) :COLOR{
+			return i.color;
+		}
+		ENDCG
 	}
-		FallBack "Diffuse"
-}﻿
+	}
+		Fallback "Diffuse"
+}
