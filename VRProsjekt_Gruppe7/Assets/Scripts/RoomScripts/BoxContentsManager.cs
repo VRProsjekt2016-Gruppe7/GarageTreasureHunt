@@ -18,11 +18,11 @@ public class BoxContentsManager : MonoBehaviour
     private readonly string _itemsSettingsPath = "Assets/Config/ItemsDB.vri";
     private readonly Vector3[] _spawnOffset =
     {
-        new Vector3(-0.05f, 0.13f, 0.05f),
-        new Vector3(0.05f, 0.13f, 0.05f),
+        new Vector3(-0.05f, 0.08f, 0.05f),
+        new Vector3(0.05f, 0.08f, 0.05f),
         Vector3.zero,
-        new Vector3(-0.05f, 0.13f, -0.05f),
-        new Vector3(0.05f, 0.13f, -0.05f)
+        new Vector3(-0.05f, 0.08f, -0.05f),
+        new Vector3(0.05f, 0.08f, -0.05f)
     };
 
     public void Init()

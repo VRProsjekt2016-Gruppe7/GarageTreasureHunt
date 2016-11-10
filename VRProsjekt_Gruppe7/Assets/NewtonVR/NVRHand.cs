@@ -453,30 +453,36 @@ namespace NewtonVR
             }
         }
 
-        protected virtual void OnTriggerEnter(Collider collider)
+        protected virtual void OnTriggerEnter(Collider col)
         {
-            NVRInteractable interactable = NVRInteractables.GetInteractable(collider);
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null || interactable.enabled == false)
                 return;
 
             if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
                 CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
 
-            if (CurrentlyHoveringOver[interactable].ContainsKey(collider) == false)
-                CurrentlyHoveringOver[interactable][collider] = Time.time;
+            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
+                CurrentlyHoveringOver[interactable][col] = Time.time;
         }
 
-        protected virtual void OnTriggerStay(Collider collider)
+        protected virtual void OnTriggerStay(Collider col)
         {
-            NVRInteractable interactable = NVRInteractables.GetInteractable(collider);
+            if (col.transform.tag == "BoxLid" && UseButtonPressed)
+            {
+                col.GetComponent<OpenBox>().Open(transform);
+            }
+
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null || interactable.enabled == false)
                 return;
 
             if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
                 CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
 
-            if (CurrentlyHoveringOver[interactable].ContainsKey(collider) == false)
-                CurrentlyHoveringOver[interactable][collider] = Time.time;
+            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
+                CurrentlyHoveringOver[interactable][col] = Time.time;
+
 
             // TODO add outlinging
             NVRInteractable closest = null;
@@ -506,17 +512,23 @@ namespace NewtonVR
 
         }
 
-        protected virtual void OnTriggerExit(Collider collider)
+        protected virtual void OnTriggerExit(Collider col)
         {
-            NVRInteractable interactable = NVRInteractables.GetInteractable(collider);
+            if (col.transform.tag == "BoxLid")
+            {
+                col.GetComponent<OpenBox>().Close();
+            }
+
+
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null)
                 return;
 
             if (CurrentlyHoveringOver.ContainsKey(interactable) == true)
             {
-                if (CurrentlyHoveringOver[interactable].ContainsKey(collider) == true)
+                if (CurrentlyHoveringOver[interactable].ContainsKey(col) == true)
                 {
-                    CurrentlyHoveringOver[interactable].Remove(collider);
+                    CurrentlyHoveringOver[interactable].Remove(col);
                     if (CurrentlyHoveringOver[interactable].Count == 0)
                     {
                         CurrentlyHoveringOver.Remove(interactable);
