@@ -93,7 +93,7 @@ Material:
       second: 1
     - first:
         name: _Glossiness
-      second: 0.5
+      second: 0.64
     - first:
         name: _GlossyReflections
       second: 1
@@ -109,6 +109,9 @@ Material:
     - first:
         name: _Parallax
       second: 0.02
+    - first:
+        name: _RimPower
+      second: 3
     - first:
         name: _SmoothnessTextureChannel
       second: 0
@@ -129,8 +132,14 @@ Material:
         name: _Color
       second: {r: 0.878, g: 0.798, b: 0.1038603, a: 1}
     - first:
+        name: _ColorTint
+      second: {r: 1, g: 1, b: 1, a: 1}
+    - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _RimColor
+      second: {r: 1, g: 1, b: 1, a: 1}
     - first:
         name: _SpecColor
       second: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
