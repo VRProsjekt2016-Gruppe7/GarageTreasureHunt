@@ -128,6 +128,7 @@ GameObject:
   - 4: {fileID: 4000010891887090}
   - 114: {fileID: 114000010211684450}
   - 114: {fileID: 114000012989004466}
+  - 135: {fileID: 135000012804613446}
   m_Layer: 0
   m_Name: Controller (right)
   m_TagString: ControllerRight
@@ -145,6 +146,7 @@ GameObject:
   - 4: {fileID: 4000014265088204}
   - 114: {fileID: 114000010322575236}
   - 114: {fileID: 114000013086836244}
+  - 135: {fileID: 135000011814834768}
   m_Layer: 0
   m_Name: Controller (left)
   m_TagString: ControllerLeft
@@ -395,6 +397,7 @@ MonoBehaviour:
   _head: {fileID: 4000012996594436}
   _ears: {fileID: 4000014132531182}
   wireframe: 0
+  flip: {fileID: 0}
 --- !u!114 &114000010211684450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -568,6 +571,7 @@ MonoBehaviour:
   UseButtonUp: 0
   UseButtonPressed: 0
   UseButtonAxis: 0
+  material: {fileID: 0}
   CurrentInteractionStyle: 0
   Rigidbody: {fileID: 0}
   CustomModel: {fileID: 0}
@@ -603,6 +607,7 @@ MonoBehaviour:
   UseButtonUp: 0
   UseButtonPressed: 0
   UseButtonAxis: 0
+  material: {fileID: 0}
   CurrentInteractionStyle: 0
   Rigidbody: {fileID: 0}
   CustomModel: {fileID: 0}
@@ -634,3 +639,27 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
+--- !u!135 &135000011814834768
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013265671514}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.092990756
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &135000012804613446
+SphereCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013189140168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.092990756
+  m_Center: {x: 0, y: 0, z: 0}
