@@ -104,4 +104,15 @@ public class GameManager : MonoBehaviour
     {
         _currentState = State.Paused;
     }
+
+    //Mattias was here
+    //added a method for accesing the game timerLenght, needed it for the radio
+    public float Get_defaultStartTime()
+    {
+        return _defaultStartTime;
+    }
+    public float Get_timeLeft()
+    {
+        return _timeLeft;
+    }
 }

@@ -67,10 +67,10 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000014134800176}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.56676865, y: 0.54, z: 1.743}
-  m_LocalScale: {x: 1, y: 1, z: 0.4315166}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 1.483, z: -3.07}
+  m_LocalScale: {x: 0.45, y: 0.35, z: 0.2}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
   m_Children:
   - {fileID: 4000010157104258}
   m_Father: {fileID: 0}
@@ -227,6 +227,8 @@ MonoBehaviour:
   MaxRotate: 5
   bpm: 155
   jumpTo_bpmRatio: 4
+  durationOfDeath: 500
+  MaxImpactForceBeforeBroken: 2
 --- !u!212 &212000010454453056
 SpriteRenderer:
   m_ObjectHideFlags: 1

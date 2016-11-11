@@ -15,7 +15,7 @@ public class HighScoreController : MonoBehaviour
     {
         for (int i = 1; i <= 10; i++)
         {
-            print(i);
+            //print(i);
             string index = (i < 10) ? ("0" + i) : "" + i;  
             HighScoreText[i - 1].text = index + ": " + (10 - i + "00");
         }
