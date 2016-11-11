@@ -475,18 +475,6 @@ namespace NewtonVR
                 col.GetComponent<OpenBox>().Open(transform);
             }
 
-            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
-            if (interactable == null || interactable.enabled == false)
-                return;
-
-            if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
-                CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
-
-            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
-                CurrentlyHoveringOver[interactable][col] = Time.time;
-
-
-            // TODO add outlinging
             NVRInteractable closest = null;
             float closestDistance = float.MaxValue;
 
@@ -505,9 +493,8 @@ namespace NewtonVR
 
             // Outline
             if (closest != null
-                && col.gameObject == closest.gameObject 
-                && (col.tag == "BoxLid" || col.tag == "Container") 
-                && !HoldButtonPressed
+                && col.gameObject == closest.gameObject
+                && (col.tag == "BoxLid" || col.tag == "Container")
                 )
             {
                 var color = col.GetComponent<Renderer>().material.color;
@@ -515,17 +502,33 @@ namespace NewtonVR
                 col.GetComponent<Renderer>().material.color = color;
             }
             //Dont outline
+            if (HoldButtonPressed && col.tag == "Container")
+                col.GetComponent<Renderer>().material = BoxMaterial;
+            if (HoldButtonPressed && col.tag == "BoxLid")
+                col.GetComponent<Renderer>().material = LidMaterial;
+
+
+
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+            if (interactable == null || interactable.enabled == false)
+                return;
+
+            if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
+                CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
+
+            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
+                CurrentlyHoveringOver[interactable][col] = Time.time;
 
         }
 
         protected virtual void OnTriggerExit(Collider col)
         {
-            if (col.transform.tag == "BoxLid")
+            if (col.tag == "BoxLid")
             {
                 col.GetComponent<OpenBox>().Close();
                 col.GetComponent<Renderer>().material = LidMaterial;
             }
-            else
+            else if(col.tag == "Container")
             {
                 col.GetComponent<Renderer>().material = BoxMaterial;
             }
