@@ -21,7 +21,8 @@ namespace NewtonVR
         public bool UseButtonPressed = false;
         public float UseButtonAxis = 0f;
 
-        public Material material;
+        public Material LidMaterial;
+        public Material BoxMaterial;
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
@@ -468,6 +469,7 @@ namespace NewtonVR
 
         protected virtual void OnTriggerStay(Collider col)
         {
+            
             if (col.transform.tag == "BoxLid" && UseButtonPressed)
             {
                 col.GetComponent<OpenBox>().Open(transform);
@@ -502,10 +504,14 @@ namespace NewtonVR
             }
 
             // Outline
-            if (closest != null)
+            if (closest != null
+                && col.gameObject == closest.gameObject 
+                && (col.tag == "BoxLid" || col.tag == "Container") 
+                && !HoldButtonPressed
+                )
             {
                 var color = col.GetComponent<Renderer>().material.color;
-                color = new Color(0, 255, 255, 255);
+                color = new Color(255, 255, 0, 255);
                 col.GetComponent<Renderer>().material.color = color;
             }
             //Dont outline
@@ -517,6 +523,11 @@ namespace NewtonVR
             if (col.transform.tag == "BoxLid")
             {
                 col.GetComponent<OpenBox>().Close();
+                col.GetComponent<Renderer>().material = LidMaterial;
+            }
+            else
+            {
+                col.GetComponent<Renderer>().material = BoxMaterial;
             }
 
 
