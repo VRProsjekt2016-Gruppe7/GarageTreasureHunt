@@ -46,18 +46,18 @@ public class JumpScript : MonoBehaviour {
             MaxRotationalForce = MaxRotationalForce * pitch; //this is so that when the radio dies, the jumping stops
         }
 
-        Debug.Log("the radio is broken == " + broken);
+        //Debug.Log("the radio is broken == " + broken);
         if (broken)
         {
             audio.pitch = Mathf.Lerp(1f, 0, Mathf.Lerp(0f, 1, counter / durationOfDeath));
-            Debug.Log("counter is: " + counter + " and durationOfDeath is: " + durationOfDeath);
-            Debug.Log("Therefore counter/durationofdeath is: " + counter / durationOfDeath);
-            Debug.Log("Therefore Lerp 1f -> 0 is at " + (Mathf.Lerp(0, 1, counter/durationOfDeath)));
+            //Debug.Log("counter is: " + counter + " and durationOfDeath is: " + durationOfDeath);
+            //Debug.Log("Therefore counter/durationofdeath is: " + counter / durationOfDeath);
+            //Debug.Log("Therefore Lerp 1f -> 0 is at " + (Mathf.Lerp(0, 1, counter/durationOfDeath)));
         } else counter = 0;
         counter++;
         pitch = audio.pitch;
         if (counter > durationOfDeath) { Destroy(this); }
-        if (Input.GetButtonDown("Jump")) { broken = true; }
+        //if (Input.GetButtonDown("Jump")) { broken = true; }
     }
 
     void OnCollisionEnter(Collision collision)
