@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using NewtonVR;
+using System;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -15,6 +17,8 @@ namespace Assets.Scripts
 
 		public GameObject GripToStartText;
 		public Transform CameraTransform;
+
+        public Text display;
 
 		private NVRInteractableItem nvrInteractable;
 
@@ -32,13 +36,14 @@ namespace Assets.Scripts
 
         public void Update()
         {
+            /*
 			if (FindObjectOfType<GameManager> ()._currentState == State.Running)
 				GripToStartText.GetComponent<MeshRenderer> ().enabled = false;
 
     
             // Update rotation of the text mesh
 			GripToStartText.transform.rotation = CameraTransform.rotation;
-		
+		    */
 			// TODO start game DONE, check if works WORKS
             if(nvrInteractable.AttachedHand != null && !IsPickedUpFirstTime)
             {
@@ -50,10 +55,18 @@ namespace Assets.Scripts
             if (nvrInteractable.AttachedHand != null && nvrInteractable.AttachedHand.HoldButtonPressed == true && nvrInteractable.AttachedHand.UseButtonDown) {
 				PrimeTagGun ();
 			}
+            //Mattias was here
+            //added siplay to the tag gun created method to update
+            UpdateDipslay();
 
 		}
 
-		public void PrimeTagGun()
+        private void UpdateDipslay()
+        {
+            display.text = NumStickers.ToString();
+        }
+
+        public void PrimeTagGun()
         {
 			if (!HasStickers)
 				return;	
@@ -75,7 +88,7 @@ namespace Assets.Scripts
                 col.transform.GetComponent<BoxInfo>().HasSticker = true;
                 NumStickers--;
                 IsPrimed = false;
-                _placeSticker.StickToObject(col.gameObject);
+				_placeSticker.StickToObject(col.gameObject);
             }
 
             if (NumStickers <= 0)

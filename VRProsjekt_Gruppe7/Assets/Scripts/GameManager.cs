@@ -93,6 +93,7 @@ public class GameManager : MonoBehaviour
     public void StartGame()
     {
         GetComponent<RoomGenerator>().GenerateRoom();
+        _guiController.StartGame();
         _currentState = State.Running;
         _timeLeft = _defaultStartTime;
         _chargesLeft = _defaultCharges;
@@ -102,5 +103,16 @@ public class GameManager : MonoBehaviour
     private void GameStop()
     {
         _currentState = State.Paused;
+    }
+
+    //Mattias was here
+    //added a method for accesing the game timerLenght, needed it for the radio
+    public float Get_defaultStartTime()
+    {
+        return _defaultStartTime;
+    }
+    public float Get_timeLeft()
+    {
+        return _timeLeft;
     }
 }

@@ -24,6 +24,8 @@ namespace NewtonVR
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
+		private OpenBox _curLid;
+
         [SerializeField]
         private InterationStyle CurrentInteractionStyle = InterationStyle.GripDownToInteract;
 
@@ -162,6 +164,11 @@ namespace NewtonVR
                 {
                     EndInteraction(null);
                 }
+
+				if (UseButtonUp && _curLid != null) {
+					_curLid.Close ();
+					_curLid = null;
+				}
             }
             else if (CurrentInteractionStyle == InterationStyle.GripToggleToInteract)
             {
@@ -473,7 +480,12 @@ namespace NewtonVR
         {
 			if (col.transform.tag == "BoxLid" && UseButtonPressed)
             {
-                col.GetComponent<OpenBox>().Open(transform);
+				if (_curLid == null) {
+					
+					_curLid = col.GetComponent<OpenBox> ();
+					_curLid.Open (transform);
+				}
+				return;
             }
 
             foreach (var hovering in CurrentlyHoveringOver)
@@ -488,7 +500,7 @@ namespace NewtonVR
                     closest = hovering.Key;
                 }
             }
-
+			
             // Outline
             if (closest != null
                 && col.gameObject == closest.gameObject
@@ -500,6 +512,7 @@ namespace NewtonVR
             }
 	
             //Dont outline
+
             if (HoldButtonPressed && col.tag == "Container")
 			{
 				col.GetComponent<Highlighter>().enabled = false;
@@ -532,8 +545,8 @@ namespace NewtonVR
 				closestDistance = float.MaxValue;
 			}
 
-
 			NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+
             if (interactable == null)
                 return;
 

@@ -25,6 +25,7 @@ GameObject:
   - 65: {fileID: 65000014026459810}
   - 65: {fileID: 65000013454981706}
   - 114: {fileID: 114000011824593984}
+  - 114: {fileID: 114000012422268560}
   m_Layer: 0
   m_Name: Boot
   m_TagString: Untagged
@@ -132,5 +133,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemName: Old Boot
-  Value: 0
+  Value: 2
   Owner: {fileID: 0}
+--- !u!114 &114000012422268560
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000010871223930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Rigidbody: {fileID: 0}
+  CanAttach: 1
+  DisableKinematicOnAttach: 1
+  EnableKinematicOnDetach: 0
+  DropDistance: 1
+  EnableGravityOnDetach: 1
+  AttachedHand: {fileID: 0}
+  InteractionPoint: {fileID: 0}

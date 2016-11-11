@@ -5,10 +5,10 @@ namespace Assets.Scripts
 {
 	public class GUIController : MonoBehaviour {
 
-		//private TextMesh _currentScore;
-		//private TextMesh _timeLeft;
 		public Text CurrentScore;
 		public Text TimeLeft;
+	    public GameObject HowToPlayPanel;
+	    public GameObject GamePlayPanel;
 
         private readonly string _chargesText = "Avaliable charges: ";
    	    private int _lastTime = 0;
@@ -58,5 +58,11 @@ namespace Assets.Scripts
 		{
             CurrentScore.text = "" + (score >= 0 ? score : 0);
 		}
+
+	    public void StartGame()
+	    {
+            HowToPlayPanel.SetActive(false);
+            GamePlayPanel.SetActive(true);
+	    }
 	}
 }

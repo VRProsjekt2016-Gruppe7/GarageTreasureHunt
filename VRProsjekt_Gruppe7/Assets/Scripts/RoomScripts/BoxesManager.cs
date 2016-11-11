@@ -56,7 +56,7 @@ public class BoxesManager : MonoBehaviour
 
             GameObject newBox = (GameObject)Instantiate(BoxPrefab, pos, transform.rotation);
 
-            newBox.transform.localEulerAngles = new Vector3(0, ((shelf.transform.rotation.x >= 0.5f) ? 90 : 270), 0);
+            newBox.transform.localEulerAngles = new Vector3(0, ((shelf.transform.rotation.x >= 0.5f) ? -90 : 90), 0);
 
             _allBoxes.Add(newBox);
         }
