@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Valve.VR;
+using HighlightingSystem;
 
 namespace NewtonVR
 {
@@ -20,8 +21,6 @@ namespace NewtonVR
         public bool UseButtonUp = false;
         public bool UseButtonPressed = false;
         public float UseButtonAxis = 0f;
-
-        public Material material;
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
@@ -473,7 +472,11 @@ namespace NewtonVR
                 CurrentlyHoveringOver[interactable][col] = Time.time;
         }
 
-        protected virtual void OnTriggerStay(Collider col)
+		NVRInteractable closest = null;
+		float closestDistance = float.MaxValue;
+
+
+		protected virtual void OnTriggerStay(Collider col)
         {
 			if (col.transform.tag == "BoxLid" && UseButtonPressed)
             {
@@ -484,21 +487,6 @@ namespace NewtonVR
 				}
 				return;
             }
-
-            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
-            if (interactable == null || interactable.enabled == false)
-                return;
-
-            if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
-                CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
-
-            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
-                CurrentlyHoveringOver[interactable][col] = Time.time;
-
-
-            // TODO add outlinging
-            NVRInteractable closest = null;
-            float closestDistance = float.MaxValue;
 
             foreach (var hovering in CurrentlyHoveringOver)
             {
@@ -512,21 +500,53 @@ namespace NewtonVR
                     closest = hovering.Key;
                 }
             }
-			/*
+			
             // Outline
-            if (closest != null)
+            if (closest != null
+                && col.gameObject == closest.gameObject
+                && (col.tag == "Container")
+                )
             {
-                var color = GetComponent<Renderer>().material.color;
-                color = new Color(0, 255, 255, 255); // Hack set color to yellow
-                closest.GetComponent<Renderer>().material.color = color;
+				col.GetComponent<Highlighter>().enabled = true;
+				col.GetComponent<SpectrumController>().enabled = true;
             }
+	
             //Dont outline
-			*/
+
+            if (HoldButtonPressed && col.tag == "Container")
+			{
+				col.GetComponent<Highlighter>().enabled = false;
+				col.GetComponent<SpectrumController>().enabled = false;
+			}
+
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+            if (interactable == null || interactable.enabled == false)
+                return;
+
+            if (CurrentlyHoveringOver.ContainsKey(interactable) == false)
+                CurrentlyHoveringOver[interactable] = new Dictionary<Collider, float>();
+
+            if (CurrentlyHoveringOver[interactable].ContainsKey(col) == false)
+                CurrentlyHoveringOver[interactable][col] = Time.time;
+
         }
 
         protected virtual void OnTriggerExit(Collider col)
         {
-            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+            if (col.tag == "BoxLid")
+            {
+                col.GetComponent<OpenBox>().Close();				
+            }
+            else if(col.tag == "Container")
+            {
+				col.GetComponent<Highlighter>().enabled = false;
+				col.GetComponent<SpectrumController>().enabled = false;
+				closest = null;
+				closestDistance = float.MaxValue;
+			}
+
+			NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+
             if (interactable == null)
                 return;
 

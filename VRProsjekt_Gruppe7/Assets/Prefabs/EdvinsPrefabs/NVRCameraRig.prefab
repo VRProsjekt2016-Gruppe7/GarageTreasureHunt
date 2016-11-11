@@ -52,7 +52,9 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013172059390}
   - 20: {fileID: 20000013240294526}
-  - 114: {fileID: 114000010078685700}
+  - 114: {fileID: 114000011617541234}
+  - 114: {fileID: 114000010343928400}
+  - 114: {fileID: 114000013740246946}
   m_Layer: 0
   m_Name: Camera (eye)
   m_TagString: MainCamera
@@ -383,21 +385,6 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012870523670}
   m_Enabled: 1
---- !u!114 &114000010078685700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000012812811002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _head: {fileID: 4000012996594436}
-  _ears: {fileID: 4000014132531182}
-  wireframe: 0
-  flip: {fileID: 0}
 --- !u!114 &114000010211684450
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -426,6 +413,24 @@ MonoBehaviour:
   index: -1
   origin: {fileID: 0}
   isValid: 0
+--- !u!114 &114000010343928400
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012812811002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b765e0b5af3bcf4a9deb5895e477da8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offsetFactor: 0
+  offsetUnits: 0
+  _downsampleFactor: 4
+  iterations: 2
+  blurMinSpread: 0.65
+  blurSpread: 0.25
+  _blurIntensity: 0.3
 --- !u!114 &114000010470321242
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -535,6 +540,18 @@ MonoBehaviour:
   NormalCursorScale: 0.05
   OnCanvas: 0
   CanvasUsed: 0
+--- !u!114 &114000011617541234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012812811002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aba5dfec1354ec94ca0d7d4c6f230703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightingRenderer: {fileID: 114000010343928400}
 --- !u!114 &114000012487665380
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,7 +588,6 @@ MonoBehaviour:
   UseButtonUp: 0
   UseButtonPressed: 0
   UseButtonAxis: 0
-  material: {fileID: 0}
   CurrentInteractionStyle: 0
   Rigidbody: {fileID: 0}
   CustomModel: {fileID: 0}
@@ -607,7 +623,6 @@ MonoBehaviour:
   UseButtonUp: 0
   UseButtonPressed: 0
   UseButtonAxis: 0
-  material: {fileID: 0}
   CurrentInteractionStyle: 0
   Rigidbody: {fileID: 0}
   CustomModel: {fileID: 0}
@@ -639,6 +654,21 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 5
+--- !u!114 &114000013740246946
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012812811002}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bca9ccf900ccc84c887d783321d27e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _head: {fileID: 4000012996594436}
+  _ears: {fileID: 4000014132531182}
+  wireframe: 0
+  flip: {fileID: 0}
 --- !u!135 &135000011814834768
 SphereCollider:
   m_ObjectHideFlags: 1

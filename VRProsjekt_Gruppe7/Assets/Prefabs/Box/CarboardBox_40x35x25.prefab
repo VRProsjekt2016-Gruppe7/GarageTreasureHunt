@@ -48,6 +48,8 @@ GameObject:
   - 114: {fileID: 114000012300980896}
   - 114: {fileID: 114000011890663206}
   - 65: {fileID: 65000012691204266}
+  - 114: {fileID: 114000013862984924}
+  - 114: {fileID: 114000013956423842}
   m_Layer: 0
   m_Name: CarboardBox_40x35x25
   m_TagString: Container
@@ -354,3 +356,27 @@ MonoBehaviour:
   TotalBoxValue: 0
   HasSticker: 0
   StickerPoint: {fileID: 1000014149692396}
+--- !u!114 &114000013862984924
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013303634988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67d4de287b46eb34e83a61e4f9115070, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114000013956423842
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013303634988}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5fd9f4d6dfd8948960b397bf9d0de5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  seeThrough: 1
+  speed: 0
