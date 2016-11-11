@@ -14,6 +14,14 @@ public class JumpScript : MonoBehaviour {
     private Rigidbody rb;
     private bool _jump = false;
 
+    //For the audio drop on collision
+    private float pitch;
+    float counter = 0;
+    AudioSource audio;
+    bool broken = false;
+    public float durationOfDeath = 500;
+    public float MaxImpactForceBeforeBroken = 2;
+
     void Start()
     {
         double startTick = AudioSettings.dspTime;
@@ -21,7 +29,13 @@ public class JumpScript : MonoBehaviour {
         nextTick = startTick * sampleRate;
         running = true;
         rb = gameObject.GetComponent<Rigidbody>();
+
+        //For breaking
+        audio = GetComponent<AudioSource>();
+        pitch = audio.pitch;
     }
+
+
 
     void FixedUpdate()
     {
@@ -29,14 +43,33 @@ public class JumpScript : MonoBehaviour {
         {
             _jump = false;
             Jump();
+            MaxRotationalForce = MaxRotationalForce * pitch; //this is so that when the radio dies, the jumping stops
         }
+
+        Debug.Log("the radio is broken == " + broken);
+        if (broken)
+        {
+            audio.pitch = Mathf.Lerp(1f, 0, Mathf.Lerp(0f, 1, counter / durationOfDeath));
+            Debug.Log("counter is: " + counter + " and durationOfDeath is: " + durationOfDeath);
+            Debug.Log("Therefore counter/durationofdeath is: " + counter / durationOfDeath);
+            Debug.Log("Therefore Lerp 1f -> 0 is at " + (Mathf.Lerp(0, 1, counter/durationOfDeath)));
+        } else counter = 0;
+        counter++;
+        pitch = audio.pitch;
+        if (counter > durationOfDeath) { Destroy(this); }
+        if (Input.GetButtonDown("Jump")) { broken = true; }
+    }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.relativeVelocity.magnitude > MaxImpactForceBeforeBroken)
+            broken = true;
     }
 
     void Jump()
     {
 
-        GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
-
+        GetComponent<Rigidbody>().AddForce(Vector3.up * pitch, ForceMode.Impulse);
         GetComponent<Rigidbody>().AddRelativeTorque(new Vector3(0, 0, Random.Range(-MaxRotationalForce, MaxRotationalForce)), ForceMode.Impulse);
 
     }
@@ -46,7 +79,7 @@ public class JumpScript : MonoBehaviour {
         if (!running)
             return;
 
-        double samplesPerTick = sampleRate * 60.0F / bpm * 4.0F / jumpTo_bpmRatio;
+        double samplesPerTick = sampleRate * 60.0F / (bpm * pitch) * 4.0F / jumpTo_bpmRatio;
         double sample = AudioSettings.dspTime * sampleRate;
         int dataLen = data.Length / channels;
         int n = 0;
@@ -56,6 +89,7 @@ public class JumpScript : MonoBehaviour {
             {
                 nextTick += samplesPerTick;
                 _jump = true;
+                
             }
             n++;
         }
