@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Valve.VR;
+using HighlightingSystem;
 
 namespace NewtonVR
 {
@@ -20,9 +21,6 @@ namespace NewtonVR
         public bool UseButtonUp = false;
         public bool UseButtonPressed = false;
         public float UseButtonAxis = 0f;
-
-        public Material LidMaterial;
-        public Material BoxMaterial;
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
@@ -467,14 +465,13 @@ namespace NewtonVR
                 CurrentlyHoveringOver[interactable][col] = Time.time;
         }
 
-		// TODO fix later
 		NVRInteractable closest = null;
 		float closestDistance = float.MaxValue;
 
+
 		protected virtual void OnTriggerStay(Collider col)
         {
-            
-            if (col.transform.tag == "BoxLid" && UseButtonPressed)
+			if (col.transform.tag == "BoxLid" && UseButtonPressed)
             {
                 col.GetComponent<OpenBox>().Open(transform);
             }
@@ -495,30 +492,19 @@ namespace NewtonVR
             // Outline
             if (closest != null
                 && col.gameObject == closest.gameObject
-                && (col.tag == "BoxLid" || col.tag == "Container")
+                && (col.tag == "Container")
                 )
             {
-                var color = col.GetComponent<Renderer>().material.color;
-                color = new Color(255, 255, 0, 255);
-                col.GetComponent<Renderer>().material.color = color;
+				col.GetComponent<Highlighter>().enabled = true;
+				col.GetComponent<SpectrumController>().enabled = true;
             }
-			
-			float distanceToLid = Vector3.Distance( transform.position, col.transform.position );
-			if(col.tag == "BoxLid" && distanceToLid < closestDistance)
-			{
-				var color = col.GetComponent<Renderer>().material.color;
-				color = new Color( 255, 255, 0, 255 );
-				col.GetComponent<Renderer>().material.color = color;
-			}
-			
-
+	
             //Dont outline
             if (HoldButtonPressed && col.tag == "Container")
-                col.GetComponent<Renderer>().material = BoxMaterial;
-            if (HoldButtonPressed && col.tag == "BoxLid")
-                col.GetComponent<Renderer>().material = LidMaterial;
-
-
+			{
+				col.GetComponent<Highlighter>().enabled = false;
+				col.GetComponent<SpectrumController>().enabled = false;
+			}
 
             NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null || interactable.enabled == false)
@@ -536,20 +522,18 @@ namespace NewtonVR
         {
             if (col.tag == "BoxLid")
             {
-                col.GetComponent<OpenBox>().Close();
-                col.GetComponent<Renderer>().material = LidMaterial;
-				closestDistance = float.MaxValue;
-				closest = null;
+                col.GetComponent<OpenBox>().Close();				
             }
             else if(col.tag == "Container")
             {
-                col.GetComponent<Renderer>().material = BoxMaterial;
-				closestDistance = float.MaxValue;
+				col.GetComponent<Highlighter>().enabled = false;
+				col.GetComponent<SpectrumController>().enabled = false;
 				closest = null;
+				closestDistance = float.MaxValue;
 			}
 
 
-            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+			NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null)
                 return;
 
