@@ -15,7 +15,7 @@ public class DoorManager : MonoBehaviour
 
     private float _moveSpeed = 1.4f;
 
-    private readonly float _yMin = Mathf.Abs(0.0f);
+    private readonly float _yMin = Mathf.Abs(0.02f);
     private readonly float _yMax = Mathf.Abs(2.15f);
     private readonly float _posX = Mathf.Abs(0.0f);
     private readonly float _posZ = -1.227f;

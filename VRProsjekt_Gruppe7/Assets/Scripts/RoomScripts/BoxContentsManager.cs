@@ -5,17 +5,22 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using UnityEngine.UI;
 
 public class BoxContentsManager : MonoBehaviour
 {
 
+    public Text ErrorMessages;
+
     public GameObject[] Contents;
+    public TextAsset ConfigFile;
     private int MaxItemsInBox = 1;
 
     private Dictionary<string, int> _itemValues = new Dictionary<string, int>();
     private Dictionary<string, int> _validItemsLeft = new Dictionary<string, int>();
 
-    private readonly string _itemsSettingsPath = "Assets/Config/ItemsDB.vri";
+    private readonly string _itemsSettingsEditorPath = "Assets/Resources/ItemsDB.txt";
+    private readonly string _itemsSettingsBuildPath = "ItemsDB.txt";
     private readonly Vector3[] _spawnOffset =
     {
         new Vector3(-0.05f, 0.08f, 0.05f),
@@ -116,46 +121,71 @@ public class BoxContentsManager : MonoBehaviour
         }
     }
 
-
     private void InitItemsFromFile()
     {
         try
         {
-            StreamReader streamReader = new StreamReader(_itemsSettingsPath, Encoding.Default);
-
-            using (streamReader)
+            if (Application.isEditor)
             {
-                string currentLine;
-
-                do
-                {
-                    currentLine = streamReader.ReadLine();
-                    if (currentLine != null)
-                    {
-                        string[] words = currentLine.Split(',');
-
-                        _itemValues.Add(words[0], int.Parse(words[1]));
-                        _validItemsLeft.Add(words[0], int.Parse(words[2]));
-                    }
-                }
-                while (currentLine != null);
-
-                streamReader.Close();
+                EditorLoad();   
+            }
+            else
+            {
+                BuildLoad();
             }
         }
         catch (Exception e)
         {
             Debug.LogError(e.Message);
+            //ErrorMessages.text = e.Message;
         }
+    }
 
-        #region Debug print collected data from file
-        /*
-        foreach (KeyValuePair<string, int> itemWithValue in _itemValues)
+    private void BuildLoad()
+    {
+//        TextAsset file = (TextAsset)Resources.Load(_itemsSettingsBuildPath);
+        StringReader read = new StringReader(ConfigFile.text);
+
+        string currentLine;
+
+        do
         {
-            print(itemWithValue);
-            print(itemWithValue.Key + " has " + _validItemsLeft[itemWithValue.Key].ToString() + " items left.");
+            currentLine = read.ReadLine();
+            if (currentLine != null)
+            {
+                string[] words = currentLine.Split(',');
+
+                _itemValues.Add(words[0], int.Parse(words[1]));
+                _validItemsLeft.Add(words[0], int.Parse(words[2]));
+
+                ErrorMessages.text = words[0] + ", " + words[1] + ", " + words[2];
+            }
         }
-        */
-        #endregion
+        while (currentLine != null);
+    }
+
+    private void EditorLoad()
+    {
+        StreamReader streamReader = new StreamReader(_itemsSettingsEditorPath, Encoding.Default);
+
+        using (streamReader)
+        {
+            string currentLine;
+
+            do
+            {
+                currentLine = streamReader.ReadLine();
+                if (currentLine != null)
+                {
+                    string[] words = currentLine.Split(',');
+
+                    _itemValues.Add(words[0], int.Parse(words[1]));
+                    _validItemsLeft.Add(words[0], int.Parse(words[2]));
+                }
+            }
+            while (currentLine != null);
+
+            streamReader.Close();
+        }
     }
 }
