@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 // Code snippet taken from https://docs.unity3d.com/ScriptReference/AudioSettings-dspTime.html with modifications to change it from emitting spund to make a game object jump instead
-public class JumpScript : MonoBehaviour {
+public class RadioScript : MonoBehaviour {
 
     public float MaxRotationalForce = 0.1f;
     public float MaxRotate = 5f;
@@ -22,8 +23,12 @@ public class JumpScript : MonoBehaviour {
     public float durationOfDeath = 500;
     public float MaxImpactForceBeforeBroken = 2;
 
+    //The sound is supposed to speed up a teeeensy bit when the cloc is running low
+    GameManager GM_script;
+
     void Start()
     {
+        GM_script = GameObject.Find("_SCRIPTS").GetComponent<GameManager>();
         double startTick = AudioSettings.dspTime;
         sampleRate = AudioSettings.outputSampleRate;
         nextTick = startTick * sampleRate;
@@ -33,9 +38,10 @@ public class JumpScript : MonoBehaviour {
         //For breaking
         audio = GetComponent<AudioSource>();
         pitch = audio.pitch;
+
+
+        
     }
-
-
 
     void FixedUpdate()
     {
@@ -44,7 +50,16 @@ public class JumpScript : MonoBehaviour {
             _jump = false;
             Jump();
             MaxRotationalForce = MaxRotationalForce * pitch; //this is so that when the radio dies, the jumping stops
+            
         }
+        // increasing stress if game is near the end --- did mess with gameManager script to make this happen
+        Debug.Log("GM_script.Get_timeLeft is: " + GM_script.Get_timeLeft());
+
+        if (GM_script.Get_timeLeft() <= 15 && GM_script.Get_timeLeft() > 0)
+        {
+            audio.pitch = 1.05f;
+        }
+        else if (!broken) { audio.pitch = 1; }
 
         //Debug.Log("the radio is broken == " + broken);
         if (broken)
