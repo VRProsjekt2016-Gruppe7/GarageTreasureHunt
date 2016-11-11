@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using NewtonVR;
+using System;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -15,6 +17,8 @@ namespace Assets.Scripts
 
 		public GameObject GripToStartText;
 		public Transform CameraTransform;
+
+        public Text display;
 
 		private NVRInteractableItem nvrInteractable;
 
@@ -51,10 +55,18 @@ namespace Assets.Scripts
             if (nvrInteractable.AttachedHand != null && nvrInteractable.AttachedHand.HoldButtonPressed == true && nvrInteractable.AttachedHand.UseButtonDown) {
 				PrimeTagGun ();
 			}
+            //Mattias was here
+            //added siplay to the tag gun created method to update
+            UpdateDipslay();
 
 		}
 
-		public void PrimeTagGun()
+        private void UpdateDipslay()
+        {
+            display.text = NumStickers.ToString();
+        }
+
+        public void PrimeTagGun()
         {
 			if (!HasStickers)
 				return;	
