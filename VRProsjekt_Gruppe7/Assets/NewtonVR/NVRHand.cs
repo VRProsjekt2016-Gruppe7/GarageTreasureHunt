@@ -467,16 +467,17 @@ namespace NewtonVR
                 CurrentlyHoveringOver[interactable][col] = Time.time;
         }
 
-        protected virtual void OnTriggerStay(Collider col)
+		// TODO fix later
+		NVRInteractable closest = null;
+		float closestDistance = float.MaxValue;
+
+		protected virtual void OnTriggerStay(Collider col)
         {
             
             if (col.transform.tag == "BoxLid" && UseButtonPressed)
             {
                 col.GetComponent<OpenBox>().Open(transform);
             }
-
-            NVRInteractable closest = null;
-            float closestDistance = float.MaxValue;
 
             foreach (var hovering in CurrentlyHoveringOver)
             {
@@ -501,6 +502,16 @@ namespace NewtonVR
                 color = new Color(255, 255, 0, 255);
                 col.GetComponent<Renderer>().material.color = color;
             }
+			
+			float distanceToLid = Vector3.Distance( transform.position, col.transform.position );
+			if(col.tag == "BoxLid" && distanceToLid < closestDistance)
+			{
+				var color = col.GetComponent<Renderer>().material.color;
+				color = new Color( 255, 255, 0, 255 );
+				col.GetComponent<Renderer>().material.color = color;
+			}
+			
+
             //Dont outline
             if (HoldButtonPressed && col.tag == "Container")
                 col.GetComponent<Renderer>().material = BoxMaterial;
@@ -527,11 +538,15 @@ namespace NewtonVR
             {
                 col.GetComponent<OpenBox>().Close();
                 col.GetComponent<Renderer>().material = LidMaterial;
+				closestDistance = float.MaxValue;
+				closest = null;
             }
             else if(col.tag == "Container")
             {
                 col.GetComponent<Renderer>().material = BoxMaterial;
-            }
+				closestDistance = float.MaxValue;
+				closest = null;
+			}
 
 
             NVRInteractable interactable = NVRInteractables.GetInteractable(col);
