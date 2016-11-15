@@ -50,7 +50,7 @@ public class SteamVR_LoadLevel : MonoBehaviour
 	// If specified, the loading screen will be positioned in the player's view this far away.
 	public float loadingScreenDistance = 0.0f;
 
-	// Optional overrides for where to display loading screen and progress bar overlays.
+	// Optional overrides for where to Display loading screen and progress bar overlays.
 	// Otherwise defaults to using this object's transform.
 	public Transform loadingScreenTransform, progressBarTransform;
 

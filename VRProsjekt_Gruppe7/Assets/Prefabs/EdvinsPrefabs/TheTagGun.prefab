@@ -23,7 +23,6 @@ GameObject:
   - 23: {fileID: 23000012101672036}
   - 54: {fileID: 54000010605818014}
   - 114: {fileID: 114000013781015532}
-  - 114: {fileID: 114000011726773920}
   - 82: {fileID: 82000010800816560}
   - 64: {fileID: 64000011049569070}
   - 114: {fileID: 114000010990096218}
@@ -94,7 +93,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000010856921496}
   m_LocalRotation: {x: 0, y: -0.7071068, z: -0.7071068, w: 0}
-  m_LocalPosition: {x: 0, y: 0.8106, z: 0.911}
+  m_LocalPosition: {x: 0, y: 0.81, z: 0.91}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_LocalEulerAnglesHint: {x: 270, y: 180, z: 0}
   m_Children:
@@ -177,7 +176,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -403,19 +402,6 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 5
---- !u!114 &114000011726773920
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010856921496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f56fcb55a7b6204fa78ed3e2825c1de, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Sticker: {fileID: 1000013103382046, guid: b84379d3805e0ba419b686c9baabb599, type: 2}
-  TagGunPickedUpFirstTime: 0
 --- !u!114 &114000012613094288
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -454,12 +440,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfbc0c1dadca5c149a203f2f2201d540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumStickers: 7
+  ForceGameStart: 0
+  NumStickers: 1
   IsPrimed: 0
   HasStickers: 1
   IsPickedUpFirstTime: 0
   GripToStartText: {fileID: 0}
   CameraTransform: {fileID: 0}
+  Sticker: {fileID: 1000013103382046, guid: b84379d3805e0ba419b686c9baabb599, type: 2}
+  display: {fileID: 114000011115477838}
 --- !u!222 &222000011289188796
 CanvasRenderer:
   m_ObjectHideFlags: 1

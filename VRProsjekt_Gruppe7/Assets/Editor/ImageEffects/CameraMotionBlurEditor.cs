@@ -81,7 +81,7 @@ namespace UnityStandardAssets.ImageEffects
                 EditorGUILayout.PropertyField (excludeLayers, new GUIContent(" Exclude Layers"));
                 EditorGUILayout.PropertyField (velocityDownsample, new GUIContent(" Velocity Downsample"));
                 velocityDownsample.intValue = velocityDownsample.intValue < 1 ? 1 : velocityDownsample.intValue;
-                if (filterType.enumValueIndex >= 2) { // only display jitter for reconstruction
+                if (filterType.enumValueIndex >= 2) { // only Display jitter for reconstruction
                     EditorGUILayout.PropertyField (noiseTexture, new GUIContent(" Sample Jitter"));
                     EditorGUILayout.Slider (jitter, 0.0f, 10.0f, new GUIContent("  Jitter Strength"));
                 }

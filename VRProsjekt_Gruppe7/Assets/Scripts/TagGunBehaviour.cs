@@ -7,7 +7,11 @@ namespace Assets.Scripts
 {
     public class TagGunBehaviour : MonoBehaviour
     {
-        public int NumStickers = 7;
+        // NEW OVERIDE TO START GAME!!!
+        public bool ForceGameStart = false;
+        // END NEW FORCE START
+
+        public int NumStickers;
 	
         public bool IsPrimed;
         public bool HasStickers = true;
@@ -17,46 +21,55 @@ namespace Assets.Scripts
 
 		public GameObject GripToStartText;
 		public Transform CameraTransform;
+        public GameObject Sticker;
 
         public Text display;
 
-		private NVRInteractableItem nvrInteractable;
+		private NVRInteractableItem _nvrInteractable;
+        private GameManager _gM;
 
-	    void Start()
-	    {
-	        _sC = FindObjectOfType<SoundController>();
-			nvrInteractable = GetComponent<NVRInteractableItem> ();
+        private readonly Vector3 _tagGunStartPos = new Vector3(0f, 0.81f, 0.91f);
+        private readonly Vector3 _tagGunStartRot = new Vector3(270f, 180f, 0f);
+
+
+        void Start()
+        {
+            _gM = FindObjectOfType<GameManager>();
+            _placeSticker = GetComponent<TagGunPlaceSticker>();
+            _sC = FindObjectOfType<SoundController>();
+			_nvrInteractable = GetComponent<NVRInteractableItem> ();
         }
 
-        public void Init(int nrOfSticker)
+        public void Init(int nrOfStickers)
         {
-            _placeSticker = GetComponent<TagGunPlaceSticker>();
+            NumStickers = nrOfStickers;
             HasStickers = true;
+            IsPickedUpFirstTime = false;
+            ResetTagGun();
+        }
+
+        private void ResetTagGun()
+        {
+            if (transform.parent)
+                transform.parent = null;
+
+            transform.position = _tagGunStartPos;
+            transform.eulerAngles = _tagGunStartRot;
         }
 
         public void Update()
         {
-            /*
-			if (FindObjectOfType<GameManager> ()._currentState == State.Running)
-				GripToStartText.GetComponent<MeshRenderer> ().enabled = false;
-
-    
-            // Update rotation of the text mesh
-			GripToStartText.transform.rotation = CameraTransform.rotation;
-		    */
-			// TODO start game DONE, check if works WORKS
-            if(nvrInteractable.AttachedHand != null && !IsPickedUpFirstTime)
+            if((ForceGameStart || _nvrInteractable.AttachedHand != null) && !IsPickedUpFirstTime)
             {
+                ForceGameStart = false;
                 IsPickedUpFirstTime = true;
-                FindObjectOfType<GameManager>().MaualStart = true;
+                FindObjectOfType<GameManager>().StartGame();
             }
 
-            // TODO prime tag gun when triggeris pressed DONE check if works WORKS
-            if (nvrInteractable.AttachedHand != null && nvrInteractable.AttachedHand.HoldButtonPressed == true && nvrInteractable.AttachedHand.UseButtonDown) {
+            if (_nvrInteractable.AttachedHand != null && _nvrInteractable.AttachedHand.HoldButtonPressed == true && _nvrInteractable.AttachedHand.UseButtonDown) {
 				PrimeTagGun ();
 			}
-            //Mattias was here
-            //added siplay to the tag gun created method to update
+
             UpdateDipslay();
 
 		}
@@ -88,17 +101,21 @@ namespace Assets.Scripts
                 col.transform.GetComponent<BoxInfo>().HasSticker = true;
                 NumStickers--;
                 IsPrimed = false;
-				_placeSticker.StickToObject(col.gameObject);
+				StickToObject(col.gameObject);
             }
 
             if (NumStickers <= 0)
             {
                 HasStickers = false;
             }
-            Debug.Log("Collision happend with " + col.transform.tag);
+
+            if (!HasStickers)
+            {
+                FindObjectOfType<GameManager>().EndGame();
+            }
         }
 
-		public void OnTriggerEnter(Collider col)
+        public void OnTriggerEnter(Collider col)
 		{
 			if (col.transform.tag != "Container" || !HasStickers)
 				return;
@@ -111,14 +128,34 @@ namespace Assets.Scripts
 				col.transform.GetComponent<BoxInfo>().HasSticker = true;
 				NumStickers--;
 				IsPrimed = false;
-				_placeSticker.StickToObject(col.gameObject);
-			}
-			if (NumStickers <= 0)
-			{
-				HasStickers = false;
-			}
-			Debug.Log("Trigger Happend " + col.transform.tag);
-		}
+				StickToObject(col.gameObject);
+            }
 
+            if (NumStickers <= 0)
+            {
+                HasStickers = false;
+            }
+
+		    if (!HasStickers)
+		    {
+                FindObjectOfType<GameManager>().EndGame();
+            }
+        }
+        public void StickToObject(GameObject box)
+        {
+            BoxInfo boxInfo = box.GetComponent<BoxInfo>();
+            Vector3 stickerPos = boxInfo.StickerPoint.transform.position;
+
+            // Attach sticker
+            var newSticker = (GameObject)Instantiate(Sticker, stickerPos, Quaternion.identity);
+            newSticker.transform.Rotate(box.transform.localEulerAngles);
+            newSticker.transform.parent = box.transform;
+
+            // Add score
+            _gM.AddScore(boxInfo.TotalBoxValue);
+
+            // Play audioclip
+            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace Assets.Scripts
         }
 
 //		public void StickToObject( Collision target )
-        public void StickToObject(GameObject box)
+       private void StickToObject(GameObject box)
         {
             BoxInfo boxInfo = box.GetComponent<BoxInfo>();
             Vector3 stickerPos = boxInfo.StickerPoint.transform.position;

@@ -32,7 +32,7 @@ namespace VRStandardAssets.Utils
             // Set the displayed value of the fps to be an integer.
             m_Text.text = Mathf.FloorToInt (fps) + " fps";
 
-            // Turn the fps display on and off using the F key.
+            // Turn the fps Display on and off using the F key.
             if (Input.GetKeyDown (KeyCode.F))
             {
                 m_Text.enabled = !m_Text.enabled;

@@ -1,6 +1,6 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
-// Purpose: Custom inspector display for SteamVR_Camera
+// Purpose: Custom inspector Display for SteamVR_Camera
 //
 //=============================================================================
 

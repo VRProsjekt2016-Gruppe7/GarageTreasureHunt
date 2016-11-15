@@ -14,13 +14,14 @@ public class BoxContentsManager : MonoBehaviour
 
     public GameObject[] Contents;
     public TextAsset ConfigFile;
+
     private int MaxItemsInBox = 1;
 
-    private Dictionary<string, int> _itemValues = new Dictionary<string, int>();
-    private Dictionary<string, int> _validItemsLeft = new Dictionary<string, int>();
+    private Dictionary<string, int> _itemValues;
+    private Dictionary<string, int> _validItemsLeft;
 
     private readonly string _itemsSettingsEditorPath = "Assets/Resources/ItemsDB.txt";
-    private readonly string _itemsSettingsBuildPath = "ItemsDB.txt";
+//    private readonly string _itemsSettingsBuildPath = "ItemsDB.txt";
     private readonly Vector3[] _spawnOffset =
     {
         new Vector3(-0.05f, 0.08f, 0.05f),
@@ -30,14 +31,31 @@ public class BoxContentsManager : MonoBehaviour
         new Vector3(0.05f, 0.08f, -0.05f)
     };
 
+    private List<GameObject> _spawnedContents;
+
     public void Init()
     {
         InitItemsFromFile();
         SetCorretItemValues();
     }
 
+    public void ClearContents()
+    {
+        if (_spawnedContents == null || _spawnedContents.Count == 0)
+            return;
+
+        foreach (var gO in _spawnedContents)
+        {
+//            GameObject obj = gO;
+//            _spawnedContents.Remove(gO);
+            Destroy(gO);
+        }
+    }
+
     public void FillBoxes(List<GameObject> allBoxes)
     {
+        _spawnedContents = new List<GameObject>();
+
         for (int i = 0; i < allBoxes.Count; i++)
         {
             FillBox(allBoxes[i]);
@@ -71,6 +89,7 @@ public class BoxContentsManager : MonoBehaviour
 
             contents[i].GetComponent<ItemInfo>().SetValue(curBox, contents[i].GetComponent<ItemInfo>().Value);
             contents[i].transform.parent = curBox.transform;
+            _spawnedContents.Add(gO);
 
         }
 
@@ -123,6 +142,9 @@ public class BoxContentsManager : MonoBehaviour
 
     private void InitItemsFromFile()
     {
+        _itemValues = new Dictionary<string, int>();
+        _validItemsLeft = new Dictionary<string, int>();
+
         try
         {
             if (Application.isEditor)
@@ -143,9 +165,7 @@ public class BoxContentsManager : MonoBehaviour
 
     private void BuildLoad()
     {
-//        TextAsset file = (TextAsset)Resources.Load(_itemsSettingsBuildPath);
         StringReader read = new StringReader(ConfigFile.text);
-
         string currentLine;
 
         do
@@ -157,8 +177,7 @@ public class BoxContentsManager : MonoBehaviour
 
                 _itemValues.Add(words[0], int.Parse(words[1]));
                 _validItemsLeft.Add(words[0], int.Parse(words[2]));
-
-                ErrorMessages.text = words[0] + ", " + words[1] + ", " + words[2];
+                //ErrorMessages.text = words[0] + ", " + words[1] + ", " + words[2];
             }
         }
         while (currentLine != null);

@@ -1,6 +1,6 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
-// Purpose: Helper to display various hmd stats via GUIText
+// Purpose: Helper to Display various hmd stats via GUIText
 //
 //=============================================================================
 

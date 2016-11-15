@@ -25,7 +25,7 @@ public class HighlightingBaseEditor : Editor
 		#if UNITY_IPHONE || UNITY_ANDROID || UNITY_WP8 || UNITY_BLACKBERRY
 		if (!Handheld.use32BitDisplayBuffer)
 		{
-			EditorGUILayout.HelpBox("Highlighting System requires 32-bit display buffer. Set the 'Use 32-bit Display Buffer' checkbox under the 'Resolution and Presentation' section of Player Settings.", MessageType.Error);
+			EditorGUILayout.HelpBox("Highlighting System requires 32-bit Display buffer. Set the 'Use 32-bit Display Buffer' checkbox under the 'Resolution and Presentation' section of Player Settings.", MessageType.Error);
 		}
 		#endif
 

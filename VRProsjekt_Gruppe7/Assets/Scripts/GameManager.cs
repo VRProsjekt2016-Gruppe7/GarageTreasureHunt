@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using Assets.Scripts;
+using System;
 
 public enum State
 {
-    Paused,
+    Stopped,
     Running,
     Quit
 }
@@ -12,37 +13,40 @@ public class GameManager : MonoBehaviour
 {
     public GameObject PlayerCameraPrefab;
     public GameObject TagGun;
+    public GameObject HighScoreClipboard;
+    public State CurrentState;
 
     private readonly float _defaultStartTime = 60f;
-    private readonly int _defaultCharges = 12;
+    private readonly int _defaultCharges = 7;
+    private readonly Vector3 _clipboardStartPos = new Vector3(-0.165f, 0.936f, 1.08f);
+    private readonly Vector3 _clipboardStartRot = new Vector3(10f, 0f, 0f);
+
     private float _timeLeft;
     private int _currentScore;
-    private int _chargesLeft;
-	public State _currentState;
+
     private GUIController _guiController;
+    private HighScoreController _hsController;
 
-
-    public bool MaualStart = false;
+    /*
+     * NEW WAY TO FORCE GAME START
+     * IS MOVED TO TAGGUNBEHAVIOUR
+     * DUE TO NEW IMPLEMENTATIONS
+     * REGARDING HOW THE GAME STARTS
+     */
 
     void Awake()
     {
         _guiController = GetComponent<GUIController>();
+        _hsController = GetComponent<HighScoreController>();
         Init();
+        PositionClipBoard();
+        InitShelves();
         TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
     }
 
     void Update()
     {
-        // Debug
-        if (_currentState == State.Paused && MaualStart)
-        {
-            MaualStart = false;
-            StartGame();
-
-        }
-        //Debug end
-
-        if (_currentState == State.Running)
+        if (CurrentState == State.Running)
         {
             Countdown();
         }
@@ -76,43 +80,65 @@ public class GameManager : MonoBehaviour
             UpdateTimeLeft();
         }
 
-        if (_timeLeft <= 0 && _currentState == State.Running)
+        if (_timeLeft <= 0 && CurrentState == State.Running)
         {
-            GameStop();
+            EndGame();
         }
     }
 
     private void Init()
     {
-        _chargesLeft = 0;
-        _timeLeft = 0;
-        _currentScore = 0;
-        GameStop();
+        ResetValues();
+        EndGame();
     }
 
     public void StartGame()
     {
-        GetComponent<RoomGenerator>().GenerateRoom();
+        GetComponent<RoomGenerator>().SpawnBoxesAndContents();
+        ResetValues();
         _guiController.StartGame();
-        _currentState = State.Running;
-        _timeLeft = _defaultStartTime;
-        _chargesLeft = _defaultCharges;
-        Debug.Log("The Game Begins");
+        CurrentState = State.Running;
     }
 
-    private void GameStop()
+    private void ResetValues()
     {
-        _currentState = State.Paused;
+        _timeLeft = _defaultStartTime;
+        _currentScore = 0;
     }
 
-    //Mattias was here
-    //added a method for accesing the game timerLenght, needed it for the radio
-    public float Get_defaultStartTime()
+    private void InitShelves()
+    {
+        GetComponent<RoomGenerator>().ResetAndSpawnShelves();
+    }
+
+    public void EndGame()
+    {
+        CurrentState = State.Stopped;
+        TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
+        PositionClipBoard();
+        RemoveContents();
+        _guiController.GameOver(_currentScore);
+        _hsController.GameEnd(_currentScore);
+    }
+
+    private void RemoveContents()
+    {
+        GetComponent<RoomGenerator>().CleanRoom();
+    }
+
+    public float GetDefaultStartTime()
     {
         return _defaultStartTime;
     }
-    public float Get_timeLeft()
+
+    public float GetTimeLeft()
     {
         return _timeLeft;
+    }
+
+    private void PositionClipBoard()
+    {
+        HighScoreClipboard.transform.position = _clipboardStartPos;
+        HighScoreClipboard.transform.eulerAngles = _clipboardStartRot;
     }
 }

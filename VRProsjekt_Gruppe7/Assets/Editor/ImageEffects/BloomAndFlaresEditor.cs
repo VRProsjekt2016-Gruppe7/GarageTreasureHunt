@@ -74,7 +74,7 @@ namespace UnityStandardAssets.ImageEffects
             EditorGUILayout.PropertyField (screenBlendMode, new GUIContent("Blend mode"));
             EditorGUILayout.PropertyField (hdr, new GUIContent("HDR"));
 
-            // display info text when screen blend mode cannot be used
+            // Display info text when screen blend mode cannot be used
             Camera cam = (target as BloomAndFlares).GetComponent<Camera>();
             if (cam != null) {
                 if (screenBlendMode.enumValueIndex==0 && ((cam.hdr && hdr.enumValueIndex==0) || (hdr.enumValueIndex==1))) {

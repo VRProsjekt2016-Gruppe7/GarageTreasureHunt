@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections.Generic;
 
 public class BoxesManager : MonoBehaviour
@@ -7,9 +8,21 @@ public class BoxesManager : MonoBehaviour
     public GameObject BoxPrefab;
     private List<GameObject> _allBoxes;
 
-    public void Init()
+    public void ResetBoxes()
     {
+        ClearAllBoxes();
         _allBoxes = new List<GameObject>();
+    }
+
+    private void ClearAllBoxes()
+    {
+        if (_allBoxes == null || _allBoxes.Count == 0)
+            return;
+
+        foreach (var gO in _allBoxes)
+        {
+            Destroy(gO);
+        }
     }
 
     public List<GameObject> GenerateBoxes(GameObject[] shelves)

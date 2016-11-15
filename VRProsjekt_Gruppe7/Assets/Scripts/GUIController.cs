@@ -7,8 +7,10 @@ namespace Assets.Scripts
 
 		public Text CurrentScore;
 		public Text TimeLeft;
-	    public GameObject HowToPlayPanel;
+        public Text FinalScore;
+        public GameObject HowToPlayPanel;
 	    public GameObject GamePlayPanel;
+	    public GameObject GameOverPanel;
 
         private readonly string _chargesText = "Avaliable charges: ";
    	    private int _lastTime = 0;
@@ -21,22 +23,17 @@ namespace Assets.Scripts
 
 		public void Init()
 		{
-            SetCharges(0);
+            SwapPanels(true, false, false);
             SetTimeLeft(0);
             SetScore(0);
         }
 
         public void SetTextInfo(int charges, int timeLeft, int score)
 		{
-            //SetCharges(charges);
             SetTimeLeft(timeLeft);
             SetScore(score);
         }
 
-        public void SetCharges(int charges)
-        {
-            
-        }
 
         public void SetTimeLeft(float timeLeft)
         {
@@ -59,10 +56,34 @@ namespace Assets.Scripts
             CurrentScore.text = "" + (score >= 0 ? score : 0);
 		}
 
-	    public void StartGame()
+        public void SetFinalScore(int score)
+        {
+            FinalScore.text = "" + (score >= 0 ? score : 0);
+        }
+
+        public void StartGame()
 	    {
-            HowToPlayPanel.SetActive(false);
-            GamePlayPanel.SetActive(true);
+	        ResetScores();
+            SwapPanels(false, true, false);
 	    }
-	}
+
+	    private void ResetScores()
+	    {
+	        SetScore(0);
+            SetFinalScore(0);
+	    }
+
+	    public void GameOver(int finalScore)
+	    {
+	        SwapPanels(false, false, true);
+            SetFinalScore(finalScore);
+	    }
+
+	    private void SwapPanels(bool howTo, bool gamePlay, bool gameOver)
+	    {
+            HowToPlayPanel.SetActive(howTo);
+            GamePlayPanel.SetActive(gamePlay);
+            GameOverPanel.SetActive(gameOver);
+        }
+    }
 }

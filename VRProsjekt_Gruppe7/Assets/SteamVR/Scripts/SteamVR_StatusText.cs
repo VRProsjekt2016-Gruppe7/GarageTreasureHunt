@@ -1,6 +1,6 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
-// Purpose: Used to display SteamVR status messages
+// Purpose: Used to Display SteamVR status messages
 //
 //=============================================================================
 

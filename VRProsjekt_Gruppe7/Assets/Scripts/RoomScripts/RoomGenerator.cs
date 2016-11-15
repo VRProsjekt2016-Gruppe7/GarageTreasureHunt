@@ -8,26 +8,30 @@ public class RoomGenerator : MonoBehaviour
 
     private GameObject[] _shelves;
 
-    void Awake()
+    public void ResetAndSpawnShelves()
+    {
+        Reset();
+        SpawnShelves();
+    }
+
+    public void Reset()
     {
         _shelves = new GameObject[RoomValues.ShelvesPositions.Length];
-    }
-    /*
-    void Start()
-    {
-        GenerateRoom();
-    }
-    */
-    public void GenerateRoom()
-    {
-        GetComponent<BoxesManager>().Init();
+        GetComponent<BoxesManager>().ResetBoxes();
         GetComponent<BoxContentsManager>().Init();
+    }
 
-        SpawnShelves();
+    public void SpawnBoxesAndContents()
+    {
         GetComponent<BoxContentsManager>().FillBoxes(GetComponent<BoxesManager>().GenerateBoxes(_shelves));
     }
 
-    private void SpawnShelves()
+    public void EndGame()
+    {
+        
+    }
+
+    public void SpawnShelves()
     {
         for (int i = 0; i < RoomValues.ShelvesPositions.Length; i++)
         {
@@ -39,5 +43,11 @@ public class RoomGenerator : MonoBehaviour
     private RoomSide GetRoomSide(int i)
     {
         return (i == 0) ? RoomSide.Left : RoomSide.Right;
+    }
+
+    public void CleanRoom()
+    {
+        GetComponent<BoxContentsManager>().ClearContents();
+        GetComponent<BoxesManager>().ResetBoxes();
     }
 }

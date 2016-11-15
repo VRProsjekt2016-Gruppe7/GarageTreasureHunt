@@ -52,7 +52,7 @@ public class RadioScript : MonoBehaviour {
         }
         // increasing stress if game is near the end --- did mess with gameManager script to make this happen
 
-        if (_gM.Get_timeLeft() <= 15 && _gM.Get_timeLeft() > 0)
+        if (_gM.GetTimeLeft() <= 15 && _gM.GetTimeLeft() > 0)
         {
             _radioAudioSource.pitch = 1.05f;
         }

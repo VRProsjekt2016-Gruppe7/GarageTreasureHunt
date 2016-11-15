@@ -257,7 +257,7 @@ public class ViveHandController : HandController
             if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
             {
                 _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-                FindObjectOfType<GameManager>().MaualStart = true;
+  //              FindObjectOfType<GameManager>().MaualStart = true;
             }
 
             Debug.Log("Tag Gun Equipped");
@@ -265,7 +265,7 @@ public class ViveHandController : HandController
             if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
             {
                 _tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
+//                GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
 				_tagGunBehaviour.GripToStartText.GetComponent<TextMesh> ().text = "";
             }
 		}
@@ -279,7 +279,7 @@ public class ViveHandController : HandController
 			if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
 			{
 				_tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-				FindObjectOfType<GameManager>().MaualStart = true;
+//				FindObjectOfType<GameManager>().MaualStart = true;
 			}
 
 			Debug.Log("Tag Gun Equipped");
@@ -287,7 +287,7 @@ public class ViveHandController : HandController
 			if (!_tagGunPlaceSticker.TagGunPickedUpFirstTime)
 			{
 				_tagGunPlaceSticker.TagGunPickedUpFirstTime = true;
-				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
+//				GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>().MaualStart = true;
 				_tagGunBehaviour.GripToStartText.GetComponent<TextMesh> ().text = "";
 			}
 		}

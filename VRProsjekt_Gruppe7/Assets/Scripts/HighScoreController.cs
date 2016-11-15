@@ -11,18 +11,6 @@ public class HighScoreController : MonoBehaviour
     public bool UpdateNewScore = false;
     public int NewTestScore = 0;
 
-    void Update()
-    {
-        if (UpdateNewScore)
-        {
-            UpdateNewScore = false;
-            GameEnd(NewTestScore);
-        }
-    }
-
-
-    // Debug end
-
     void Start ()
 	{
 	    Init();
@@ -56,7 +44,7 @@ public class HighScoreController : MonoBehaviour
 
         for (int i = 0; i < scores.Length; i++)
         {
-            print("GameEndLoop: " + i);
+            //print("GameEndLoop: " + i);
 
             string index = GetPosIndex(i + 1);
             scores[i] = PlayerPrefs.GetInt(index);
@@ -79,8 +67,6 @@ public class HighScoreController : MonoBehaviour
     {
         for (int i = 0; i < scores.Length; i++)
         {
-            print("UpdateHighScoreBoard: " + i);
-
             string index = GetPosIndex(i + 1);
             HighScoreText[i].text = index + ": " + PlayerPrefs.GetInt(index);
 
@@ -88,15 +74,12 @@ public class HighScoreController : MonoBehaviour
         }
     }
 
-    
-
     private int[] AddNewScore(int[] currentHighScores, int newScore, int pos)
     {
         int[] newScores = currentHighScores;
 
         for (int i = currentHighScores.Length - 1; i >= pos; i--)
         {
-            print("AddNewScore: " + i);
             // Current key
             string index = GetPosIndex(i + 1);
 
