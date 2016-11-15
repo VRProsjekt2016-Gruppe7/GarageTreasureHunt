@@ -2,9 +2,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+public enum BoxLidStatus
+{
+    Closed,
+    Open
+}
+
 public class BoxesManager : MonoBehaviour
 {
-
     public GameObject BoxPrefab;
     private List<GameObject> _allBoxes;
 

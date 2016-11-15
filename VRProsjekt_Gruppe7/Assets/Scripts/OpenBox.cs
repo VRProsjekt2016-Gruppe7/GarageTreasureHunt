@@ -5,7 +5,28 @@ public class OpenBox : MonoBehaviour
     [SerializeField]
     Transform _hand;
 
+    public BoxLidStatus LidStatus;
+    private BoxInfo _boxInfo;
+
     private float _closeLidSpeed = 5f;
+
+    void Awake()
+    {
+        _boxInfo = GetComponentInParent<BoxInfo>();
+        LidStatus = BoxLidStatus.Closed;
+    }
+
+    void Update()
+    {
+        if (_hand == null)
+        {
+            HandleClosingLid();
+        }
+        else
+        {
+            HandleOpenLid();
+        }
+    }
 
     public void Open(Transform hand)
     {
@@ -17,30 +38,20 @@ public class OpenBox : MonoBehaviour
         _hand = null;
     }
 
-    void Update()
-    {
-		//print (transform.parent.localEulerAngles.z);
-
-
-        if (_hand == null)
-        {
-            HandleClosingLid();
-        }
-        else
-        {
-            HandleOpenLid();
-        }
-    }
-
     private void HandleClosingLid()
     {
         if (transform.localEulerAngles.x >= 270 && transform.localEulerAngles.x < 360)
         {
             transform.localEulerAngles += new Vector3(_closeLidSpeed * (10), 0, 0) * Time.deltaTime;
-        } 
+            LidStatus = BoxLidStatus.Open;
+            _boxInfo.LidStatus(true);
+
+        }
         else if (transform.localEulerAngles.x > 0 && transform.localEulerAngles.x < 270)
         {
             transform.localEulerAngles = Vector3.zero;
+            LidStatus = BoxLidStatus.Closed;
+            _boxInfo.LidStatus(false);
         }
     }
 

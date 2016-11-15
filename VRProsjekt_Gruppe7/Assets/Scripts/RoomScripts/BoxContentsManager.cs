@@ -46,8 +46,6 @@ public class BoxContentsManager : MonoBehaviour
 
         foreach (var gO in _spawnedContents)
         {
-//            GameObject obj = gO;
-//            _spawnedContents.Remove(gO);
             Destroy(gO);
         }
     }
@@ -90,7 +88,6 @@ public class BoxContentsManager : MonoBehaviour
             contents[i].GetComponent<ItemInfo>().SetValue(curBox, contents[i].GetComponent<ItemInfo>().Value);
             contents[i].transform.parent = curBox.transform;
             _spawnedContents.Add(gO);
-
         }
 
         curBox.GetComponent<BoxInfo>().AddBoxContents(contents);

@@ -1,12 +1,14 @@
 using UnityEngine;
 using System.Collections.Generic;
 
-public class BoxInfo : MonoBehaviour {
-
+public class BoxInfo : MonoBehaviour
+{
     public List<GameObject> BoxContents;
     public int TotalBoxValue = 0;
     public bool HasSticker = false;
     public GameObject StickerPoint;
+
+    private bool _contentsVisible = true;
 
     public void AddBoxContents(GameObject[] contents)
     {
@@ -18,6 +20,37 @@ public class BoxInfo : MonoBehaviour {
         }
 
         SetBoxValues();
+        LidStatus(false);
+    }
+
+    public void LidStatus(bool open)
+    {
+        if (_contentsVisible == open)
+            return;
+
+        _contentsVisible = open;
+        SetObjectVisibility(_contentsVisible);
+    }
+
+    private void SetObjectVisibility(bool visible)
+    {
+
+        foreach (GameObject gO in BoxContents)
+        {
+            gO.SetActive(visible);
+        }
+        /*
+        gO.GetComponent<Rigidbody>().isKinematic = hidden;
+        gO.GetComponent<MeshRenderer>().enabled = !hidden;
+
+        if (gO.transform.childCount > 0)
+        {
+            foreach (Transform child in gO.GetComponentsInChildren<Transform>())
+            {
+                child.gameObject.SetActive(!hidden);
+            }
+        }
+        */
     }
 
     private void SetBoxValues()
