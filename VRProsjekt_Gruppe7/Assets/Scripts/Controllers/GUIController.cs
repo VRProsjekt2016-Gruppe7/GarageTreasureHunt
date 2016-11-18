@@ -12,16 +12,8 @@ namespace Assets.Scripts
 	    public GameObject GamePlayPanel;
 	    public GameObject GameOverPanel;
 
-        private readonly string _chargesText = "Avaliable charges: ";
    	    private int _lastTime = 0;
 	    private float _gameDuration;
-
-/*
-        void Start()
-		{
-			Init();
-		}
-*/
 
 		public void Init(float gameDuration)
 		{
@@ -36,7 +28,6 @@ namespace Assets.Scripts
             SetTimeLeft(timeLeft);
             SetScore(score);
         }
-
 
         public void SetTimeLeft(float timeLeft)
         {
@@ -56,12 +47,12 @@ namespace Assets.Scripts
 
         public void SetScore(int score)
 		{
-            CurrentScore.text = "" + (score >= 0 ? score : 0);
+            CurrentScore.text = "$ " + (score >= 0 ? score : 0);
 		}
 
         public void SetFinalScore(int score)
         {
-            FinalScore.text = "" + (score >= 0 ? score : 0);
+            FinalScore.text = "$ " + (score >= 0 ? score : 0);
         }
 
         public void StartGame()

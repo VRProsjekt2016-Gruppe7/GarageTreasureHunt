@@ -11,7 +11,6 @@ public enum State
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject PlayerCameraPrefab;
     public GameObject TagGun;
     public GameObject HighScoreClipboard;
     public State CurrentState;

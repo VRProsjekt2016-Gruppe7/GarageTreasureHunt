@@ -492,7 +492,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '05:'
+  m_Text: '05: $'
 --- !u!114 &114000010518331040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -525,7 +525,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '04:'
+  m_Text: '04: $'
 --- !u!114 &114000010558782878
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -594,7 +594,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '01: 000 $'
+  m_Text: '01: $'
 --- !u!114 &114000010872687820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -730,7 +730,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '09:'
+  m_Text: '09: $'
 --- !u!114 &114000012193677046
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -763,7 +763,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Alice: 8888 $'
+  m_Text: '03: $'
 --- !u!114 &114000012348591036
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -898,7 +898,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '10:'
+  m_Text: '10: $'
 --- !u!114 &114000013446573994
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -952,7 +952,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '07:'
+  m_Text: '07: $'
 --- !u!114 &114000013612007968
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -985,7 +985,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '06:'
+  m_Text: '06: $'
 --- !u!114 &114000013941845158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1018,7 +1018,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Johhny: 8888$'
+  m_Text: '02: $'
 --- !u!114 &114000014114077982
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1087,7 +1087,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '08:'
+  m_Text: '08: $'
 --- !u!114 &114000014239139408
 MonoBehaviour:
   m_ObjectHideFlags: 1

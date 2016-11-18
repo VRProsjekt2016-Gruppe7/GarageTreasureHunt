@@ -26,11 +26,11 @@ public class HighScoreController : MonoBehaviour
             if (!PlayerPrefs.HasKey(index))
             {
                 PlayerPrefs.SetInt(index, _initScoreValue);
-                HighScoreText[i - 1].text = index + ": " + _initScoreValue;
+                HighScoreText[i - 1].text = index + ": $ " + _initScoreValue;
             }
             else
             {
-                HighScoreText[i - 1].text = index + ": " + PlayerPrefs.GetInt(index);
+                HighScoreText[i - 1].text = index + ": $ " + PlayerPrefs.GetInt(index);
             }
         }
     }
@@ -68,7 +68,7 @@ public class HighScoreController : MonoBehaviour
         for (int i = 0; i < scores.Length; i++)
         {
             string index = GetPosIndex(i + 1);
-            HighScoreText[i].text = index + ": " + PlayerPrefs.GetInt(index);
+            HighScoreText[i].text = index + ": $ " + PlayerPrefs.GetInt(index);
 
             HighScoreText[i].GetComponent<Text>().color = (i == newHighScorePos) ? Color.green : Color.white;
         }
