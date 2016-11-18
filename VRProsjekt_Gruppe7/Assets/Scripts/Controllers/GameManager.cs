@@ -44,6 +44,11 @@ public class GameManager : MonoBehaviour
         TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
     }
 
+    void Start()
+    {
+        _guiController.Init(_defaultStartTime);
+    }
+
     void Update()
     {
         if (CurrentState == State.Running)

@@ -448,7 +448,7 @@ MonoBehaviour:
   GripToStartText: {fileID: 0}
   CameraTransform: {fileID: 0}
   Sticker: {fileID: 1000013103382046, guid: b84379d3805e0ba419b686c9baabb599, type: 2}
-  display: {fileID: 114000011115477838}
+  TagGunDisplay: {fileID: 114000011115477838}
 --- !u!222 &222000011289188796
 CanvasRenderer:
   m_ObjectHideFlags: 1
