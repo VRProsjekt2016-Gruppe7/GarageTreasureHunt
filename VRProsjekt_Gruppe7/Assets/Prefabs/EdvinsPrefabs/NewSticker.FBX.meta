@@ -1,7 +1,7 @@
 fileFormatVersion: 2
-guid: 6d976754ea3c44941a04e6f7d9c8de31
-timeCreated: 1478180745
-licenseType: Pro
+guid: dc5cfdaa461475f4b918551a289d69cf
+timeCreated: 1479477292
+licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Box001
+    4300000: NewSticker
   materials:
     importMaterials: 1
     materialName: 0
@@ -52,7 +52,7 @@ ModelImporter:
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
-    tangentImportMode: 0
+    tangentImportMode: 3
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
