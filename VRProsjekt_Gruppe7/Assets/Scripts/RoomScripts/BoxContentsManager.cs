@@ -18,7 +18,7 @@ public class BoxContentsManager : MonoBehaviour
     private Dictionary<string, int> _itemValues;
     private Dictionary<string, int> _itemSizeValues;
 
-    private readonly int _maxBoxSpace = 100;
+    private readonly int _maxBoxSpace = 80;
     private readonly string _itemsSettingsEditorPath = "Assets/Resources/ItemsDB.txt";
 
     private readonly Vector3[] _spawnOffset =
@@ -66,8 +66,8 @@ public class BoxContentsManager : MonoBehaviour
         int maxRetries = 10;
 
 
-        while(boxSpaceLeft > 0 || maxRetries > 0)
-        { 
+        while (boxSpaceLeft > 0 || maxRetries > 0)
+        {
             int objIndex = Random.Range(0, Contents.Length);
 
             if (!ValidItem(objIndex, boxSpaceLeft))
@@ -111,7 +111,7 @@ public class BoxContentsManager : MonoBehaviour
 
         return (sizeValue >= 0 && sizeValue <= boxSpaceLeft);
     }
-    
+
     private void SetCorretItemValues()
     {
         foreach (GameObject gO in Contents)
@@ -134,7 +134,7 @@ public class BoxContentsManager : MonoBehaviour
         {
             if (Application.isEditor)
             {
-                EditorLoad();   
+                EditorLoad();
             }
             else
             {
