@@ -485,7 +485,14 @@ namespace NewtonVR
 					_curLid = col.GetComponent<OpenBox> ();
 					_curLid.Open (transform);
 				}
-				return;
+
+                return;
+            }
+
+            if(col.transform.tag == "BoxLid")
+            {
+                col.GetComponent<Highlighter>().enabled = true;
+                col.GetComponent<SpectrumController>().enabled = true;
             }
 
             foreach (var hovering in CurrentlyHoveringOver)
@@ -510,10 +517,10 @@ namespace NewtonVR
 				col.GetComponent<Highlighter>().enabled = true;
 				col.GetComponent<SpectrumController>().enabled = true;
             }
+
 	
             //Dont outline
-
-            if (HoldButtonPressed && col.tag == "Container")
+            if (HoldButtonPressed && (col.tag == "Container" || col.tag == "BoxLid"))
 			{
 				col.GetComponent<Highlighter>().enabled = false;
 				col.GetComponent<SpectrumController>().enabled = false;
@@ -544,8 +551,13 @@ namespace NewtonVR
 				closest = null;
 				closestDistance = float.MaxValue;
 			}
+            if (col.tag == "BoxLid")
+            {
+                col.GetComponent<Highlighter>().enabled = false;
+                col.GetComponent<SpectrumController>().enabled = false;
+            }
 
-			NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+            NVRInteractable interactable = NVRInteractables.GetInteractable(col);
 
             if (interactable == null)
                 return;

@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 namespace NewtonVR
 {
@@ -44,11 +43,6 @@ namespace NewtonVR
         {
             if (IsAttached == true && DoPhysicsStep == true)
             {
-				/*
-				if (transform.tag == "Container" && GetComponent<Rigidbody> ()) {
-					GetComponent<Rigidbody> ().freezeRotation = false;
-				}
-				*/
                 DoPhysicsStep = false;
 
                 Quaternion RotationDelta;
