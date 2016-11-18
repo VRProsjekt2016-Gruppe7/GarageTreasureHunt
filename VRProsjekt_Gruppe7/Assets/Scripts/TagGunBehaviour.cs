@@ -16,26 +16,23 @@ namespace Assets.Scripts
         public bool IsPrimed;
         public bool HasStickers = true;
         public bool IsPickedUpFirstTime = false;
-        private TagGunPlaceSticker _placeSticker;
-        private SoundController _sC;
 
 		public GameObject GripToStartText;
 		public Transform CameraTransform;
         public GameObject Sticker;
 
-        public Text display;
+        public Text TagGunDisplay;
 
-		private NVRInteractableItem _nvrInteractable;
+        private SoundController _sC;
+        private NVRInteractableItem _nvrInteractable;
         private GameManager _gM;
 
         private readonly Vector3 _tagGunStartPos = new Vector3(0f, 0.81f, 0.91f);
         private readonly Vector3 _tagGunStartRot = new Vector3(270f, 180f, 0f);
-
-
+        
         void Start()
         {
             _gM = FindObjectOfType<GameManager>();
-            _placeSticker = GetComponent<TagGunPlaceSticker>();
             _sC = FindObjectOfType<SoundController>();
 			_nvrInteractable = GetComponent<NVRInteractableItem> ();
         }
@@ -76,7 +73,7 @@ namespace Assets.Scripts
 
         private void UpdateDipslay()
         {
-            display.text = NumStickers.ToString();
+            TagGunDisplay.text = NumStickers.ToString();
         }
 
         public void PrimeTagGun()
@@ -141,6 +138,7 @@ namespace Assets.Scripts
                 FindObjectOfType<GameManager>().EndGame();
             }
         }
+
         public void StickToObject(GameObject box)
         {
             BoxInfo boxInfo = box.GetComponent<BoxInfo>();

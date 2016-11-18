@@ -1,6 +1,6 @@
 ﻿//======= Copyright (c) Valve Corporation, All rights reserved. ===============
 //
-// Purpose: Custom inspector display for SteamVR_RenderModel
+// Purpose: Custom inspector TagGunDisplay for SteamVR_RenderModel
 //
 //=============================================================================
 
