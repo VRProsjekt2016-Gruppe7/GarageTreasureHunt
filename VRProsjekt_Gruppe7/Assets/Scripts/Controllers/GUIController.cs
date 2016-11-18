@@ -14,15 +14,18 @@ namespace Assets.Scripts
 
         private readonly string _chargesText = "Avaliable charges: ";
    	    private int _lastTime = 0;
+	    private float _gameDuration;
 
-
+/*
         void Start()
 		{
 			Init();
 		}
+*/
 
-		public void Init()
+		public void Init(float gameDuration)
 		{
+		    _gameDuration = gameDuration;
             SwapPanels(true, false, false);
             SetTimeLeft(0);
             SetScore(0);
@@ -37,7 +40,7 @@ namespace Assets.Scripts
 
         public void SetTimeLeft(float timeLeft)
         {
-            float t = timeLeft / 60;
+            float t = timeLeft / _gameDuration;
 
             Color colorLerped = Color.Lerp(Color.red, Color.green, t);
             TimeLeft.color = colorLerped;

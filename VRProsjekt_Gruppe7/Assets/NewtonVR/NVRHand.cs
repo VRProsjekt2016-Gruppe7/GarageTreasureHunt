@@ -10,13 +10,13 @@ namespace NewtonVR
 {
     public class NVRHand : MonoBehaviour
     {
-		private Valve.VR.EVRButtonId HoldButton = EVRButtonId.k_EButton_SteamVR_Trigger;
+        private Valve.VR.EVRButtonId HoldButton = EVRButtonId.k_EButton_SteamVR_Trigger;
         public bool HoldButtonDown = false;
         public bool HoldButtonUp = false;
         public bool HoldButtonPressed = false;
         public float HoldButtonAxis = 0f;
 
-		private Valve.VR.EVRButtonId UseButton = EVRButtonId.k_EButton_Axis0; 
+        private Valve.VR.EVRButtonId UseButton = EVRButtonId.k_EButton_Axis0;
         public bool UseButtonDown = false;
         public bool UseButtonUp = false;
         public bool UseButtonPressed = false;
@@ -24,7 +24,7 @@ namespace NewtonVR
 
         public Dictionary<EVRButtonId, NVRButtonInputs> Inputs;
 
-		private OpenBox _curLid;
+        private OpenBox _curLid;
 
         [SerializeField]
         private InterationStyle CurrentInteractionStyle = InterationStyle.GripDownToInteract;
@@ -73,6 +73,7 @@ namespace NewtonVR
                 return CurrentlyHoveringOver.Any(kvp => kvp.Value.Count > 0);
             }
         }
+
         public bool IsInteracting
         {
             get
@@ -80,10 +81,9 @@ namespace NewtonVR
                 return CurrentlyInteracting != null;
             }
         }
-
-
+        
         protected virtual void Awake()
-        {    
+        {
             CurrentlyHoveringOver = new Dictionary<NVRInteractable, Dictionary<Collider, float>>();
 
             LastPositions = new Vector3[EstimationSamples];
@@ -92,7 +92,7 @@ namespace NewtonVR
             EstimationSampleIndex = 0;
 
             VisibilityLocked = false;
-            
+
             Inputs = new Dictionary<EVRButtonId, NVRButtonInputs>();
             System.Array buttonTypes = System.Enum.GetValues(typeof(EVRButtonId));
             foreach (EVRButtonId buttonType in buttonTypes)
@@ -117,8 +117,7 @@ namespace NewtonVR
                 CurrentlyInteracting.OnNewPosesApplied();
             }
         }
-
-
+        
         protected virtual void Update()
         {
             if (Controller == null || CurrentHandState == HandState.Uninitialized)
@@ -148,6 +147,13 @@ namespace NewtonVR
 
             if (CurrentInteractionStyle == InterationStyle.GripDownToInteract)
             {
+                if (UseButtonUp && _curLid != null)
+                {
+                    _curLid.Close();
+                    _curLid = null;
+                    //return;
+                }
+
                 if (HoldButtonUp == true)
                 {
                     VisibilityLocked = false;
@@ -155,7 +161,7 @@ namespace NewtonVR
 
                 if (HoldButtonDown == true)
                 {
-                    if (CurrentlyInteracting == null)
+                    if (CurrentlyInteracting == null && _curLid == null)
                     {
                         PickupClosest();
                     }
@@ -164,11 +170,6 @@ namespace NewtonVR
                 {
                     EndInteraction(null);
                 }
-
-				if (UseButtonUp && _curLid != null) {
-					_curLid.Close ();
-					_curLid = null;
-				}
             }
             else if (CurrentInteractionStyle == InterationStyle.GripToggleToInteract)
             {
@@ -205,11 +206,10 @@ namespace NewtonVR
             {
                 CurrentlyInteracting.InteractingUpdate(this);
             }
-            
+
             UpdateVisibilityAndColliders();
         }
-
-
+        
         public void TriggerHapticPulse(ushort durationMicroSec = 500, EVRButtonId buttonId = EVRButtonId.k_EButton_Axis0)
         {
             if (Controller != null)
@@ -331,7 +331,7 @@ namespace NewtonVR
             float delta = LastDeltas.Sum();
             Vector3 distance = Vector3.zero;
 
-            for (int index = 0; index < LastPositions.Length-1; index++)
+            for (int index = 0; index < LastPositions.Length - 1; index++)
             {
                 Vector3 diff = LastPositions[index + 1] - LastPositions[index];
                 distance += diff;
@@ -347,7 +347,7 @@ namespace NewtonVR
             Vector3 unitAxis = Vector3.zero;
             Quaternion rotation = Quaternion.identity;
 
-            rotation =  LastRotations[LastRotations.Length-1] * Quaternion.Inverse(LastRotations[LastRotations.Length-2]);
+            rotation = LastRotations[LastRotations.Length - 1] * Quaternion.Inverse(LastRotations[LastRotations.Length - 2]);
 
             //Error: the incorrect rotation is sometimes returned
             rotation.ToAngleAxis(out angleDegrees, out unitAxis);
@@ -462,6 +462,7 @@ namespace NewtonVR
         protected virtual void OnTriggerEnter(Collider col)
         {
             NVRInteractable interactable = NVRInteractables.GetInteractable(col);
+
             if (interactable == null || interactable.enabled == false)
                 return;
 
@@ -472,28 +473,27 @@ namespace NewtonVR
                 CurrentlyHoveringOver[interactable][col] = Time.time;
         }
 
-		NVRInteractable closest = null;
-		float closestDistance = float.MaxValue;
+        NVRInteractable closest = null;
+        float closestDistance = float.MaxValue;
 
 
-		protected virtual void OnTriggerStay(Collider col)
+        protected virtual void OnTriggerStay(Collider col)
         {
-			if (col.transform.tag == "BoxLid" && UseButtonPressed)
+            if (col.transform.tag == "BoxLid")
             {
-				if (_curLid == null) {
-					
-					_curLid = col.GetComponent<OpenBox> ();
-					_curLid.Open (transform);
-				}
+
+                col.GetComponent<Highlighter>().enabled = true;
+                col.GetComponent<SpectrumController>().enabled = true;
+
+                if (UseButtonPressed && _curLid == null)
+                {
+                    _curLid = col.GetComponent<OpenBox>();
+                    _curLid.Open(transform);
+                }
 
                 return;
             }
 
-            if(col.transform.tag == "BoxLid")
-            {
-                col.GetComponent<Highlighter>().enabled = true;
-                col.GetComponent<SpectrumController>().enabled = true;
-            }
 
             foreach (var hovering in CurrentlyHoveringOver)
             {
@@ -507,24 +507,24 @@ namespace NewtonVR
                     closest = hovering.Key;
                 }
             }
-			
+
             // Outline
             if (closest != null
                 && col.gameObject == closest.gameObject
                 && (col.tag == "Container")
                 )
             {
-				col.GetComponent<Highlighter>().enabled = true;
-				col.GetComponent<SpectrumController>().enabled = true;
+                col.GetComponent<Highlighter>().enabled = true;
+                col.GetComponent<SpectrumController>().enabled = true;
             }
 
-	
+
             //Dont outline
             if (HoldButtonPressed && (col.tag == "Container" || col.tag == "BoxLid"))
-			{
-				col.GetComponent<Highlighter>().enabled = false;
-				col.GetComponent<SpectrumController>().enabled = false;
-			}
+            {
+                col.GetComponent<Highlighter>().enabled = false;
+                col.GetComponent<SpectrumController>().enabled = false;
+            }
 
             NVRInteractable interactable = NVRInteractables.GetInteractable(col);
             if (interactable == null || interactable.enabled == false)
@@ -542,19 +542,15 @@ namespace NewtonVR
         {
             if (col.tag == "BoxLid")
             {
-                col.GetComponent<OpenBox>().Close();				
+                col.GetComponent<Highlighter>().enabled = false;
+                col.GetComponent<SpectrumController>().enabled = false;
             }
-            else if(col.tag == "Container")
-            {
-				col.GetComponent<Highlighter>().enabled = false;
-				col.GetComponent<SpectrumController>().enabled = false;
-				closest = null;
-				closestDistance = float.MaxValue;
-			}
-            if (col.tag == "BoxLid")
+            else if (col.tag == "Container")
             {
                 col.GetComponent<Highlighter>().enabled = false;
                 col.GetComponent<SpectrumController>().enabled = false;
+                closest = null;
+                closestDistance = float.MaxValue;
             }
 
             NVRInteractable interactable = NVRInteractables.GetInteractable(col);
@@ -798,7 +794,7 @@ namespace NewtonVR
                 {
                     NVRHelpers.SetTransparent(GhostRenderers[rendererIndex].material, transparentcolor);
                 }
-                
+
                 if (Colliders != null)
                 {
                     GhostColliders = Colliders;
@@ -868,7 +864,7 @@ namespace NewtonVR
             return Controller.angularVelocity;
         }
     }
-    
+
     public enum VisibilityLevel
     {
         Invisible = 0,
@@ -878,7 +874,7 @@ namespace NewtonVR
 
     public enum HandState
     {
-        Uninitialized, 
+        Uninitialized,
         Idle,
         GripDownNotInteracting,
         GripDownInteracting,

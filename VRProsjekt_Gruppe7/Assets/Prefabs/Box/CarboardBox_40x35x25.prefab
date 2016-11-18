@@ -23,7 +23,6 @@ GameObject:
   - 23: {fileID: 23000010125575966}
   - 114: {fileID: 114000012148096316}
   - 65: {fileID: 65000010174150416}
-  - 114: {fileID: 114000011784255422}
   - 114: {fileID: 114000013458229218}
   - 114: {fileID: 114000013408518984}
   m_Layer: 0
@@ -313,25 +312,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0066945553, y: 0.19948918, z: 0.35}
   m_Center: {x: -0.19665253, y: 0.10599789, z: 0}
---- !u!114 &114000011784255422
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010991597582}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4a39dec1a23a043a14d554ccce8fe0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Rigidbody: {fileID: 0}
-  CanAttach: 1
-  DisableKinematicOnAttach: 1
-  EnableKinematicOnDetach: 0
-  DropDistance: 1
-  EnableGravityOnDetach: 1
-  AttachedHand: {fileID: 0}
-  InteractionPoint: {fileID: 0}
 --- !u!114 &114000011890663206
 MonoBehaviour:
   m_ObjectHideFlags: 1

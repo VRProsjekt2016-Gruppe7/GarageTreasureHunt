@@ -39,18 +39,6 @@ public class BoxInfo : MonoBehaviour
         {
             gO.SetActive(visible);
         }
-        /*
-        gO.GetComponent<Rigidbody>().isKinematic = hidden;
-        gO.GetComponent<MeshRenderer>().enabled = !hidden;
-
-        if (gO.transform.childCount > 0)
-        {
-            foreach (Transform child in gO.GetComponentsInChildren<Transform>())
-            {
-                child.gameObject.SetActive(!hidden);
-            }
-        }
-        */
     }
 
     private void SetBoxValues()
@@ -78,6 +66,6 @@ public class BoxInfo : MonoBehaviour
         }
 
         BoxContents.Remove(gO);
-		gO.transform.parent = null;
+        gO.transform.parent = null;
     }
 }
