@@ -15,13 +15,12 @@ public class BoxContentsManager : MonoBehaviour
     public GameObject[] Contents;
     public TextAsset ConfigFile;
 
-    private int MaxItemsInBox = 1;
-
     private Dictionary<string, int> _itemValues;
-    private Dictionary<string, int> _validItemsLeft;
+    private Dictionary<string, int> _itemSizeValues;
 
+    private readonly int _maxBoxSpace = 100;
     private readonly string _itemsSettingsEditorPath = "Assets/Resources/ItemsDB.txt";
-//    private readonly string _itemsSettingsBuildPath = "ItemsDB.txt";
+
     private readonly Vector3[] _spawnOffset =
     {
         new Vector3(-0.05f, 0.08f, 0.05f),
@@ -62,68 +61,57 @@ public class BoxContentsManager : MonoBehaviour
 
     private void FillBox(GameObject curBox)
     {
-        if (MaxItemsInBox > 4)
-            MaxItemsInBox = 4;
+        List<GameObject> contentsList = new List<GameObject>();
+        int boxSpaceLeft = _maxBoxSpace;
+        int maxRetries = 10;
 
-        GameObject[] contents = new GameObject[MaxItemsInBox];
 
-        for (int i = 0; i < MaxItemsInBox; i++)
-        {
-            int objIndex = GetValidObject();
+        while(boxSpaceLeft > 0 || maxRetries > 0)
+        { 
+            int objIndex = Random.Range(0, Contents.Length);
 
-            if (objIndex == -1)
+            if (!ValidItem(objIndex, boxSpaceLeft))
             {
-                print("No more items! Get more prefabs!!!");
-                break;
+                maxRetries--;
+                continue;
             }
-
 
             GameObject gO = (GameObject)Instantiate(
                 Contents[objIndex],
-                curBox.transform.position + _spawnOffset[i],
+                curBox.transform.position + _spawnOffset[Random.Range(0, _spawnOffset.Length)],
                 Quaternion.identity);
 
-            contents[i] = gO;
+            string key = gO.GetComponent<ItemInfo>().ItemName;
+            int value;
+            int sizeValue;
 
-            contents[i].GetComponent<ItemInfo>().SetValue(curBox, contents[i].GetComponent<ItemInfo>().Value);
-            contents[i].transform.parent = curBox.transform;
+            _itemValues.TryGetValue(key, out value);
+            _itemSizeValues.TryGetValue(key, out sizeValue);
+
+            gO.GetComponent<ItemInfo>().SetValues(curBox, value, sizeValue);
+            gO.transform.parent = curBox.transform;
+
+            boxSpaceLeft -= sizeValue;
+            contentsList.Add(gO);
             _spawnedContents.Add(gO);
         }
 
-        curBox.GetComponent<BoxInfo>().AddBoxContents(contents);
+        curBox.GetComponent<BoxInfo>().AddBoxContents(contentsList.ToArray());
     }
 
-    private int GetValidObject()
+    private bool ValidItem(int objIndex, int boxSpaceLeft)
     {
-        int pos = -1;
+        string itemName = Contents[objIndex].GetComponent<ItemInfo>().ItemName;
 
-        if (_validItemsLeft.Count == 0)
-            return pos;
+        if (!_itemSizeValues.ContainsKey(itemName))
+            return false;
 
-        string validItem = "";
+        int sizeValue = -1;
+        _itemSizeValues.TryGetValue(itemName, out sizeValue);
 
-        do
-        {
-            pos = Random.Range(0, Contents.Length);
-            string curItemName = Contents[pos].GetComponent<ItemInfo>().ItemName;
-
-            if (_validItemsLeft.ContainsKey(curItemName))
-            {
-                validItem = curItemName;
-                _validItemsLeft[validItem]--;
-
-                if (_validItemsLeft[validItem] == 0)
-                {
-                    _validItemsLeft.Remove(validItem);
-                }
-            }
-        }
-        while (validItem == "");
-
-        return pos;
-
+        return (sizeValue >= 0 && sizeValue <= boxSpaceLeft);
     }
-
+    
     private void SetCorretItemValues()
     {
         foreach (GameObject gO in Contents)
@@ -133,14 +121,14 @@ public class BoxContentsManager : MonoBehaviour
             if (itemInfo && _itemValues.ContainsKey(itemInfo.ItemName))
                 itemInfo.Value = _itemValues[itemInfo.ItemName];
             else
-                Debug.LogError("Herrooooo. No item by that name found in database!");
+                Debug.LogError("No item with that name found in database!");
         }
     }
 
     private void InitItemsFromFile()
     {
         _itemValues = new Dictionary<string, int>();
-        _validItemsLeft = new Dictionary<string, int>();
+        _itemSizeValues = new Dictionary<string, int>();
 
         try
         {
@@ -173,8 +161,7 @@ public class BoxContentsManager : MonoBehaviour
                 string[] words = currentLine.Split(',');
 
                 _itemValues.Add(words[0], int.Parse(words[1]));
-                _validItemsLeft.Add(words[0], int.Parse(words[2]));
-                //ErrorMessages.text = words[0] + ", " + words[1] + ", " + words[2];
+                _itemSizeValues.Add(words[0], int.Parse(words[2]));
             }
         }
         while (currentLine != null);
@@ -196,7 +183,7 @@ public class BoxContentsManager : MonoBehaviour
                     string[] words = currentLine.Split(',');
 
                     _itemValues.Add(words[0], int.Parse(words[1]));
-                    _validItemsLeft.Add(words[0], int.Parse(words[2]));
+                    _itemSizeValues.Add(words[0], int.Parse(words[2]));
                 }
             }
             while (currentLine != null);

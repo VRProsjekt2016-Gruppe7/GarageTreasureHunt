@@ -1,16 +1,16 @@
-Book,50,4
-Bowl,25,8
-Candlestick Holder,30,8
-Coffee Mug,20,8
-Crumpled Paper,1,8
-Dagger,50,4
-Gold Coin,100,8
-Gold Goblet,85,4
-Handgrenade,60,8
-Helmet,70,4
-Human Skull,90,4
-Magic Eightball,15,8
-Old Boot,2,8
-Silver Goblet,60,4
-Teapot,20,8
-Vase,85,4
+Book,355,12
+Bowl,360,23
+Candlestick Holder,455,12
+Coffee Mug,280,9
+Crumpled Paper,10,6
+Dagger,205,4
+Gold Coin,250,1
+Gold Goblet,865,9
+Handgrenade,200,5
+Helmet,605,77
+Human Skull,995,51
+Magic Eightball,120,9
+Old Boot,150,12
+Silver Goblet,605,9
+Teapot,540,51
+Vase,770,52

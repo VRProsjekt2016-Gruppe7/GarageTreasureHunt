@@ -4,6 +4,7 @@ public class ItemInfo : MonoBehaviour
 {
     public string ItemName;
     public int Value;
+    public int SizeValue;
     public GameObject Owner;
     private float _maxDistFromBox = 0.4f;
     private bool _inBox = true;
@@ -33,18 +34,18 @@ public class ItemInfo : MonoBehaviour
         Owner.GetComponent<BoxInfo>().RemoveMe(gameObject);
     }
 
-
-    public void SetValue(GameObject owner, int value)
+    public void SetValues(GameObject owner, int value, int sizeValue)
     {
-        if(value < 0)
+        if (value < 0 || sizeValue < 0)
         {
-            Debug.Log("Value cannot be a negative number! Setting to default value: 0.");
+            Debug.Log("Values cannot be a negative number! Setting to default values: 0.");
             Value = 0;
+            SizeValue = 0;
             return;
         }
 
         Owner = owner;
         Value = value;
+        SizeValue = sizeValue;
     }
-
 }
