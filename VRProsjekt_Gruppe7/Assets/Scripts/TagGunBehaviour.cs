@@ -17,8 +17,6 @@ namespace Assets.Scripts
         public bool HasStickers = true;
         public bool IsPickedUpFirstTime = false;
 
-		public GameObject GripToStartText;
-		public Transform CameraTransform;
         public GameObject Sticker;
 
         public Text TagGunDisplay;
@@ -28,13 +26,14 @@ namespace Assets.Scripts
         private GameManager _gM;
 
         private readonly Vector3 _tagGunStartPos = new Vector3(0f, 0.81f, 0.91f);
-        private readonly Vector3 _tagGunStartRot = new Vector3(270f, 180f, 0f);
+        private readonly Vector3 _tagGunStartRot = new Vector3(0, -90.0f, 0f);
         
         void Start()
         {
             _gM = FindObjectOfType<GameManager>();
             _sC = FindObjectOfType<SoundController>();
 			_nvrInteractable = GetComponent<NVRInteractableItem> ();
+            // Color 24, 46, 59
         }
 
         public void Init(int nrOfStickers)
@@ -74,6 +73,8 @@ namespace Assets.Scripts
         private void UpdateDipslay()
         {
             TagGunDisplay.text = NumStickers.ToString();
+            if (NumStickers == 0)
+                TagGunDisplay.color = new Color(255, 0, 0);
         }
 
         public void PrimeTagGun()
