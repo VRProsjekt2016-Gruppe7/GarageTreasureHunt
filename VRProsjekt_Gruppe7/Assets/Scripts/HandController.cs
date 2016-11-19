@@ -9,27 +9,40 @@ public enum Hand
 public abstract class HandController : MonoBehaviour, IControllerHandler {
 
     public Hand CurrentHand;
-    public GameObject ConnectedObject;
+    public GameObject ConnectedObjectLeft;
+	public GameObject ConnectedObjectRight;
 
 
-    public void SetupController(Hand hand, GameObject gO)
+	public void SetupController(Hand hand, GameObject gO, GameObject gO2)
     {
         AssignHand(hand);
-        AssignObject(gO);
+		AssignObjectLeft(gO);
+		AssignObjectRight (gO2);
     }
+
     public void AssignHand(Hand hand)
     {
         CurrentHand = hand;
     }
 
-    public void AssignObject(GameObject gO)
+    public void AssignObjectLeft(GameObject gO)
     {
-        ConnectedObject = gO;
+		ConnectedObjectLeft = gO;
     }
 
-    public void RemoveObject()
+	public void AssignObjectRight(GameObject gO)
+	{
+		ConnectedObjectRight = gO;
+	}
+
+    public void RemoveObjectRight()
     {
-        ConnectedObject = null;
+		ConnectedObjectRight = null;
     }
+
+	public void RemoveObjectLeft()
+	{
+		ConnectedObjectLeft = null;	
+	}
 
 }

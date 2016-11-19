@@ -2,33 +2,35 @@
 
 namespace Assets.Scripts
 {
-	public class TagGunPlaceSticker : MonoBehaviour
-	{
-		public GameObject Sticker;
+    public class TagGunPlaceSticker : MonoBehaviour
+    {
+        public GameObject Sticker;
 
         private GameManager _gM;
         private SoundController _sC;
 
 
-		public void Start( )
-		{
-		    _sC = FindObjectOfType<SoundController>();
-			_gM = FindObjectOfType<GameManager>();
-		}
+        public void Start()
+        {
+            _sC = FindObjectOfType<SoundController>();
+            _gM = FindObjectOfType<GameManager>();
+        }
 
-		public void StickToObject( Collision target )
-		{
+//		public void StickToObject( Collision target )
+        public void StickToObject(GameObject box)
+        {
+            BoxInfo boxInfo = box.GetComponent<BoxInfo>();
+            Vector3 stickerPos = boxInfo.StickerPoint.transform.position;
+
 			// Attach sticker
-			var newSticker = (GameObject)Instantiate( Sticker, target.transform.position, new Quaternion(0, target.transform.rotation.y,0,1));
-			newSticker.transform.position = target.contacts[0].point;
-		    newSticker.transform.parent = target.transform;
-			
-            // Play audioclip
-            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
+            var newSticker = (GameObject)Instantiate( Sticker, stickerPos, new Quaternion(0, box.transform.rotation.y,0,1));
+		    newSticker.transform.parent = box.transform;
 
             // Add score
-			_gM.AddScore( target.transform.GetComponent<BoxInfo>().TotalBoxValue );
-		}
+			_gM.AddScore(boxInfo.TotalBoxValue );
 
-	}
+            // Play audioclip
+            _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PlaceSticker);
+        }
+    }
 }

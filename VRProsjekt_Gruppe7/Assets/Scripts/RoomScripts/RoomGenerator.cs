@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class RoomGenerator : MonoBehaviour {
+public class RoomGenerator : MonoBehaviour
+{
 
     // Left -> Front -> Right
     public GameObject ShelfPrefab;
@@ -12,12 +13,12 @@ public class RoomGenerator : MonoBehaviour {
     {
         _shelves = new GameObject[_shelvesPositions.Length];
     }
-
+    /*
     void Start()
     {
         GenerateRoom();
     }
-
+    */
     public void GenerateRoom()
     {
         GetComponent<BoxesManager>().Init();
@@ -29,9 +30,9 @@ public class RoomGenerator : MonoBehaviour {
             GetComponent<BoxesManager>().GetBoxDimesions());
     }
 
-    private void SpawnShelves ()
+    private void SpawnShelves()
     {
-	    for(int i = 0; i < _shelvesPositions.Length; i++)
+        for (int i = 0; i < _shelvesPositions.Length; i++)
         {
             //Debug.Log("Spawning shelf nr: " + i);
             RoomSide side = GetRoomSide(i);
@@ -39,12 +40,12 @@ public class RoomGenerator : MonoBehaviour {
             _shelves[i] = (GameObject)Instantiate(ShelfPrefab, transform.position, transform.rotation);
             _shelves[i].GetComponent<ShelfManager>().PlaceObject(_shelvesPositions[i], 2f, side);
         }
-	}
+    }
 
     private RoomSide GetRoomSide(int i)
     {
-        if(i == 0)
-                return RoomSide.Left;
+        if (i == 0)
+            return RoomSide.Left;
         else if (i == 2)
             return RoomSide.Right;
         else

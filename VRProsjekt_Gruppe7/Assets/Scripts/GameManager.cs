@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     private float _timeLeft;
     private int _currentScore;
     private int _chargesLeft;
-    private State _currentState;
+	public State _currentState;
     private GUIController _guiController;
 
 
@@ -30,23 +30,23 @@ public class GameManager : MonoBehaviour
         Init();
         TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
     }
-	
-	void Update ()
+
+    void Update()
     {
         // Debug
         if (_currentState == State.Paused && MaualStart)
         {
             MaualStart = false;
             StartGame();
-            
+
         }
         //Debug end
 
-        if(_currentState == State.Running)
+        if (_currentState == State.Running)
         {
             Countdown();
-        }	
-	}
+        }
+    }
 
     private void UpdateTimeLeft()
     {
@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        GetComponent<RoomGenerator>().GenerateRoom();
         _currentState = State.Running;
         _timeLeft = _defaultStartTime;
         _chargesLeft = _defaultCharges;

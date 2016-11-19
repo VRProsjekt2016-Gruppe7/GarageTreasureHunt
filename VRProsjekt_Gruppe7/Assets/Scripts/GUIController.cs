@@ -11,9 +11,7 @@ namespace Assets.Scripts
 		public Text TimeLeft;
 
         private readonly string _chargesText = "Avaliable charges: ";
-        //private readonly string _timeLeftText = "TIME LEFT: ";
-        //private readonly string _curScoreText = "Current score: ";
-	    private int _lastTime = 0;
+   	    private int _lastTime = 0;
 
 
         void Start()

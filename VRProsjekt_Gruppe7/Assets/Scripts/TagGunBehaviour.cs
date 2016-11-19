@@ -1,76 +1,111 @@
 ﻿using UnityEngine;
+using NewtonVR;
 
 namespace Assets.Scripts
 {
-	public class TagGunBehaviour : MonoBehaviour
-	{
-		public int NumStickers = 7;
+    public class TagGunBehaviour : MonoBehaviour
+    {
+        public int NumStickers = 7;
+	
+        public bool IsPrimed;
+        public bool HasStickers = true;
+        public bool IsPickedUpFirstTime = false;
+        private TagGunPlaceSticker _placeSticker;
+        private SoundController _sC;
 
-        public bool TagGunPickedUpFirstTime = false;
-        public bool IsTagGunEquipped;
-		public bool IsPrimed;
-		public bool HasStickers = true;
+		public GameObject GripToStartText;
+		public Transform CameraTransform;
 
-		private TagGunPlaceSticker _placeSticker;
-	    private SoundController _sC;
+		private NVRInteractableItem nvrInteractable;
 
-        public TextMesh GripToStartText;
-        private Transform _cameraTransform;
 	    void Start()
 	    {
 	        _sC = FindObjectOfType<SoundController>();
-	    }
+			nvrInteractable = GetComponent<NVRInteractableItem> ();
+        }
 
-		public void Init(int nrOfSticker)
-		{
-			_placeSticker = GetComponent<TagGunPlaceSticker>();
-			HasStickers = true;
-		}
+        public void Init(int nrOfSticker)
+        {
+            _placeSticker = GetComponent<TagGunPlaceSticker>();
+            HasStickers = true;
+        }
 
-		public void Update ()
-		{
-			// Constraint, don't let the player drop the tag gun through the floor.
-			if (transform.position.y < transform.localScale.y/2.0f && GetComponent<Rigidbody>().isKinematic)
-			{
-				transform.position = new Vector3(transform.position.x, transform.localScale.y/2f, transform.position.z);
+        public void Update()
+        {
+			if (FindObjectOfType<GameManager> ()._currentState == State.Running)
+				GripToStartText.GetComponent<MeshRenderer> ().enabled = false;
+
+    
+            // Update rotation of the text mesh
+			GripToStartText.transform.rotation = CameraTransform.rotation;
+		
+			// TODO start game DONE, check if works WORKS
+            if(nvrInteractable.AttachedHand != null && !IsPickedUpFirstTime)
+            {
+                IsPickedUpFirstTime = true;
+                FindObjectOfType<GameManager>().MaualStart = true;
+            }
+
+            // TODO prime tag gun when triggeris pressed DONE check if works WORKS
+            if (nvrInteractable.AttachedHand != null && nvrInteractable.AttachedHand.HoldButtonPressed == true && nvrInteractable.AttachedHand.UseButtonDown) {
+				PrimeTagGun ();
 			}
 
-            // Update rotation of the text mesh
-            _cameraTransform = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
-
-            GripToStartText.transform.rotation = _cameraTransform.rotation; 
 		}
 
 		public void PrimeTagGun()
-		{
+        {
 			if (!HasStickers)
-                return;
+				return;	
 
             IsPrimed = true;
             _sC.PlaySoundAtSourceOnce(SoundSource.TagGun, Sounds.PrimeGun);
-		}
+        }
 
-        public void OnCollisionEnter( Collision col)
-		{
-		    if (col.transform.tag != "Container" || !HasStickers)
-		        return;
-
-            if(col.transform.GetComponent<BoxInfo>().HasSticker)
+        public void OnCollisionEnter(Collision col)
+        {
+            if (col.transform.tag != "Container" || !HasStickers)
                 return;
+
+            if (col.transform.GetComponent<BoxInfo>().HasSticker)
+                return;
+
+            if (IsPrimed)
+            {
+                col.transform.GetComponent<BoxInfo>().HasSticker = true;
+                NumStickers--;
+                IsPrimed = false;
+                _placeSticker.StickToObject(col.gameObject);
+            }
+
+            if (NumStickers <= 0)
+            {
+                HasStickers = false;
+            }
+            Debug.Log("Collision happend with " + col.transform.tag);
+        }
+
+		public void OnTriggerEnter(Collider col)
+		{
+			if (col.transform.tag != "Container" || !HasStickers)
+				return;
+
+			if (col.transform.GetComponent<BoxInfo>().HasSticker)
+				return;
 
 			if (IsPrimed)
 			{
-			    col.transform.GetComponent<BoxInfo>().HasSticker = true;
-                NumStickers--;
+				col.transform.GetComponent<BoxInfo>().HasSticker = true;
+				NumStickers--;
 				IsPrimed = false;
-				_placeSticker.StickToObject( col );
+				_placeSticker.StickToObject(col.gameObject);
 			}
-
 			if (NumStickers <= 0)
 			{
 				HasStickers = false;
 			}
-			Debug.Log("Collision happend with " + col.transform.tag);
+			Debug.Log("Trigger Happend " + col.transform.tag);
 		}
-	}
+
+    }
 }
