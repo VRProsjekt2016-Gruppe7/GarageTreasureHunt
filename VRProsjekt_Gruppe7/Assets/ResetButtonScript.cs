@@ -17,7 +17,7 @@ public class ResetButtonScript : MonoBehaviour {
     {
         if (Button.ButtonDown)
         {
-			_gM.GetComponent<GameManager>().EndGame();
+			_gM.GetComponent<GameManager>().RestartGame();
         }
     }
 }

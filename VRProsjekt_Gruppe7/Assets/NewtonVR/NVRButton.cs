@@ -81,6 +81,9 @@ namespace NewtonVR
                 ButtonUp = true;
             else
                 ButtonUp = false;
+
+            //if (transform.position.z > 0)
+            //    transform.localPosition = InitialLocalPosition;
         }
 
         private void ConstrainPosition()

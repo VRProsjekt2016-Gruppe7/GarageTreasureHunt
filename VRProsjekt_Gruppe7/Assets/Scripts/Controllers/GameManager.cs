@@ -11,14 +11,19 @@ public enum State
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject TagGunPrefab;
     public GameObject TagGun;
     public GameObject HighScoreClipboard;
-    public State CurrentState;
+    public GameObject RadioPrefab;
+    public GameObject Radio;
+    public static State CurrentState;
 
     private readonly float _defaultStartTime = 60f;
     private readonly int _defaultCharges = 7;
     private readonly Vector3 _clipboardStartPos = new Vector3(-0.165f, 0.936f, 1.08f);
     private readonly Vector3 _clipboardStartRot = new Vector3(10f, 0f, 0f);
+    private readonly Vector3 _radioStartPos = new Vector3(0f, 1.483f, -3.07f);
+    private readonly Vector3 _radioStartRot = new Vector3(0f, 180f, 0f);
 
     private float _timeLeft;
     private int _currentScore;
@@ -37,10 +42,31 @@ public class GameManager : MonoBehaviour
     {
         _guiController = GetComponent<GUIController>();
         _hsController = GetComponent<HighScoreController>();
+        SpawnNewTagGun();
+        SpawnNewRadio();
         Init();
         PositionClipBoard();
         InitShelves();
+    }
+
+    private void SpawnNewTagGun()
+    {
+        if(TagGun != null)
+            Destroy(TagGun);
+
+        TagGun = (GameObject) Instantiate(TagGunPrefab, transform.position, transform.rotation);
         TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
+    }
+
+    private void SpawnNewRadio()
+    {
+        if (Radio != null)
+            Destroy(Radio);
+
+        Radio = (GameObject)Instantiate(RadioPrefab, transform.position, transform.rotation);
+        TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
+        Radio.transform.position = _radioStartPos;
+        Radio.transform.eulerAngles = _radioStartRot;
     }
 
     void Start()
@@ -115,12 +141,18 @@ public class GameManager : MonoBehaviour
         GetComponent<RoomGenerator>().ResetAndSpawnShelves();
     }
 
+    public void RestartGame()
+    {
+        SpawnNewTagGun();
+        SpawnNewRadio();
+        RemoveContents();
+        EndGame();
+    }
+
     public void EndGame()
     {
         CurrentState = State.Stopped;
-        TagGun.GetComponent<TagGunBehaviour>().Init(_defaultCharges);
         PositionClipBoard();
-        RemoveContents();
         _guiController.GameOver(_currentScore);
         _hsController.GameEnd(_currentScore);
     }

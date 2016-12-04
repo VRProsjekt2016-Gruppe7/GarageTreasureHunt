@@ -19,6 +19,9 @@ public class ItemInfo : MonoBehaviour
         if (Owner == null)
             return;
 
+        if (GameManager.CurrentState != State.Running)
+            return;
+
         float dist = Vector3.Distance(transform.position, Owner.transform.position);
 
         if (dist > 0.4f && _inBox)
